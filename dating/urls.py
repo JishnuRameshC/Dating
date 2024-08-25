@@ -1,14 +1,23 @@
 from django.urls import path
-from . import views
+from .views import *
 from django.conf import settings
 from django.conf.urls.static import static
 
 app_name = 'Dating'
 urlpatterns = [
-                path("", views.SelectgenderView.as_view(), name="selectgender"),
-                path("error403", views.Error403View.as_view(), name="error403"),
-                path("error404", views.Error404View.as_view(), name="error404"),
-              ]
+    path("", SelectgenderView.as_view(), name="selectgender"),
+    path("error403/", Error403View.as_view(), name="error403"),
+    path("error404/", Error404View.as_view(), name="error404"),
+    path('home/', HomeView.as_view(), name='home'),
+    path('discover/', DiscoverView.as_view(), name='discover'),   
+    path('qualification/', QualificationView.as_view(), name='qualification'),    
+    path('location/', LocationView.as_view(), name='location'),   
+    path('designation/', DesignationView.as_view(), name='designation'),  
+    path('match/', MatchView.as_view(), name='match'),  
+    path('profile_view/', ProfileviewView.as_view(), name='profile_view'),  
+    path('upgrade/', UpgradeView.as_view(), name='upgrade'),   
+    path('spin/', SpinView.as_view(), name='spin'),
+]
 
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
