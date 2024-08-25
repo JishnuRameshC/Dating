@@ -1,0 +1,69 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+
+{% block content %} 
+  <div class="row">   
+      <h1 class="settings-text top-navbar">Settings</h1>
+      <div class="profile-section">
+        <div class="profile-info">
+          <img src="https://via.placeholder.com/50" alt="Profile Picture" />
+          <div>
+            <h2>Nazrul Islam</h2>
+            <p>Never give up 💪</p>
+          </div>
+        </div>
+        <i class="fas fa-qrcode fa-2x"></i>
+        <!-- Scanner symbol aligned to the right -->
+      </div>
+
+      <div class="content-section">
+        <div class="list-group">
+          <a href="#" class="list-group-item list-group-item-action">
+            <i class="fas fa-user"></i>
+            <div class="item-content">
+              <div>Account</div>
+              <div class="subheading">Privacy, security, change number</div>
+            </div>
+          </a>
+          <a href="#" class="list-group-item list-group-item-action">
+            <i class="fas fa-comments"></i>
+            <div class="item-content">
+              <div>Chat</div>
+              <div class="subheading">Chat history, theme, wallpapers</div>
+            </div>
+          </a>
+          <a href="#" class="list-group-item list-group-item-action">
+            <i class="fas fa-bell"></i>
+            <div class="item-content">
+              <div>Notifications</div>
+              <div class="subheading">Messages, group and others</div>
+            </div>
+          </a>
+          <a href="#" class="list-group-item list-group-item-action">
+            <i class="fas fa-question-circle"></i>
+            <div class="item-content">
+              <div>Help</div>
+              <div class="subheading">
+                Help center, contact us, privacy policy
+              </div>
+            </div>
+          </a>
+          <a href="#" class="list-group-item list-group-item-action">
+            <i class="fas fa-database"></i>
+            <div class="item-content">
+              <div>Storage and data</div>
+              <div class="subheading">Network usage, storage usage</div>
+            </div>
+          </a>
+          <a href="#" class="list-group-item list-group-item-action">
+            <i class="fas fa-user-plus"></i>
+            <div class="item-content">
+              <div>Invite a friend</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
