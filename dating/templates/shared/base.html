@@ -1,3 +1,4 @@
+
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -42,23 +43,21 @@
   <body>
     <div class="container">
     <header>
-      <!-- Navbar -->
-      {% include 'shared/navbar.html' %}
+      <!-- Navbar --><!-- Place navbar here -->
+    {% block navbar %}
+    {% endblock navbar %}
+<!--       {% include 'shared/navbar.html' %} -->
     </header>
 
-    <main class="d-flex">
-      <nav
-        class="col-md-2 left-sidebar d-none d-md-block bg-light"
-        style="min-height: 100vh"
-      >
-        <!-- Sidebar -->
-        <div class="bottom-bar">
-          {% include 'shared/side_menu_bar.html' %}
+    <main class="container-fluid">
+      <div class="row">
+        <!-- Footer Menu for PC View -->
+        {% include 'shared/side_menu_bar.html' %}
+        
+        <div class="col-md-8 col-lg-10 col-xl-10 main-content">
+          {% block content %}
+          {% endblock content %}
         </div>
-      </nav>
-
-      <div class="col-md-9 main-content" style="padding-top: 10px">
-        {% block content %}{% endblock %}
       </div>
     </main>
 
@@ -92,5 +91,6 @@
 
     {% block script %}{% endblock %}
 </div>
+
   </body>
 </html>
