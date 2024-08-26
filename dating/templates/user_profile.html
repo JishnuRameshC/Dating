@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="profile-card">
+    <div class="profile-header" id="profileHeader" style="background-image: url('https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80');">
+        <a href="#" class="back-btn">
+            <i class="fas fa-arrow-left fa-1x"></i>
+        </a>
+        <div class="distance">
+            <i class="fas fa-map-marker-alt"></i> 2.5 km
+        </div>
+        <div class="profile-info">
+            <h1>Alfredo Calzoni, 20</h1>
+            <h2>Hamburg, Germany</h2> 
+            <button class="match-btn">
+                Match
+                <i class="fas fa-heart"></i>
+            </button>
+        </div>
+        <div class="carousel-vertical">
+            <img src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" alt="Image 1" class="active" onclick="changeImage(this)">
+            <img src="https://picsum.photos/200/300/?blur" alt="Image 2" onclick="changeImage(this)">
+            <img src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" alt="Image 3" onclick="changeImage(this)">
+        </div>
+    </div>
+    <div class="profile-content">
+        <h3>About</h3>
+        <p>A good listener. I love having a good talk to know each other's side 😍.</p>
+        <h3>Interest</h3>
+        <div class="interest-badges">
+            <span>🌳 Nature</span>
+            <span>✈️ Travel</span>
+            <span>✍️ Writing</span>
+        </div>
+    </div>
+    <div class="actions">
+        <button class="dislike"><i class="fas fa-times"></i></button>
+        <button class="star"><i class="fas fa-star"></i></button>
+        <button class="like"><i class="fas fa-heart"></i></button>
+        <button class="message"><i class="fas fa-comment"></i></button>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+    function changeImage(element) {
+        const profileHeader = document.getElementById('profileHeader');
+        const images = document.querySelectorAll('.carousel-vertical img');
+        images.forEach(img => img.classList.remove('active'));
+        element.classList.add('active');
+        profileHeader.style.backgroundImage = `url('${element.src}')`;
+    }
+</script>
+{% endblock %}
