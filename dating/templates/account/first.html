@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<div class="first-custom-container">
+    <div class="container first-container">
+        <div class="image-container">
+            <img src="{% static 'images/f2.png' %}" class="img-fluid" alt="" style="background-size: cover;">
+        </div>
+        <h2>Let's meeting new people around you</h2>
+        <a href="#" class="btn btn-primary btn-block mb-2 w-100 d-flex " style="background-color: purple;border-radius: 25px; border: 0;">
+            <span class="me-2"><i class="fas fa-phone-volume me-3" style="background-color:rgb(245, 245, 245); border-radius: 50%; padding: 7px; color: purple;"></i></span> Login with Email/Phone
+        </a>
+        <a href="#" class="btn btn-light btn-block mb-2 w-100 d-flex " style="background-color: rgb(246, 221, 246); border-radius: 25px;">
+            <span class="me-2"><img src="{% static 'images/gicon.png' %}" class="me-4" alt="" height="25px" style="background-color: rgb(255, 255, 255); border-radius: 50%; padding: 6px;"></span> Login with Google
+        </a>
+        <p>Don't have an account? <a href="{% url "signup" %}">Sign Up</a></p>
+    </div>
+    
+</div>
+{% endblock content %}
