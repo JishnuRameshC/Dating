@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <div class="container-fluid group-container-fluid">
+        <div class="container group-container-custom">
+          
+            <h3 class="create-group-title mt-3 text-center"> Create Group </h3>
+
+            <div>
+                <h3>Group Name</h3>
+                <h5 style="color: grey;">Group Description</h5>
+                <div class="group-description text-center"><h1>Make a Group call with friends</h1></div>
+                <p>Group Admin</p>
+                <div class="group-admin">
+                    <img src="https://via.placeholder.com/60" alt="Rashid Khan">
+                    <div>
+                        <p><strong>Rashid Khan</strong></p>
+                    </div>
+                </div>
+                <p>Invited Members</p>
+                <div class="invited-members">
+                    <div class="member">
+                        <img src="https://via.placeholder.com/80" alt="Member 1">
+                    </div>
+                    <div class="member">
+                        <img src="https://via.placeholder.com/80" alt="Member 2">
+                    </div>
+                    <div class="member">
+                        <img src="https://via.placeholder.com/80" alt="Member 3">
+                    </div>
+                    <div class="member">
+                        <img src="https://via.placeholder.com/80" alt="Member 4">
+                    </div>
+                    <div class="member">
+                        <img src="https://via.placeholder.com/80" alt="Member 5">
+                    </div>
+                    <div class="member">
+                        <img src="https://via.placeholder.com/80" alt="Add More">
+                    </div>
+                </div>
+            </div>
+
+            <button class="group-create-btn">Create</button>
+        </div>
+        {% include "components/footer_nav.html" %}
+    </div>
+{% endblock content %}

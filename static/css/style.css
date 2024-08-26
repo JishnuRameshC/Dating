@@ -1,0 +1,628 @@
+/* style by shabeeb op */
+/* first page */
+:root {
+    --primary-bg-color: #f8d5e0;
+    --primary-color:purple;
+    --font-family: 'Poppins', sans-serif;
+    --secondary-bg-color:hotpink;
+   
+}
+.first-custom-container {
+    background-color: var(--primary-bg-color);
+    font-family: var(--font-family);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    height:100vh;
+    
+}
+.first-container {
+    background: white;
+    padding:30px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
+    max-width: 350px;
+    text-align: center;
+}
+@media (max-width: 576px) {
+    .first-container {
+        height: 75vh;
+    }
+}
+
+/* login */
+.login-custom-container {
+    background-color: var(--primary-bg-color);
+    font-family: var(--font-family);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    height:100vh;
+    
+}
+.login-container {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    max-width: 350px;
+    width: 100%;
+}
+.form-control {
+    border-radius: 7px;
+}
+.login-btn-custom {
+    border-radius: 15px;
+    border: 0;
+    color: #fff;
+    background-color: black;
+
+}
+.link-custom {
+    color: var(--primary-color);
+}
+
+/* signup */
+
+.signup-container-fluid {
+    background-color:var(--primary-bg-color);
+    font-family: var(--font-family);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+.signup-container {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    max-width: 350px;
+    width: 100%;
+}
+.signup-form-control {
+    border-radius: 7px;
+}
+.btn-custom {
+    border-radius: 15px;
+    border: 0;
+    color: #fff;
+}
+.btn-primary-custom {
+    background-color: black;
+}
+.btn-secondary-custom {
+    background-color: var(--primary-color);
+}
+.link-custom {
+    color: var(--primary-color);
+}
+.otp-icons {
+    margin-left: 10px;
+}
+
+/* personal details */
+.p_details-container-fluid {
+        
+    height: 100%%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8d5e0;
+    font-family: 'Poppins', sans-serif;
+}
+@media (max-width: 768px) { 
+    .p_details-container-fluid {
+        height: 100vh; 
+    }
+}
+.p_details-container {
+    max-width: 500px;
+    width: 100%;
+    padding: 40px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.p_details-h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 26px;
+}
+
+.p_details-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.p_details-input {
+    padding: 8px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    width: 100%;
+}
+
+.p_details-btn {
+    background-color: black;
+    color: #fff;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px 20px;
+    margin-top: 20px;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.p_details-btn:hover {
+    background-color: #333;
+}
+
+.p_details-input {
+    position: relative;
+    margin-top: 10px;
+}
+
+.p_details-input input {
+    padding-right: 40px;
+}
+
+.p_details-input .fa-plus {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #000;
+    cursor: pointer;
+}
+
+.file-input-with-icon {
+    position: relative;
+    margin-top: 10px;
+}
+
+.file-input-with-icon input[type="file"] {
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.file-input-with-icon .placeholder-input {
+    padding-right: 40px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    width: 100%;
+    background-color: #f8f8f8;
+    cursor: pointer;
+}
+
+.file-input-with-icon i {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #000;
+    cursor: pointer;
+    pointer-events: none;
+}
+
+/* job status */
+
+ /* Body and container settings */
+ .job_status_container-fluid {
+    background-color: #f8d5e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px; /* Added padding for better mobile view */
+    font-family: 'Poppins', sans-serif; /* Apply Poppins font globally */
+
+}
+
+.job_status_form-container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2); /* Enhanced shadow for depth */
+    max-width: 380px;
+    width: 100%;
+}
+
+/* Form Header */
+.job_status_form-header {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+/* Checkbox Group */
+.job_status_checkbox-group {
+    margin-top: 15px;
+    padding-left: 20px; /* Shift checkbox column slightly to the right */
+}
+
+.job_status_checkbox-group label {
+    display: flex;
+    align-items: center; /* Aligns items vertically */
+    margin-bottom: 15px; /* Original text style */
+    font-weight: normal;
+    font-size: 18px; /* Original text style */
+}
+
+.job_status_checkbox-group input[type="checkbox"] {
+    margin-right: 10px; /* Space between checkbox and text */
+}
+
+/* Next Button */
+.job_status_next-button {
+    background-color: black;
+    color: #fff;
+    border-radius: 15px; 
+    border: 0;
+    padding: 9px;
+    margin-top: 30px;
+    width: 100%;
+    cursor: pointer;
+    font-size: 15px; /* Original text style */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+/* Hover effect for button */
+.job_status_next-button:hover {
+    background-color: #333; /* Slightly lighter black on hover */
+}
+/* create group */
+
+        .group-container-fluid {
+            
+            font-family: var(--font-family);
+            padding-bottom: 100px; 
+        }
+
+        .group-description {
+            font-size: 20px;
+            font-weight: bold;
+            color: #000;
+            margin: 20px 0;
+        }
+
+        .group-admin {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .group-admin img {
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            margin-right: 15px;
+        }
+
+        .invited-members {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .invited-members .member img {
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+        }
+
+        .group-create-btn {
+            background-color: #6b2d83;
+            color: white;
+            font-size: 18px;
+            padding: 10px;
+            border-radius: 30px;
+            border: none;
+            width: calc(100% - 90px); /* Adjust width to fit the container with padding */
+            margin: 30px 60px 0; /* Align the button with a margin at the bottom */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow for emphasis */
+        }
+
+        .create-group-title {
+             /* Optional: adds space between the title and right edge */
+            font-weight: bold;
+            font-size: 24px; /* Adjust as needed */
+        }
+
+        .back-link {
+            color: #6b2d83; /* Color for the back arrow */
+            font-size: 20px;
+            text-decoration: none;
+        }
+
+        .group-container-custom {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100vh;
+        }
+
+ /* groupslist */
+ .grouplist-custom-container{
+    background-color: rgb(95, 19, 99);
+    font-family: 'poppins', sans-serif;
+    width: 100%;
+    min-height: 100vh;
+}
+.search {
+    background-color: rgb(204, 115, 187);
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    text-align: center;
+    line-height: 60px;
+}
+.search i {
+    color: white;
+}
+.main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+.sent {
+    color: white;
+    flex-grow: 1;
+    text-align: center;
+    
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.second {
+    width: 100%;
+    padding: 20px;
+    background-color: rgb(247, 247, 247);
+    border-top-left-radius: 50px;  /* Adjust the radius as needed */
+     border-top-right-radius: 50px;
+    min-height: 100vh;
+    bottom: 0;
+    
+}
+
+
+.grouplist {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.grouplist .image {
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    object-fit: cover;
+    margin-right: 15px;
+    margin-left: 20px;
+}
+.grouplist .name {
+    flex-grow: 1;
+}
+.grouplist h3 {
+    margin: 0;
+    color: rgb(96, 54, 54);
+    margin-left: 20px;
+}
+.grouplist h5 {
+    margin: 0;
+    color: rgb(85, 83, 84);
+    margin-left: 20px;
+}
+.grouplist i {
+    color: rgb(136, 51, 86);
+    cursor: pointer;
+}
+
+.fs-1 {
+    font-size: 1.5rem;
+}
+@media (min-width: 768px) {
+    .group-actions i {
+        font-size: 2rem; 
+        margin-left: 20px;/* Increase size for tablets and desktops */
+    }
+}
+
+/* For smaller screens */
+@media (max-width: 576px) {
+    .group-actions i {
+        font-size: 1.5rem; /* Decrease size for mobile devices */
+        margin-left: 15px; /* Adjust margin if needed */
+    }
+}
+ 
+
+/* subscription plans */
+.plans-custom-container{
+    background-color: var(--primary-color);
+    font-family: var(--font-family);
+    width: 100%;
+    min-height: 100vh;
+}
+
+.main {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sent {
+    color: white;
+    text-align: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.second {
+    width: 100%;
+    padding: 20px;
+    background-color: black;
+    color: white;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.subscription-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.subscription-price {
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.plans-row {
+    margin-bottom: 20px;
+}
+
+.plans-ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.plans-ul li {
+    margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+    .plans-row {
+        flex-direction: column;
+    }
+    
+}
+.btn-subscribe {
+background-color: #6e6e6e !important;
+border: none;
+padding: 10px 20px !important;
+font-size: 16px !important;
+font-weight: bold !important;
+border-radius: 10px !important;
+width: 100% !important;
+color: white !important;
+text-align: center !important;
+cursor: pointer !important;
+margin-bottom: 100px !important;
+display: inline-block !important;
+}
+
+.btn-subscribe:hover {
+background-color: var(--secondary-bg-color) !important;
+}
+
+/* payment */
+
+.payment-method {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center; /* Center content vertically */
+    justify-content: space-between; /*Space out the image and text */
+}
+.payment-method:hover {
+    background-color: #f9f9f9;
+}
+.default-method {
+    font-weight: bold;
+    color: #6c757d;
+}
+.payment-method img {
+    max-width: 50px;
+    margin-right: 15px; /* Space between image and text */
+}
+.payment-method .details {            
+    flex: 1; /* Take up the remaining space */
+}
+.payment-method .details p {
+    margin: 0;
+}
+
+.payment-method {
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow */
+    border-radius: 10px; /* Optional: for rounded corners */
+    transition: border 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.payment-method img {
+    margin-right: 15px; /* Space between image and details */
+}
+
+.payment-method:hover {
+    border: .5px solid red; /* Red border on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Slightly larger shadow on hover */
+}
+.done :hover{
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 5px 10px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+/* add payment */
+
+
+        .scan-button {
+            display: flex;
+            align-items: center;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            font-size: 14px;
+            cursor: pointer;
+            margin-bottom: 10px; /* Space between button and other elements */
+        }
+        .scan-button i {
+            margin-right: 5px; /* Space between icon and text */
+        }
+        .form-control {
+            margin-bottom: 10px;
+        }
+        .payment-method-icons img {
+            max-width: 50px;
+            margin-right: 10px; /* Space between images */
+        }
+        .payment-method-icons {
+            margin-top: 20px; /* Space above icons */
+        }
+        .payment-method-icons p {
+            margin: 0;
+            font-size: 14px; /* Smaller font size for the caption */
+        }
+        .add-payment-container{
+            font-weight: 400px !important;;
+        }
+        .add-payment-btn-purple{
+            color: #fff;
+            background-color: var(--primary-color);
+        }

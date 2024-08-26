@@ -1,0 +1,263 @@
+{% extends 'shared/base.html' %}
+
+{% block meta %}
+<title>Accept</title>
+{% endblock %}
+
+{% block style %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        padding-bottom: 60px;
+        background-color: #3e152f;
+    }
+    .s-main-container {
+        max-width: 450px;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+    .top-navbar {
+        background-color: #3e152f; /* Set your desired color here */
+        color: white;
+        padding: 20px 0;
+        text-align: center;
+        position: relative;
+    }
+    .top-navbar .settings-text {
+        font-size: 24px;
+        margin: 0;
+        font-weight: bold;
+    }
+    .profile-info {
+        display: flex;
+        align-items: center;
+    }
+    .profile-section {
+        background-color: white;
+        padding: 20px 30px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+    }
+    .profile-section img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 15px;
+    }
+    .profile-section h2 {
+        margin: 0;
+        font-size: 18px;
+    }
+    .profile-section p {
+        margin: 0;
+        font-size: 12px;
+        color: #7a3636;
+    }
+    .s-main-content {
+        padding: 20px;
+        border-radius: 20px;
+        background-color: white;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .list-group-item {
+        border-left: none;
+        border-right: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+    }
+    .list-group-item .item-content {
+        display: flex;
+        align-items: center;
+    }
+    .list-group-item .item-content img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+    .list-group-item .item-content .name-status {
+        display: flex;
+        flex-direction: column;
+    }
+    .list-group-item .item-content .name-status .name {
+        font-weight: bold;
+    }
+    .list-group-item .item-content .name-status .status {
+        font-size: 12px;
+        font-weight:bold;
+        color: #efe5e5;
+    }
+    .list-group-item .action-icons {
+        display: flex;
+        align-items: center;
+    }
+    .list-group-item .action-icons .remove-btn, 
+    .list-group-item .action-icons .heart-btn {
+        background-color: transparent;
+        border: none;
+        color: #505050;
+        cursor: pointer;
+        font-size: 20px;
+        margin-left: 10px;
+    }
+    .alphabet-header {
+        padding: 5px 15px;
+        font-weight: bold;
+        background-color: transparent;
+        border: none;
+    }
+    .top-navbar .settings-text {
+        font-size: 24px;
+        margin: 0;
+        font-weight: bold;
+      }
+</style>
+{% endblock style %}
+
+{% block content %}
+
+<h1 class="settings-text top-navbar">Accept</h1>
+<div class="s-main-content">
+    <div class="list-group">
+        
+        
+        <div class="list-group-item">
+            <div class="item-content">
+                <img src="https://via.placeholder.com/40" alt="Profile Picture">
+                <div class="name-status">
+                    <div class="name">team align</div>
+                    <div class="status">Today, 09:30 AM</div>
+                </div>
+            </div>
+            <div class="action-icons">
+                <!-- Call Button -->
+                <button class="call-btn btn btn-link text-muted p-0 m-0">
+                    <i class="bi bi-telephone-fill"></i>
+                </button>
+                
+                <!-- Video Call Button -->
+                <button class="video-call-btn btn btn-link text-muted p-0 m-0">
+                    <i class="bi bi-camera-video-fill"></i>
+                </button>
+            </div>
+            
+        </div>
+        <div class="list-group-item">
+            <div class="item-content">
+                <img src="https://via.placeholder.com/40" alt="Profile Picture">
+                <div class="name-status">
+                    <div class="name">jhon abraham</div>
+                    <div class="status">Today, 07:30 AM </div>
+                </div>
+            </div>
+            <div class="action-icons">
+                <!-- Call Button -->
+                <button class="call-btn btn btn-link text-muted p-0 m-0">
+                    <i class="bi bi-telephone-fill"></i>
+                </button>
+                
+                <!-- Video Call Button -->
+                <button class="video-call-btn btn btn-link text-muted p-0 m-0">
+                    <i class="bi bi-camera-video-fill"></i>
+                </button>
+            </div>
+            
+        </div>
+        <div class="list-group-item">
+            <div class="item-content">
+                <img src="https://via.placeholder.com/40" alt="Profile Picture">
+                <div class="name-status">
+                    <div class="name">sabila sayama</div>
+                    <div class="status">Yesterday,07:35 PM</div>
+                </div>
+            </div>
+            <div class="action-icons">
+                <!-- Call Button -->
+                <button class="call-btn btn btn-link text-muted p-0 m-0">
+                    <i class="bi bi-telephone-fill"></i>
+                </button>
+                
+                <!-- Video Call Button -->
+                <button class="video-call-btn btn btn-link text-muted p-0 m-0">
+                    <i class="bi bi-camera-video-fill"></i>
+                </button>
+            </div>
+            
+        </div>
+        <div class="list-group-item">
+            <div class="item-content">
+                <img src="https://via.placeholder.com/40" alt="Profile Picture">
+                <div class="name-status">
+                    <div class="name">alex linderson</div>
+                    <div class="status">Monday,9:30 AM </div>
+                </div>
+            </div>
+            <div class="action-icons">
+                <!-- Call Button -->
+                <button class="call-btn btn btn-link text-muted p-0 m-0">
+                    <i class="bi bi-telephone-fill"></i>
+                </button>
+                
+                <!-- Video Call Button -->
+                <button class="video-call-btn btn btn-link text-muted p-0 m-0">
+                    <i class="bi bi-camera-video-fill"></i>
+                </button>
+            </div>
+            
+        </div>
+        <div class="list-group-item">
+            <div class="item-content">
+                <img src="https://via.placeholder.com/40" alt="Profile Picture">
+                <div class="name-status">
+                    <div class="name">jhon abraham</div>
+                    <div class="status">03/07/22,07:30 AM </div>
+                </div>
+            </div>
+            <div class="action-icons">
+                <!-- Call Button -->
+                <button class="call-btn btn btn-link text-muted p-0 m-0">
+                    <i class="bi bi-telephone-fill"></i>
+                </button>
+                
+                <!-- Video Call Button -->
+                <button class="video-call-btn btn btn-link text-muted p-0 m-0">
+                    <i class="bi bi-camera-video-fill"></i>
+                </button>
+            </div>
+            
+        </div>
+        <div class="list-group-item">
+            <div class="item-content">
+                <img src="https://via.placeholder.com/40" alt="Profile Picture">
+                <div class="name-status">
+                    <div class="name">john borino</div>
+                    <div class="status">Monday,09:30 AM </div>
+                </div>
+            </div>
+            <div class="action-icons">
+                <!-- Call Button -->
+                <button class="call-btn btn btn-link text-muted p-0 m-0">
+                    <i class="bi bi-telephone-fill"></i>
+                </button>
+                
+                <!-- Video Call Button -->
+                <button class="video-call-btn btn btn-link text-muted p-0 m-0">
+                    <i class="bi bi-camera-video-fill"></i>
+                </button>
+            </div>
+            
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+
+{% block scripts %}
+      
+{% endblock scripts %}
+

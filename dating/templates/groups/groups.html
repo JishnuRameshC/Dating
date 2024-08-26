@@ -1,0 +1,166 @@
+{% extends "base.html" %}
+
+{% block style %}
+    <style>
+        .grouplist-custom-container{
+            background-color: rgb(95, 19, 99);
+            font-family: 'poppins', sans-serif;
+            width: 100%;
+            min-height: 100vh;
+        }
+        .search {
+            background-color: rgb(204, 115, 187);
+            width: 60px;
+            height: 60px;
+            border-radius: 30px;
+            text-align: center;
+            line-height: 60px;
+        }
+        .search i {
+            color: white;
+        }
+        .main {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            
+        }
+        .sent {
+            color: white;
+            flex-grow: 1;
+            text-align: center;
+            
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+        .second {
+            width: 100%;
+            padding: 20px;
+            background-color: rgb(247, 247, 247);
+            border-top-left-radius: 50px;  /* Adjust the radius as needed */
+             border-top-right-radius: 50px;
+            min-height: 100vh;
+            bottom: 0;
+            
+        }
+        
+        
+        .grouplist {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .grouplist .image {
+            width: 60px;
+            height: 60px;
+            border-radius: 30px;
+            object-fit: cover;
+            margin-right: 15px;
+            margin-left: 20px;
+        }
+        .grouplist .name {
+            flex-grow: 1;
+        }
+        .grouplist h3 {
+            margin: 0;
+            color: rgb(96, 54, 54);
+            margin-left: 20px;
+        }
+        .grouplist h5 {
+            margin: 0;
+            color: rgb(85, 83, 84);
+            margin-left: 20px;
+        }
+        .grouplist i {
+            color: rgb(136, 51, 86);
+            cursor: pointer;
+        }
+        
+        .fs-1 {
+            font-size: 1.5rem;
+        }
+        @media (min-width: 768px) {
+            .group-actions i {
+                font-size: 2rem; 
+                margin-left: 20px;/* Increase size for tablets and desktops */
+            }
+        }
+        
+        /* For smaller screens */
+        @media (max-width: 576px) {
+            .group-actions i {
+                font-size: 1.5rem; /* Decrease size for mobile devices */
+                margin-left: 15px; /* Adjust margin if needed */
+            }
+        }
+    </style>
+{% endblock style %}
+
+{% block content %}
+<div class="grouplist-custom-container ps-pe-0 ms-me-0" style="background-color: rgb(95, 19, 99);">
+    <div class="container main" style="background-color: rgb(95, 19, 99);">
+        
+        <h1 class="sent text-center">groups</h1>
+    </div>
+    <div class="container-fluid second ps-pe-0 ms-me-0 w-100">
+        
+            <div class="search"><i class="bi bi-search fs-1"></i></div>      
+        <h2 class="pb-2">A</h2>
+        <div class="grouplist">
+            <img src="https://via.placeholder.com/60" alt="Profile Image" class="image">
+            <div class="name">
+                <h4>Afrin Sabile</h4>
+                
+            </div>
+            <div class="grouplist-actions">
+                <i class="bi bi-chat-dots"></i>
+                <i class="bi bi-telephone"></i>
+                <i class="bi bi-camera-video"></i>
+                
+
+            </div>
+        </div>
+        <div class="grouplist">
+            <img src="https://via.placeholder.com/60" alt="Profile Image" class="image">
+            <div class="name">
+                <h4>Afrin Sabile</h4>
+                
+            </div>
+            <div class="grouplist-actions">
+                <i class="bi bi-chat-dots"></i>
+                <i class="bi bi-telephone"></i>
+                <i class="bi bi-camera-video"></i>
+            </div>
+        </div>
+        <div class="grouplist">
+            <img src="https://via.placeholder.com/60" alt="Profile Image" class="image">
+            <div class="name">
+                <h4>Afrin Sabile</h4>
+                
+            </div>
+            <div class="grouplist-actions">
+                <i class="bi bi-chat-dots"></i>
+                <i class="bi bi-telephone"></i>
+                <i class="bi bi-camera-video"></i>
+            </div>
+        </div>
+        <div class="grouplist">
+            <img src="https://via.placeholder.com/60" alt="Profile Image" class="image">
+            <div class="name">
+                <h4>Afrin Sabile</h4>
+                
+            </div>
+            <div class="grouplist-actions">
+                <i class="bi bi-chat-dots"></i>
+                <i class="bi bi-telephone"></i>
+                <i class="bi bi-camera-video"></i>
+            </div>
+        </div>
+    </div>
+    {% include "components/footer_nav.html" %}
+
+</div>
+{% endblock content %}
