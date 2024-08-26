@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+<div class="container-fluid signup-container-fluid">
+<div class="container my-4 signup-container">
+    <form>
+        <h3 class="text-center mb-2">Sign up</h3>
+        <div class="mb-1">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control signup-form-control" id="name" placeholder="Value">
+        </div>
+        <div class="mb-1">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control signup-form-control" id="email" placeholder="Value">
+        </div>
+        <div class="mb-1">
+            <label for="mobile" class="form-label">Mobile</label>
+            <input type="text" class="form-control signup-form-control" id="mobile" placeholder="Value">
+        </div>
+        <div class="mb-1">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control signup-form-control" id="password" placeholder="Value">
+        </div>
+        <div class="mb-1">
+            <label for="confirm-password" class="form-label">Confirm Password</label>
+            <input type="password" class="form-control signup-form-control" id="confirm-password" placeholder="Value">
+        </div>
+        <div class="mb-1 d-flex align-items-center">
+            <label for="otp" class="form-label me-auto">Generate OTP</label>
+            <i class="fas fa-sync-alt otp-icons"></i>
+            <i class="fas fa-paper-plane otp-icons"></i>
+        </div>
+        <div class="mb-1">
+            <label for="otp" class="form-label">OTP</label>
+            <input type="text" class="form-control signup-form-control" id="otp" placeholder="We sent a code to Email/Phone">
+        </div>
+        <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-custom btn-primary-custom mb-2 mt-1 ">Register</button>
+            <button type="button" class="btn btn-custom btn-secondary-custom mb-2 ">Social media Login</button>
+        </div>
+        <p class="text-center">Already have an account? <a href="{% url "login" %}" class="link-custom">Log In</a></p>
+        <a href="{% url "profession" %}">profession</a>
+    </form>
+</div>
+</div>
+{% endblock content %}
