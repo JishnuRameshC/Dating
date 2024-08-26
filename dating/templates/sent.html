@@ -1,0 +1,241 @@
+{% extends 'shared/base.html' %}
+
+{% block meta %}
+<title>Sent</title>
+{% endblock %}
+
+{% block style %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        padding-bottom: 60px;
+        background-color: #3e152f;
+    }
+    .s-main-container {
+        max-width: 450px;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+    .top-navbar {
+        background-color: #3e152f; /* Set your desired color here */
+        color: white;
+        padding: 20px 0;
+        text-align: center;
+        position: relative;
+    }
+    .top-navbar .settings-text {
+        font-size: 24px;
+        margin: 0;
+        font-weight: bold;
+    }
+    .profile-info {
+        display: flex;
+        align-items: center;
+    }
+    .profile-section {
+        background-color: white;
+        padding: 20px 30px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+    }
+    .profile-section img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 15px;
+    }
+    .profile-section h2 {
+        margin: 0;
+        font-size: 18px;
+    }
+    .profile-section p {
+        margin: 0;
+        font-size: 12px;
+        color: #7a3636;
+    }
+    .s-main-content {
+        padding: 20px;
+        border-radius: 20px;
+        background-color: white;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .list-group-item {
+        border-left: none;
+        border-right: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+    }
+    .list-group-item .item-content {
+        display: flex;
+        align-items: center;
+    }
+    .list-group-item .item-content img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+    .list-group-item .item-content .name-status {
+        display: flex;
+        flex-direction: column;
+    }
+    .list-group-item .item-content .name-status .name {
+        font-weight: bold;
+    }
+    .list-group-item .item-content .name-status .status {
+        font-size: 12px;
+        color: #efe5e5;
+    }
+    .list-group-item .action-icons {
+        display: flex;
+        align-items: center;
+    }
+    .list-group-item .action-icons .remove-btn, 
+    .list-group-item .action-icons .heart-btn {
+        background-color: transparent;
+        border: none;
+        color: #505050;
+        cursor: pointer;
+        font-size: 20px;
+        margin-left: 10px;
+    }
+    .alphabet-header {
+        padding: 5px 15px;
+        font-weight: bold;
+        background-color: transparent;
+        border: none;
+    }
+    .top-navbar .settings-text {
+        font-size: 24px;
+        margin: 0;
+        font-weight: bold;
+      }
+</style>
+{% endblock style %}
+
+{% block content %}
+
+<h1 class="settings-text top-navbar">Sent</h1>
+<div class="s-main-content">
+    <div class="list-group">
+        <div class="alphabet-header">A</div>
+        <div class="list-group-item">
+            <div class="item-content">
+                <img src="https://via.placeholder.com/40" alt="Profile Picture">
+                <div class="name-status">
+                    <div class="name">Afrin Sabila</div>
+                    <div class="status">Life is beautiful 👌</div>
+                </div>
+            </div>
+            <div class="action-icons">
+                <button class="heart-btn"><i class="fas fa-heart"></i></button>
+                <button class="remove-btn"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+        <div class="list-group-item">
+            <div class="item-content">
+                <img src="https://via.placeholder.com/40" alt="Profile Picture">
+                <div class="name-status">
+                    <div class="name">Adil Adnan</div>
+                    <div class="status">Be your own hero 💪</div>
+                </div>
+            </div>
+            <div class="action-icons">
+                <button class="heart-btn"><i class="fas fa-heart"></i></button>
+                <button class="remove-btn"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+        <div class="alphabet-header">B</div>
+        <div class="list-group-item">
+            <div class="item-content">
+                <img src="https://via.placeholder.com/40" alt="Profile Picture">
+                <div class="name-status">
+                    <div class="name">Bristy Haque</div>
+                    <div class="status">Keep working ✍️</div>
+                </div>
+            </div>
+            <div class="action-icons">
+                <button class="heart-btn"><i class="fas fa-heart"></i></button>
+                <button class="remove-btn"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+        <div class="list-group-item">
+            <div class="item-content">
+                <img src="https://via.placeholder.com/40" alt="Profile Picture">
+                <div class="name-status">
+                    <div class="name">John Borino</div>
+                    <div class="status">Make yourself proud 😁</div>
+                </div>
+            </div>
+            <div class="action-icons">
+                <button class="heart-btn"><i class="fas fa-heart"></i></button>
+                <button class="remove-btn"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+        <div class="list-group-item">
+            <div class="item-content">
+                <img src="https://via.placeholder.com/40" alt="Profile Picture">
+                <div class="name-status">
+                    <div class="name">Borsha Akther</div>
+                    <div class="status">Flowers are beautiful 🌸</div>
+                </div>
+            </div>
+            <div class="action-icons">
+                <button class="heart-btn"><i class="fas fa-heart"></i></button>
+                <button class="remove-btn"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+        <div class="alphabet-header">S</div>
+        <div class="list-group-item">
+            <div class="item-content">
+                <img src="https://via.placeholder.com/40" alt="Profile Picture">
+                <div class="name-status">
+                    <div class="name">Sheik Sadi</div>
+                    <div class="status">Life is beautiful 👌</div>
+                </div>
+            </div>
+            <div class="action-icons">
+                <button class="heart-btn"><i class="fas fa-heart"></i></button>
+                <button class="remove-btn"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+        <div class="list-group-item">
+            <div class="item-content">
+                <img src="https://via.placeholder.com/40" alt="Profile Picture">
+                <div class="name-status">
+                    <div class="name">Sheik Sadi</div>
+                    <div class="status">Life is beautiful 👌</div>
+                </div>
+            </div>
+            <div class="action-icons">
+                <button class="heart-btn"><i class="fas fa-heart"></i></button>
+                <button class="remove-btn"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+        <div class="list-group-item">
+            <div class="item-content">
+                <img src="https://via.placeholder.com/40" alt="Profile Picture">
+                <div class="name-status">
+                    <div class="name">Sheik Sadi</div>
+                    <div class="status">Life is beautiful 👌</div>
+                </div>
+            </div>
+            <div class="action-icons">
+                <button class="heart-btn"><i class="fas fa-heart"></i></button>
+                <button class="remove-btn"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+
+{% block scripts %}
+      
+{% endblock scripts %}
+

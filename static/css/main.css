@@ -21,7 +21,7 @@ body {
     margin: var(--primary-margin);
 }
 
-.top-navbar {
+.top-heading {
     background-color: var(--primary-bg-color);
     color: white;
     padding: 30px 0;
@@ -363,7 +363,7 @@ body {
 }
 
 @media (max-width: 768px) {
-    .top-navbar {
+    .top-heading {
         padding: 20px 0;
     }
 
@@ -417,12 +417,9 @@ body {
         height: 30px;
     }
 }
-=======
+
 /* navbar css  */
-body {
-  font-family: Arial, sans-serif;
-  background-color: #6c0571;
-}
+
 .top-navbar {
   background-color: #5a2d82;
   color: white;
@@ -1051,8 +1048,8 @@ header {
     cursor: pointer;
   }
 
-.btn-update {
-  background-color: #3e152f;
+.changepass-btn-update {
+  background-color: #4e0834;
   color: white;
   width: 100%;
   padding: 10px;
