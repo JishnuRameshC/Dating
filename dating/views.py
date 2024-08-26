@@ -68,11 +68,11 @@ class AddPaymentMethodsView(TemplateView):
 
 # G2  
 class StoryPageView(TemplateView):
-    template_name = 'story.html'
+    template_name = 'User_profile/story.html'
 
 
 class ChangePasswordView(TemplateView):
-    template_name = 'change_password.html'
+    template_name = 'User_profile/change_password.html'
 
 
 # class ProfileView(TemplateView):
@@ -80,59 +80,59 @@ class ChangePasswordView(TemplateView):
 
 
 class UpgradeStoryView(TemplateView):
-    template_name = 'upgrade_view_story.html'
+    template_name = 'User_profile/upgrade_view_story.html'
 
 
 class EditMyProfile(TemplateView):
-    template_name = 'edite_my_profile.html'
+    template_name = 'User_profile/edite_my_profile.html'
     
   
 
 def settings(request):
-    return render(request, 'settings.html')
+    return render(request, 'User_profile/settings.html')
 
 def privacy_settings(request):
-    return render(request, 'privacy_settings.html')
+    return render(request, 'User_profile/privacy_settings.html')
 
 def preferences(request):
-    return render(request, 'preference.html')
+    return render(request, 'User_profile/preference.html')
 
 def filter(request):
-    return render(request, 'filter.html')
+    return render(request, 'User_profile/filter.html')
 
 def user_profile(request):
-    return render(request, 'user_profile.html')
+    return render(request, 'User_profile/user_profile.html')
 
 
 
 def  sent(request):
-    return render(request, 'sent.html')
+    return render(request, 'contents/sent.html')
 
 def accept(request):
-    return render(request, 'accept.html')
+    return render(request, 'contents/accept.html')
 
 
 def messgage(request):
-    return render(request, 'message.html')
+    return render(request, 'contents/message.html')
 
 def contact(request):
-    return render(request, 'contacted.html')
+    return render(request, 'contents/contacted.html')
 
 def shortlist(request):
-    return render(request, 'shortlist.html')
+    return render(request, 'contents/shortlist.html')
 
 def shortlist_by(request):
-    return render(request, 'shortlist_by.html')
+    return render(request, 'contents/shortlist_by.html')
 
 
 def received(request):
-    return render(request, 'received.html')
+    return render(request, 'contents/received.html')
 
 def reject(request):
-    return render(request, 'reject.html')
+    return render(request, 'contents/reject.html')
 
 def viewed_myprofile(request):
-    return render(request, 'viewed_myprofile.html')
+    return render(request, 'contents/viewed_myprofile.html')
   
 #   G3
 class Error403View(TemplateView):
@@ -144,30 +144,30 @@ class Error404View(TemplateView):
 
 
 class HomeView(TemplateView):
-    template_name = 'home.html'
+    template_name = 'Dating/home.html'
 
 class DiscoverView(TemplateView):
-    template_name = 'discover.html'
+    template_name = 'Dating/discover.html'
 
 class QualificationView(TemplateView):
-    template_name = 'qualification.html'
+    template_name = 'Dating/qualification.html'
 
 class LocationView(TemplateView):
-    template_name = 'location.html'
+    template_name = 'Dating/location.html'
 
 class DesignationView(TemplateView):
-    template_name = 'designation.html'
+    template_name = 'Dating/designation.html'
 
 class MatchView(TemplateView):
-    template_name = 'matches.html'
+    template_name = 'Dating/matches.html'
 
 class ProfileviewView(TemplateView):
-    template_name = 'profileviews.html'
+    template_name = 'Dating/profileviews.html'
 
 class UpgradeView(TemplateView):
-    template_name = 'upgradepage.html'
+    template_name = 'Dating/upgradepage.html'
 
 class SpinView(TemplateView):
-    template_name = 'spin.html'
+    template_name = 'Dating/spin.html'
 
 
