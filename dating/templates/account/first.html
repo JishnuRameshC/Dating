@@ -1,5 +1,8 @@
-{% extends "base.html" %}
+{% extends "shared/account_base.html" %}
 {% load static %}
+{% block meta %}
+    <title>first</title>
+{% endblock meta %}
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 <div class="first-custom-container">
@@ -14,7 +17,7 @@
         <a href="#" class="btn btn-light btn-block mb-2 w-100 d-flex " style="background-color: rgb(246, 221, 246); border-radius: 25px;">
             <span class="me-2"><img src="{% static 'images/gicon.png' %}" class="me-4" alt="" height="25px" style="background-color: rgb(255, 255, 255); border-radius: 50%; padding: 6px;"></span> Login with Google
         </a>
-        <p>Don't have an account? <a href="{% url "signup" %}">Sign Up</a></p>
+        <p>Don't have an account? <a href=#>Sign Up</a></p>
     </div>
     
 </div>

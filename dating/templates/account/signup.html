@@ -1,4 +1,7 @@
-{% extends "base.html" %}
+{% extends "shared/account_base.html" %}
+{% block meta %}
+    <title>Signup</title>
+{% endblock meta %}
 {% load static %}
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -40,8 +43,8 @@
             <button type="submit" class="btn btn-custom btn-primary-custom mb-2 mt-1 ">Register</button>
             <button type="button" class="btn btn-custom btn-secondary-custom mb-2 ">Social media Login</button>
         </div>
-        <p class="text-center">Already have an account? <a href="{% url "login" %}" class="link-custom">Log In</a></p>
-        <a href="{% url "profession" %}">profession</a>
+        <p class="text-center">Already have an account? <a href="{% url 'login' %}" class="link-custom">Log In</a></p>
+        <a href="{% url 'profession' %}">profession</a>
     </form>
 </div>
 </div>
