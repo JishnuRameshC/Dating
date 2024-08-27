@@ -15,7 +15,7 @@ from django.contrib import messages
 # Create your views here.
 
 class FirstView(TemplateView):
-    template_name='account/first.html'
+    template_name='first.html'
     
 # G1 accounts
 
@@ -27,22 +27,22 @@ class PersonalDetailsView(TemplateView):
     template_name='personal_details.html'
 
 class JobStatusView(TemplateView):
-    template_name='account/job_status.html'
+    template_name='job_status.html'
     
 class JobDetailsView(TemplateView):
-    template_name='account/job_details.html'
+    template_name='job_details.html'
 
 
 class ProfessionView(TemplateView):
-    template_name='account/profession.html'
+    template_name='profession.html'
 
 
 class Rel_GoalView(TemplateView):
-    template_name='account/relationship_goal.html'
+    template_name='relationship_goal.html'
 
 
 class InterestView(TemplateView):
-    template_name='account/interested.html'
+    template_name='interested.html'
     
 
 
