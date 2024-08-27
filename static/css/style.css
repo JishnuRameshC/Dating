@@ -92,9 +92,11 @@
 }
 .btn-primary-custom {
     background-color: black;
+    width: 100%;
 }
 .btn-secondary-custom {
     background-color: var(--primary-color);
+    width: 100%;
 }
 .link-custom {
     color: var(--primary-color);
@@ -106,7 +108,7 @@
 /* personal details */
 .p_details-container-fluid {
         
-    height: 100%%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;

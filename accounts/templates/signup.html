@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+<div class="container-fluid signup-container-fluid">
+    <div class="container my-4 signup-container">
+        <form id="signupForm" method='POST'>
+            {% csrf_token %}
+            <h3 class="text-center mb-2">Sign up</h3>
+            <div class="mb-1">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control signup-form-control" id="name" name="name" placeholder="Value">
+            </div>
+            <div class="mb-1">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control signup-form-control" id="email" name="email" placeholder="Value">
+            </div>
+            <div class="mb-1">
+                <label for="mobile" class="form-label">Mobile</label>
+                <input type="text" class="form-control signup-form-control" id="mobile" name="mobile" placeholder="Value">
+            </div>
+            <div class="mb-1">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control signup-form-control" id="password" name="password" placeholder="Value">
+            </div>
+            <div class="mb-1">
+                <label for="confirm-password" class="form-label">Confirm Password</label>
+                <input type="password" class="form-control signup-form-control" id="confirm-password" name="confirm_password" placeholder="Value">
+            </div>
+            <div class="mb-1 d-flex align-items-center">
+                <label for="otp" class="form-label me-auto">Generate OTP</label>
+                <i id="generateOtpButton" class="fas fa-sync-alt otp-icons"></i>
+            </div>
+            <div class="mb-1">
+                <label for="otp" class="form-label">OTP</label>
+                <input type="text" class="form-control signup-form-control" id="otp" name="otp" placeholder="We sent a code to Email/Phone">
+            </div>
+            <div class="d-grid gap-2">
+                <button type="submit" id="registerButton" class="btn btn-custom btn-primary-custom mb-2 mt-1">Register</button>
+            </div>
+        </form>
+        <p id="message" class="text-center"></p>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function(){
+    // Function to get CSRF token from cookie
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    const csrftoken = getCookie('csrftoken');
+
+    // Generate OTP
+    $("#generateOtpButton").click(function(){
+        $.ajax({
+            url: "{% url 'accounts:generate_otp' %}",
+            type: "POST",
+            data: {
+                email: $("#email").val(),
+                mobile: $("#mobile").val()
+            },
+            headers: {'X-CSRFToken': csrftoken},
+            success: function(response){
+                $("#message").text(response.message).css('color', 'green');
+            },
+            error: function(response){
+                $("#message").text(response.responseJSON.message).css('color', 'red');
+            }
+        });
+    });
+
+    // Register User
+   
+});
+</script>
+{% endblock content %}

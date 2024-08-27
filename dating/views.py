@@ -9,38 +9,6 @@ class SelectgenderView(TemplateView):
 def TestView(request):
     return render(request, 'index.html')
   
-class FirstView(TemplateView):
-    template_name='account/first.html'
-    
-# G1 accounts
-class SignupView(TemplateView):
-    template_name='account/signup.html'
-
-
-class LoginView(TemplateView):
-    template_name='account/login.html'
-    
-class PersonalDetailsView(TemplateView):
-    template_name='account/personal_details.html'
-
-class JobStatusView(TemplateView):
-    template_name='account/job_status.html'
-    
-class JobDetailsView(TemplateView):
-    template_name='account/job_details.html'
-
-
-class ProfessionView(TemplateView):
-    template_name='account/profession.html'
-
-
-class Rel_GoalView(TemplateView):
-    template_name='account/relationship_goal.html'
-
-
-class InterestView(TemplateView):
-    template_name='account/interested.html'
-    
 
 # Group 
 class CreateGroupView(TemplateView):

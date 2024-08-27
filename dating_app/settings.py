@@ -138,4 +138,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = "accounts.ProjectUser"
+AUTH_USER_MODEL = "accounts.CustomUser"
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'shabeebmohammedpes@gmail.com'
+EMAIL_HOST_PASSWORD = 'etjv byky zrkb ctct'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False 

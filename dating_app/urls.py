@@ -23,4 +23,6 @@ urlpatterns = [
     path('dating/', include('dating.urls')),
     path('job', include('jobPortal.urls')),
     path('matrimony', include('matrimony.urls')),
+    path('accounts/', include('accounts.urls')),
+    
 ]
