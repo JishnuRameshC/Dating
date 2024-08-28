@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+
+<div class="plans-custom-container d-flex flex-column justify-content-between">
+    <div class="container main">
+        <h1 class="sent">Subscription Plans</h1>
+    </div>
+    <div class="container-fluid second">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h4 class="subscription-title">Prime Member</h4>
+                <h2 class="subscription-price">₹49<span>/month</span></h2>
+            </div>
+            <div class="row plans-row justify-content-center sub-row">
+                <div class="col-md-6 mb-4">
+                    <p><i class="bi bi-check-circle-fill"></i> <strong>Daily Limits</strong></p>
+                    <ul class="plans-ul">
+                        <li>View up to 15 profiles per day</li>
+                        <li>Send up to 15 requests per day</li>
+                    </ul>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <p><i class="bi bi-check-circle-fill"></i> <strong>Weekly Limits</strong></p>
+                    <ul>
+                        <li>View up to 90 profiles per week</li>
+                        <li>Send up to 90 requests per week</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row justify-content-center sub-row">
+                <div class="col-md-6 mb-4">
+                    <p><i class="bi bi-check-circle-fill"></i> <strong>Monthly Limits</strong></p>
+                    <ul>
+                        <li>View up to 300 profiles per month</li>
+                        <li>Send up to 300 requests per month</li>
+                    </ul>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <p><i class="bi bi-check-circle-fill"></i> <strong>Premium Features</strong></p>
+                    <ul>
+                        <li>Unlock Unlimited Messages</li>
+                        <li>Unlock Shortlist Page</li>
+                        <li>View Profiles Who Shortlisted You</li>
+                        <li>Sort & filter Profiles</li>
+                    </ul>
+                </div>
+                <button class="btn btn-subscribe ">Subscribe</button>
+            </div>
+
+            
+
+        </div>
+    </div>
+    {% include "components/footer_nav.html" %}
+</div>
+{% endblock content %}

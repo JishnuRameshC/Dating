@@ -1,0 +1,187 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+
+{% block content %} 
+<div class="container-fluid">
+
+            <div class="top-navbar">
+                <h1 class="settings-text">Privacy & Settings</h1>
+            </div>
+
+            <div class="main-content">
+                <h2 class="section-title text-center">Partner Preference</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="age">Age</label>
+                        <div id="age-slider"></div>
+                        <div class="slider-label">
+                            <span>18</span>
+                            <span id="ageValue">18-35</span>
+                            <span>35</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="gender">Gender</label>
+                        <select id="gender">
+                            <option value="any">Value</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="non-binary">Non-binary</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="locations">Locations</label>
+                        <input type="text" id="locationInput" placeholder="Enter a location">
+                        <button type="button" class="btn btn-primary btn-sm mt-2" onclick="addTag('location')">Add Location</button>
+                        <div id="locationTags" class="tags mt-2">
+                            <span class="tag">Kochi</span>
+                            <span class="tag">Kollam</span>
+                            <span class="tag">Aluva</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="interests">Interest & Hobbies</label>
+                        <input type="text" id="hobbyInput" placeholder="Enter a hobby or interest">
+                        <button type="button" class="btn btn-primary btn-sm mt-2" onclick="addTag('hobby')">Add Hobby</button>
+                        <div id="hobbyTags" class="tags mt-2">
+                            <span class="tag">yoga</span>
+                            <span class="tag">jazz</span>
+                            <span class="tag">reading</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="relationship-goals">Relationship Goals</label>
+                        <select id="relationship-goals">
+                            <option value="any">Value</option>
+                            <option value="casual">Casual Dating</option>
+                            <option value="long-term">Long-term Relationship</option>
+                            <option value="marriage">Marriage</option>
+                            <option value="friendship">Friendship</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="education-level">Education Level</label>
+                        <select id="education-level">
+                            <option value="any">Value</option>
+                            <option value="high-school">High School</option>
+                            <option value="bachelors">Bachelor's Degree</option>
+                            <option value="masters">Master's Degree</option>
+                            <option value="phd">PhD</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="height">Height (cm)</label>
+                        <div class="height-slider">
+                            <input type="range" id="height" min="100" max="220" value="170">
+                        </div>
+                        <div class="slider-label">
+                            <span>100</span>
+                            <span id="heightValue">170 cm</span>
+                            <span>220</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="weight">Weight (kg)</label>
+                        <div class="weight-slider">
+                            <input type="range" id="weight" min="40" max="150" value="70">
+                        </div>
+                        <div class="slider-label">
+                            <span>40</span>
+                            <span id="weightValue">70 kg</span>
+                            <span>150</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="lifestyle-choices">Lifestyle Choices</label>
+                        <select id="lifestyle-choices">
+                            <option value="any">Value</option>
+                            <option value="active">Active</option>
+                            <option value="homebody">Homebody</option>
+                            <option value="party">Party-goer</option>
+                            <option value="traveler">Traveler</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="religion">Religion</label>
+                        <select id="religion">
+                            <option value="any">Value</option>
+                            <option value="christianity">Christianity</option>
+                            <option value="islam">Islam</option>
+                            <option value="hinduism">Hinduism</option>
+                            <option value="buddhism">Buddhism</option>
+                            <option value="judaism">Judaism</option>
+                            <option value="atheism">Atheism</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="occupation">Occupation</label>
+                        <select id="occupation">
+                            <option value="any">Value</option>
+                            <option value="student">Student</option>
+                            <option value="professional">Professional</option>
+                            <option value="entrepreneur">Entrepreneur</option>
+                            <option value="artist">Artist</option>
+                            <option value="teacher">Teacher</option>
+                            <option value="healthcare">Healthcare Worker</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% block script %}
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.4/nouislider.min.js"></script>
+<script>
+var ageSlider = document.getElementById('age-slider');
+noUiSlider.create(ageSlider, {
+    start: [18, 35],
+    connect: true,
+    range: {
+        'min': 18,
+        'max': 35
+    },
+    format: {
+        to: function (value) {
+            return Math.round(value);
+        },
+        from: function (value) {
+            return Number(value);
+        }
+    }
+});
+ageSlider.noUiSlider.on('update', function (values, handle) {
+    document.getElementById('ageValue').textContent = values.join(' - ');
+});
+
+function addTag(type) {
+    const input = document.getElementById(type + 'Input');
+    const tagsContainer = document.getElementById(type + 'Tags');
+    if (input.value.trim() !== '') {
+        const tag = document.createElement('span');
+        tag.className = 'tag';
+        tag.textContent = input.value.trim();
+        tag.onclick = function () { this.remove(); };
+        tagsContainer.appendChild(tag);
+        input.value = '';
+    }
+}
+
+document.getElementById('height').addEventListener('input', function () {
+    document.getElementById('heightValue').textContent = this.value + ' cm';
+});
+
+document.getElementById('weight').addEventListener('input', function () {
+    document.getElementById('weightValue').textContent = this.value + ' kg';
+});
+</script>
+
+{% endblock script %}
+    
+{% endblock %}
