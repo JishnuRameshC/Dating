@@ -5,14 +5,21 @@
 
 <div class="login-custom-container container-fluid">
     <div class="container login-container">
-        <form method="post" method="login">
+        <form method="post" action="{% url 'accounts:login' %}">
             {% csrf_token %}
             <h3 class="text-center mb-3">Login</h3>
+
+            <!-- Display Error Message -->
+            {% if error_message %}
+                <div class="alert alert-danger">
+                    <p>{{ error_message }}</p>
+                </div>
+            {% endif %}
             
             <!-- Email/Mobile Field -->
             <div class="mb-1">
                 <label for="email" class="form-label">Email/Mobile</label>
-                <input type="text" name="username" class="form-control" id="email" placeholder="Enter your email or mobile number">
+                <input type="text" name="username" class="form-control" id="email" placeholder="Enter your email or mobile number" value="{{ username }}">
             </div>
             
             <!-- Password Field -->

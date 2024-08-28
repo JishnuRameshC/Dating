@@ -9,7 +9,6 @@ from django.utils import timezone
 class CustomUser(AbstractUser):
     email = models.EmailField(unique=True)
     mobile = models.CharField(max_length=15, unique=True, blank=True, null=True)
-    otp = models.CharField(max_length=6, blank=True, null=True)
     
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
@@ -25,16 +24,10 @@ class CustomUser(AbstractUser):
         blank=True,
     )
     
-class OTP(models.Model):
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='otps',null=True)
-    email = models.EmailField()
-    mobile = models.CharField(max_length=15)
-    otp = models.CharField(max_length=6)
-    created_at = models.DateTimeField(default=timezone.now)
-    is_verified = models.BooleanField(default=False)
+    def __str__(self):
+        return self.username
+    
 
-    def is_valid(self):
-        return not self.is_verified and (timezone.now() - self.created_at).total_seconds() < 300  # OTP valid for 5 minutes
 
 class ProjectUser(AbstractUser):
     """Model to store extra details of user"""

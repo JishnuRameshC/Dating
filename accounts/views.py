@@ -1,11 +1,14 @@
 from django.forms import ValidationError
+from django.http import JsonResponse
 from django.shortcuts import render,redirect
+from django.urls import reverse_lazy
 from django.utils import timezone
 from django.core.mail import send_mail
 from django.views import View
-from django.http import JsonResponse
-import random
-from .models import CustomUser,OTP
+from django.views.generic.edit import FormView
+
+from .forms import CustomUserCreationForm
+from .models import CustomUser
 from django.views.generic import TemplateView
 from django.contrib.auth import get_user_model,logout,authenticate, login
 from django.contrib import messages
@@ -49,104 +52,61 @@ class InterestView(TemplateView):
 def TestView(request):
     return render(request, 'index.html')
 
-class GenerateOTPView(View):
-    def post(self, request, *args, **kwargs):
-        email = request.POST.get('email')
-        mobile = request.POST.get('mobile')
+class SignupView(FormView):
+    template_name = 'signup.html'  # Replace with your template path
+    form_class = CustomUserCreationForm
+    success_url = reverse_lazy('accounts:personal_details')  # Redirect to the homepage after successful signup
 
-        # Delete existing OTP records
-        OTP.objects.filter(email=email, mobile=mobile).delete()
+    def form_valid(self, form):
+        user = form.save()
+        login(self.request, user)
+        return super().form_valid(form)
+    
+    def form_invalid(self, form):
+        # You can handle what happens when the form is invalid
+        return super().form_invalid(form)
+    
 
-        # Generate and send new OTP
-        otp = str(random.randint(100000, 999999))
-        otp_record = OTP.objects.create(email=email, mobile=mobile, otp=otp)
-
-        # Send OTP via email
-        try:
-            send_mail(
-                'Your OTP Code',
-                f'Your OTP is {otp}',
-                'from@example.com',  # Change this to your sender email
-                [email],
-                fail_silently=False,
-            )
-            return JsonResponse({'status': 'ok', 'message': 'OTP sent to your email.'})
-        except Exception as e:
-            return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
-        
-class SignupView(View):
-    def get(self, request, *args, **kwargs):
-        return render(request, 'signup.html')
-
-    def post(self, request, *args, **kwargs):
-        username = request.POST.get('name')
-        otp_input = request.POST.get('otp')
-        email = request.POST.get('email')
-        mobile = request.POST.get('mobile')
-        password = request.POST.get('password')
-        confirm_password = request.POST.get('confirm_password')
-
-        # Check if the mobile number already exists
-        if CustomUser.objects.filter(mobile=mobile).exists():
-            return JsonResponse({'status': 'error', 'message': 'A user with this mobile number already exists.'}, status=400)
-
-        # Check if passwords match
-        if password != confirm_password:
-            return JsonResponse({'status': 'error', 'message': 'Passwords do not match.'}, status=400)
-
-        try:
-            # Validate OTP
-            otp_record = OTP.objects.get(email=email, mobile=mobile, otp=otp_input)
-            if not otp_record.is_valid():
-                return JsonResponse({'status': 'error', 'message': 'Invalid or expired OTP.'}, status=400)
-
-            # Create user
-            User = get_user_model()
-            user = User(username=username, email=email, mobile=mobile)
-            user.set_password(password)
-            user.is_active = True
-            user.save()
-
-            # Mark OTP as verified
-            otp_record.is_verified = True
-            otp_record.save()
-
-            # Authenticate the user
-            user = authenticate(request, username=email, password=password)
-            if user is not None:
-                login(request, user)
-                return redirect('accounts:personal_details')
-            
-            
-
-
-            return JsonResponse({'status': 'error', 'message': 'Registration successful, but failed to log in.'}, status=400)
-
-        except OTP.DoesNotExist:
-            return JsonResponse({'status': 'error', 'message': 'Invalid OTP, email, or mobile.'}, status=400)
 
 
 class LoginView(View):
     def get(self, request, *args, **kwargs):
-        # Render the login form
         return render(request, 'login.html')
 
     def post(self, request, *args, **kwargs):
-        username = request.POST.get('username')
+        username_or_mobile = request.POST.get('username')
         password = request.POST.get('password')
+        context = {
+            'username': username_or_mobile,  # Pass the input back to the template in case of error
+        }
 
-        if not username or not password:
-            return JsonResponse({'status': 'error', 'message': 'Username and password are required.'}, status=400)
+        if not username_or_mobile or not password:
+            context['error_message'] = 'Email/Mobile and password are required.'
+            return render(request, 'login.html', context)
 
+        # Try to find the user based on email or mobile
+        user_obj = None
+        try:
+            user_obj = CustomUser.objects.get(email=username_or_mobile)
+        except CustomUser.DoesNotExist:
+            try:
+                user_obj = CustomUser.objects.get(mobile=username_or_mobile)
+            except CustomUser.DoesNotExist:
+                user_obj = None
+
+        if user_obj is None:
+            context['error_message'] = 'Invalid email/mobile or password.'
+            return render(request, 'login.html', context)
+        
         # Authenticate user
-        user = authenticate(request, username=username, password=password)
+        user = authenticate(request, username=user_obj.email, password=password)
         if user is None:
-            return JsonResponse({'status': 'error', 'message': 'Invalid username or password.'}, status=400)
+            context['error_message'] = 'Invalid email/mobile or password.'
+            return render(request, 'login.html', context)
 
         # Login user
         login(request, user)
-
-        return JsonResponse({'status': 'ok', 'message': 'Login successful.'})
+        return redirect('Dating:home')
     
 def signout(request):
     logout(request)

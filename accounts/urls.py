@@ -20,7 +20,6 @@ urlpatterns = [
     path('relationship_goal',views.Rel_GoalView.as_view(),name="relationship_goal"),
     path('interest',views.InterestView.as_view(),name='interest'),
                   
-                  path('generate-otp/', GenerateOTPView.as_view(), name='generate_otp'),
               ]
 
 
