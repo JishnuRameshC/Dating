@@ -4,7 +4,7 @@
 
 {% block navbar %}
 
-{% include 'shared/navbar.html' %}
+{% comment %} {% include 'shared/navbar.html' %} {% endcomment %}
 
 {% endblock navbar %}
   
@@ -15,7 +15,7 @@
         <div class="stories-section">
             <div class="row">
                 <div class="col-12">
-                    <div class="d-flex overflow-auto">
+                    <div class="d-flex  overflow-auto">
                         <div class="story-sec me-3">
                             <div class="story-image" data-bs-toggle="modal" data-bs-target="#storyModal" onclick="showStory('a1.jpg')">
                                 <img src="{% static 'images/a2.jpg' %}" alt="My Story" class="img-fluid">

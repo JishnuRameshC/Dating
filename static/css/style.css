@@ -17,7 +17,7 @@
     height:100vh;
     
 }
-.first-container {
+.first-custom-container > .first-container {
     background: white;
     padding:30px;
     border-radius: 15px;
@@ -26,7 +26,7 @@
     text-align: center;
 }
 @media (max-width: 576px) {
-    .first-container {
+    .first-custom-container > .first-container {
         height: 75vh;
     }
 }
