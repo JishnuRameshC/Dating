@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+
+    <div class="container mt-3">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <a href="{% url 'subscription_plan' %}"><i class="bi bi-x-lg " style="font-size: x-large;color: black; font-weight: bold;"></i></a>
+            <button class=" btn fw-bolder done">Done</button>
+        </div>
+        <h1 class="text-center fs-1 text-md-start">Payment Methods</h1>
+        <p class="fw-bold">Choose the desired payment type. We offer easy ways for payments on our app.</p>
+
+        <div class="payment-method">
+            <img src="{% static 'images/svgicons/mastercard.svg' %}" alt="MasterCard">
+            <div class="details">
+                <!-- <h5>MasterCard</h5> -->
+                <p>********** 4444</p>
+                <p>Expires 09/25</p>
+            </div>
+        </div>
+
+        <div class="payment-method">
+            <img src="{% static 'images/svgicons/visa.svg' %}" alt="MasterCard">
+            <div class="details">
+                <!-- <h5>VisaCard</h5> -->
+                <p>********** 3343</p>
+                <p>Expires 09/25</p>
+            </div>
+        </div>
+
+        <div class="payment-method">
+            <img src="{% static 'images/svgicons/paypal.svg' %}" alt="PayPal">
+            <div class="details">
+                <!-- <h5>PayPal</h5> -->
+                <p>petra-stark@gmail.com</p>
+            </div>
+        </div>
+        <p style="text-transform: uppercase;" class="my-3 fs-5 fw-bold">Current Method</p>
+
+        <div class="payment-method default-method dropdown-toggle">
+            <img src="{% static 'images/svgicons/dollar.svg' %}" alt="Cash">
+            <div class="details">
+                <h5>Cash payment</h5>
+                <h6>Default method</h6>
+            </div>
+        </div>
+
+        <a href="{% url 'add_payment_methods' %}" class="btn btn-dark btn-block my-4" style="text-transform: uppercase;">Add Payment Method</a>
+    </div>
+
+    {% endblock content %}
