@@ -25,3 +25,4 @@ class CustomUserCreationForm(UserCreationForm):
         if CustomUser.objects.filter(username=username).exists():
             raise ValidationError("This username is already taken.")
         return username
+    

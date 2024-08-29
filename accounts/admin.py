@@ -4,6 +4,4 @@ from .models import CustomUser
 admin.site.register(CustomUser)
 
 
-class CustomUserAdmin(admin.ModelAdmin):
-    list_display = ('email', 'username', 'mobile')
-    actions = ['delete_selected']
+

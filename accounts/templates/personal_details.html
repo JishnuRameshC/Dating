@@ -5,7 +5,7 @@
 <style>
     .p_details-container-fluid {
         
-        height: 100%%;
+        height: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -122,8 +122,10 @@
     
     <div class="container-fluid p_details-container-fluid py-3">
         <div class="p_details-container">
+            {% if user.is_authenticated %}<p>{{user.username}}</P>{% endif %}
             <h2 class="p_details-h2">Personal Details </h2>
-            <form class="p_details-form">
+            <form class="p_details-form" method="POST">
+                {% csrf_token %}
                 <input type="text" id="age" name="age" placeholder="Age" class="p_details-input">
                 <input type="date" id="dob" name="dob" placeholder="Date of Birth" class="p_details-input">
                 <input type="text" id="hobbies" name="hobbies" placeholder="Hobbies" class="p_details-input">
@@ -143,7 +145,7 @@
                 </div>
                 
                 <div class="file-input-with-icon p_details-input">
-                    <input type="file" id="images" name="images">
+                    <input type="file" id="images" name="images[]" multiple>
                     <input type="text" class="placeholder-input" placeholder="Add More Images" disabled>
                     <i class="fa-regular fa-image"></i>
                 </div>

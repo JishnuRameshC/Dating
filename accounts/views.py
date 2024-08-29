@@ -8,8 +8,8 @@ from django.views import View
 from django.views.generic.edit import FormView
 
 from .forms import CustomUserCreationForm
-from .models import CustomUser
-from django.views.generic import TemplateView
+from .models import AdditionalImage, CustomUser
+from django.views.generic import TemplateView,CreateView
 from django.contrib.auth import get_user_model,logout,authenticate, login
 from django.contrib import messages
 
@@ -111,3 +111,10 @@ class LoginView(View):
 def signout(request):
     logout(request)
     return redirect('accounts:login')
+
+class AddressView(TemplateView):
+    template_name='address.html'
+    
+    
+
+        
