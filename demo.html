@@ -99,6 +99,8 @@
         .segmented-control {
             display: flex;
             border-radius: 30px;
+            border-color: #007bff;
+            border: 5px solid white;
             overflow: hidden;
             background-color: #f8e9f7;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -106,10 +108,11 @@
         }
         .segmented-control button {
             flex: 1;
-            padding: 10px 20px;
+            padding: 10px 10px;
             border: none;
             background-color: transparent;
             color: #555;
+            margin: -5px;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -117,8 +120,7 @@
         }
         .segmented-control button.active {
             background-color: #ffffff;
-            color: #007bff;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            color: #007AFF;
         }
     </style>
 </head>
