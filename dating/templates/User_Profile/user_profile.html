@@ -1,8 +1,7 @@
-{% extends 'base.html' %}
-{% load static %}
-
+{% extends "shared/base.html" %}
 {% block content %}
-<div class="profile-card">
+  <div class="row d-flex justify-content-center" id="user-profile">
+    <div class="col-12 col-md-10 col-lg-8 ">
     <div class="profile-header" id="profileHeader" style="background-image: url('https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80');">
         <a href="#" class="back-btn">
             <i class="fas fa-arrow-left fa-1x"></i>
@@ -12,7 +11,7 @@
         </div>
         <div class="profile-info">
             <h1>Alfredo Calzoni, 20</h1>
-            <h2>Hamburg, Germany</h2> 
+            <h2>Hamburg, Germany</h2>
             <button class="match-btn">
                 Match
                 <i class="fas fa-heart"></i>
@@ -24,9 +23,9 @@
             <img src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" alt="Image 3" onclick="changeImage(this)">
         </div>
     </div>
-    <div class="profile-content">
+    <div class="profile-content ">
         <h3>About</h3>
-        <p>A good listener. I love having a good talk to know each other's side 😍.</p>
+        <p>A good listener. I love having a good talk to know each other’s side 😍.</p>
         <h3>Interest</h3>
         <div class="interest-badges">
             <span>🌳 Nature</span>
@@ -41,9 +40,11 @@
         <button class="message"><i class="fas fa-comment"></i></button>
     </div>
 </div>
-{% endblock %}
+{% endblock content %}
 
 {% block script %}
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
 <script>
     function changeImage(element) {
         const profileHeader = document.getElementById('profileHeader');
@@ -53,4 +54,7 @@
         profileHeader.style.backgroundImage = `url('${element.src}')`;
     }
 </script>
-{% endblock %}
+{% endblock script %}
+    
+
+

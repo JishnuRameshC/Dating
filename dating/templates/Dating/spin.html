@@ -1,10 +1,18 @@
 {% extends 'shared/base.html' %}
 {% load static %}
 
-
+{% block style %}
+    <style>
+        body{
+            background-color: var(--primary-color);
+        }
+    </style>
+{% endblock style %}
+    
 
 
 {% block content %}
+<div class="row d-flex justify-content-center" id="spin">
     <div class="cust-body">
         <div class="spin-container">
             <div class="prof-inform">
@@ -35,6 +43,7 @@
             </div>
         </div>
     </div>
+</div>
     <script>
         let isSpinning = false;
         const svgElement = document.querySelector('#circle-svg');
