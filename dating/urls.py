@@ -33,7 +33,7 @@ urlpatterns = [
   
 #   G2  userprofile_flow
     path('settings/', views.settings, name='settings'),
-    path('privacy_settings', views.privacy_settings, name='privacy_settings'),
+    path('p', views.privacy_settings, name='privacy_settings'),
     path('preferences', views.preferences, name='preferences'),
     path('filter', views.filter, name='filter'),
     path('user', views.user_profile, name='user_profile'),
