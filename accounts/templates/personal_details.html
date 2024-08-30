@@ -4,7 +4,6 @@
         
 <style>
     .p_details-container-fluid {
-        
         height: 100%;
         display: flex;
         justify-content: center;
@@ -115,65 +114,60 @@
         cursor: pointer;
         pointer-events: none;
     }
-    
-    </style/>  
-    
-    
-    
-    <div class="container-fluid p_details-container-fluid py-3">
-        <div class="p_details-container">
-            {% if user.is_authenticated %}<p>{{user.username}}</P>{% endif %}
-            <h2 class="p_details-h2">Personal Details </h2>
-            <form class="p_details-form" method="POST">
-                {% csrf_token %}
-                <input type="text" id="age" name="age" placeholder="Age" class="p_details-input">
-                <input type="date" id="dob" name="dob" placeholder="Date of Birth" class="p_details-input">
-                <input type="text" id="hobbies" name="hobbies" placeholder="Hobbies" class="p_details-input">
-                <input type="text" id="interests" name="interests" placeholder="Interests" class="p_details-input">
-                <input type="text" id="smoking" name="smoking" placeholder="Smoking Habits" class="p_details-input">
-                <input type="text" id="drinking" name="drinking" placeholder="Drinking Habits" class="p_details-input">
-                
-                <div class="input-container p_details-input">
-                    <input type="text" id="qualifications" name="qualifications" placeholder="Qualifications">
-                    <i class="fa-solid fa-plus"></i>
-                </div>
-                
-                <div class="file-input-with-icon p_details-input">
-                    <input type="file" id="profile-pic" name="profile-pic">
-                    <input type="text" class="placeholder-input" placeholder="Profile Pic" disabled>
-                    <i class="fa-regular fa-image"></i>
-                </div>
-                
-                <div class="file-input-with-icon p_details-input">
-                    <input type="file" id="images" name="images[]" multiple>
-                    <input type="text" class="placeholder-input" placeholder="Add More Images" disabled>
-                    <i class="fa-regular fa-image"></i>
-                </div>
-                
-                <div class="file-input-with-icon p_details-input">
-                    <input type="file" id="short-reel" name="short-reel">
-                    <input type="text" class="placeholder-input" placeholder="Short Reel" disabled>
-                    <i class="fa-solid fa-video"></i>
-                </div>
-                
-                <button type="submit" class="next-btn p_details-btn">Next</button>
-            </form>
-        </div>
+</style>
+
+<div class="container-fluid p_details-container-fluid py-3">
+    <div class="p_details-container">
+        {% if user.is_authenticated %}<p>{{ user.username }}</p>{% endif %}
+        <h2 class="p_details-h2">Personal Details</h2>
+        <form class="p_details-form" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="text" id="age" name="age" placeholder="Age" class="p_details-input">
+            <input type="date" id="dob" name="dob" placeholder="Date of Birth" class="p_details-input">
+            <input type="text" id="hobbies" name="hobbies" placeholder="Hobbies" class="p_details-input">
+            <input type="text" id="interests" name="interests" placeholder="Interests" class="p_details-input">
+            <input type="text" id="smoking_habits" name="smoking_habits" placeholder="Smoking Habits" class="p_details-input">
+            <input type="text" id="drinking_habits" name="drinking_habits" placeholder="Drinking Habits" class="p_details-input">
+            
+            <div class="input-container p_details-input">
+                <input type="text" id="qualifications" name="qualifications" placeholder="Qualifications">
+                <i class="fa-solid fa-plus"></i>
+            </div>
+            
+            <div class="file-input-with-icon p_details-input">
+                <input type="file" id="profile-pic" name="profile_pic">
+                <input type="text" class="placeholder-input" placeholder="Profile Pic" disabled>
+                <i class="fa-regular fa-image"></i>
+            </div>
+            
+            <div class="file-input-with-icon p_details-input">
+                <input type="file" id="images" name="image" multiple>
+                <input type="text" class="placeholder-input" placeholder="Add More Images" disabled>
+                <i class="fa-regular fa-image"></i>
+            </div>
+            
+            <div class="file-input-with-icon p_details-input">
+                <input type="file" id="short-reel" name="short_reel">
+                <input type="text" class="placeholder-input" placeholder="Short Reel" disabled>
+                <i class="fa-solid fa-video"></i>
+            </div>
+            
+            <button type="submit" class="next-btn p_details-btn">Next</button>
+        </form>
     </div>
-    
-    <script>
-        document.querySelectorAll('.file-input-with-icon input[type="file"]').forEach(input => {
-            input.addEventListener('change', function() {
-                const placeholder = this.nextElementSibling;
-                if (this.files.length > 0) {
-                    placeholder.value = this.files[0].name;
-                } else {
-                    placeholder.value = "";
-                }
-            });
+</div>
+
+<script>
+    document.querySelectorAll('.file-input-with-icon input[type="file"]').forEach(input => {
+        input.addEventListener('change', function() {
+            const placeholder = this.nextElementSibling;
+            if (this.files.length > 0) {
+                placeholder.value = this.files[0].name;
+            } else {
+                placeholder.value = "";
+            }
         });
-    </script>
-    
-    
+    });
+</script>
     
 {% endblock content %}

@@ -7,11 +7,12 @@ from django.core.mail import send_mail
 from django.views import View
 from django.views.generic.edit import FormView
 
-from .forms import CustomUserCreationForm
+from .forms import AdditionalImageForm, CustomUserCreationForm, CustomUserForm
 from .models import AdditionalImage, CustomUser
-from django.views.generic import TemplateView,CreateView
+from django.views.generic import TemplateView,CreateView,UpdateView,DetailView
 from django.contrib.auth import get_user_model,logout,authenticate, login
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 
  
 
@@ -26,8 +27,8 @@ class FirstView(TemplateView):
 # class LoginView(TemplateView):
 #     template_name='login.html'
     
-class PersonalDetailsView(TemplateView):
-    template_name='personal_details.html'
+# class PersonalDetailsView(TemplateView):
+#     template_name='personal_details.html'
 
 class JobStatusView(TemplateView):
     template_name='job_status.html'
@@ -55,11 +56,13 @@ def TestView(request):
 class SignupView(FormView):
     template_name = 'signup.html'  # Replace with your template path
     form_class = CustomUserCreationForm
-    success_url = reverse_lazy('accounts:personal_details')  # Redirect to the homepage after successful signup
+    success_url = None # Redirect to the homepage after successful signup
 
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
+        self.success_url = reverse_lazy('accounts:personal_details', kwargs={'pk': user.pk})
+
         return super().form_valid(form)
     
     def form_invalid(self, form):
@@ -112,9 +115,38 @@ def signout(request):
     logout(request)
     return redirect('accounts:login')
 
-class AddressView(TemplateView):
-    template_name='address.html'
-    
-    
 
-        
+    
+class PersonalDetailsCreateView(UpdateView):
+    model = CustomUser
+    form_class = CustomUserForm
+    template_name = 'personal_details.html'
+    success_url = reverse_lazy('accounts:address')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.request.POST:
+            context['additional_image_form'] = AdditionalImageForm(self.request.POST, self.request.FILES)
+        else:
+            context['additional_image_form'] = AdditionalImageForm()
+        context['additional_images'] = self.object.additional_images.all()
+        return context
+
+    def form_valid(self, form):
+        context = self.get_context_data()
+        additional_image_form = context['additional_image_form']
+
+        if additional_image_form.is_valid():
+            self.object = form.save()
+
+            # Handle multiple additional images
+            for image in self.request.FILES.getlist('image'):
+                AdditionalImage.objects.create(user=self.object, image=image)
+
+            return super().form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+    def form_invalid(self, form):
+        context = self.get_context_data(form=form)
+        return self.render_to_response(context)
