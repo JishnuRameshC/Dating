@@ -6,21 +6,21 @@
 }
 
 /* homePage */
-header {
+#home header {
     background-color: #ffffff;
     border-bottom: 1px solid #dddddd;
 }
 
-.stories-section {
+#home .stories-section {
     margin: 20px 0;
 }
 
-.story {
+#home .story {
     position: relative;
     margin-right: 10px;
 }
 
-.story-img {
+#home .story-img {
     position: relative;
     width: 80px;
     height: 80px;
@@ -33,14 +33,14 @@ header {
     cursor: pointer;
 }
 
-.story-img img {
+#home .story-img img {
     width: 72px;
     height: 72px;
     border-radius: 50%;
     border: 3px solid #fff;
 }
 
-.story p {
+#home .story p {
     margin-top: 8px;
     font-size: 14px;
     text-align: center;
@@ -48,7 +48,7 @@ header {
     font-weight: bold;
 }
 
-.add-story-btn {
+#home .add-story-btn {
     position: absolute;
     bottom: -2px;
     right: -2px;
@@ -68,11 +68,11 @@ header {
     z-index: 10;
 }
 
-.add-story-btn:focus {
+#home .add-story-btn:focus {
     outline: none;
 }
 
-.profile-card {
+#home .profile-card {
     position: relative;
     border-radius: 20px;
     overflow: hidden;
@@ -86,7 +86,7 @@ header {
     position: relative;
 }
 
-.profile-card img {
+#home .profile-card img {
     position: absolute;
     top: 0;
     left: 0;
@@ -95,7 +95,7 @@ header {
     object-fit: cover;
 }
 
-.gradient-overlay {
+#home .gradient-overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -105,7 +105,7 @@ header {
     pointer-events: none;
 }
 
-.profile-info {
+#home .profile-info {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -116,17 +116,17 @@ header {
     z-index: 2;
 }
 
-.profile-name {
+#home .profile-name {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 5px;
 }
 
-.profile-location {
+#home .profile-location {
     font-size: 14px;
 }
 
-.online-badge {
+#home .online-badge {
     position: absolute;
     top: 10px;
     left: 10px;
@@ -139,7 +139,7 @@ header {
     z-index: 2;
 }
 
-.action-buttons {
+#home .action-buttons {
     position: absolute;
     top: 50%;
     right: 10px;
@@ -150,7 +150,7 @@ header {
     z-index: 3;
 }
 
-.action-buttons button {
+#home .action-buttons button {
     background-color: rgba(0, 0, 0, 0.5);
     border: none;
     color: white;
@@ -160,11 +160,11 @@ header {
     transition: background-color 0.3s ease;
 }
 
-.action-buttons button:hover {
+#home .action-buttons button:hover {
     background-color: rgba(0, 0, 0, 0.8);
 }
 
-.custom-tabs {
+#home .custom-tabs {
     font-size: 18px;
     display: flex;
     flex-wrap: nowrap;
@@ -172,7 +172,7 @@ header {
     white-space: nowrap; /* Prevents wrapping */
 }
 
-.custom-tabs .nav-link {
+#home .custom-tabs .nav-link {
     border-radius: 30px;
     background-color: #f5f0f5;
     color: #6c757d;
@@ -182,59 +182,59 @@ header {
     transition: all 0.3s ease;
 }
 
-.custom-tabs .nav-link.active {
+#home .custom-tabs .nav-link.active {
     background-color: #ffffff;
     color: #007bff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.custom-tabs .nav-link:hover {
+#home .custom-tabs .nav-link:hover {
     background-color: #ffffff;
     color: #007bff;
 }
 
 @media (max-width: 576px) {
-    .story-img {
+  #home .story-img {
         width: 60px;
         height: 60px;
     }
 
-    .story-img img {
+    #home .story-img img {
         width: 54px;
         height: 54px;
     }
 
-    .custom-tabs .nav-link {
+    #home .custom-tabs .nav-link {
         padding: 10px 20px;
         font-size: 14px;
         margin-right: 10px;
     }
 
-    .profile-card {
+    #home .profile-card {
         width: 100%;
         margin: 10px 0;
         padding-bottom: 100%; /* Ensures square aspect ratio on smaller screens */
     }
 
-    .profile-card img {
+    #home .profile-card img {
         object-fit: cover;
     }
 
-    .profile-grid {
+    #home .profile-grid {
         gap: 10px; /* Adjusted gap for smaller screens */
     }
 }
 
 /* Modal Styling */
-.modal-dialog {
+#home .modal-dialog {
     max-width: 80vw; /* Adjust width of the modal */
 }
 
-.modal-body {
+#home .modal-body {
     padding: 0; /* Remove padding from the modal body */
 }
 
-.modal-body img {
+#home .modal-body img {
     width: 100%;
     height: auto;
     display: block;
@@ -522,12 +522,12 @@ header {
     margin: 20px 0;
 }
 
-.story-sec {
+#home .story-sec {
     position: relative;
     margin-right: 10px;
 }
 
-.story-image {
+#home .story-image {
     position: relative;
     width: 80px;
     height: 80px;
@@ -540,14 +540,14 @@ header {
     cursor: pointer;
 }
 
-.story-image img {
+#home .story-image img {
     width: 72px;
     height: 72px;
     border-radius: 50%;
     border: 3px solid #fff;
 }
 
-.story p {
+#home .story p {
     margin-top: 8px;
     font-size: 14px;
     text-align: center;
@@ -555,7 +555,7 @@ header {
     font-weight: bold;
 }
 
-.add-story-btn {
+#home .add-story-btn {
     position: absolute;
     bottom: -2px;
     right: -2px;
@@ -575,11 +575,11 @@ header {
     z-index: 10;
 }
 
-.add-story-btn:focus {
+#home .add-story-btn:focus {
     outline: none;
 }
 
-.prof-card {
+#home .prof-card {
     position: relative;
     border-radius: 20px;
     overflow: hidden;
@@ -593,7 +593,7 @@ header {
     position: relative;
 }
 
-.prof-card img {
+#home .prof-card img {
     position: absolute;
     top: 0;
     left: 0;
@@ -602,7 +602,7 @@ header {
     object-fit: cover;
 }
 
-.gradient-overlay {
+#home .gradient-overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -612,7 +612,7 @@ header {
     pointer-events: none;
 }
 
-.prof-info {
+#home .prof-info {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -623,17 +623,17 @@ header {
     z-index: 2;
 }
 
-.prof-name {
+#home .prof-name {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 5px;
 }
 
-.prof-location {
+#home .prof-location {
     font-size: 14px;
 }
 
-.online-badge {
+#home .online-badge {
     position: absolute;
     top: 10px;
     left: 10px;
@@ -646,7 +646,7 @@ header {
     z-index: 2;
 }
 
-.action-buttons {
+#home .action-buttons {
     position: absolute;
     top: 50%;
     right: 10px;
@@ -657,7 +657,7 @@ header {
     z-index: 3;
 }
 
-.action-buttons button {
+#home .action-buttons button {
     background-color: rgba(0, 0, 0, 0.5);
     border: none;
     color: white;
@@ -667,11 +667,11 @@ header {
     transition: background-color 0.3s ease;
 }
 
-.action-buttons button:hover {
+#home .action-buttons button:hover {
     background-color: rgba(0, 0, 0, 0.8);
 }
 
-.custom-tabs {
+#home .custom-tabs {
     font-size: 18px;
     display: flex;
     flex-wrap: nowrap;
@@ -679,7 +679,7 @@ header {
     white-space: nowrap; /* Prevents wrapping */
 }
 
-.custom-tabs .nav-link {
+#home .custom-tabs .nav-link {
     border-radius: 30px;
     background-color: #f5f0f5;
     color: #6c757d;
@@ -689,40 +689,40 @@ header {
     transition: all 0.3s ease;
 }
 
-.custom-tabs .nav-link.active {
+#home .custom-tabs .nav-link.active {
     background-color: #ffffff;
     color: #007bff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.custom-tabs .nav-link:hover {
+#home .custom-tabs .nav-link:hover {
     background-color: #ffffff;
     color: #007bff;
 }
 
 @media (max-width: 768px) {
-    .custom-tabs {
+  #home .custom-tabs {
         padding-bottom: 10px;
     }
 }
 
 @media (max-width: 576px) {
-.custom-tabs .nav-link {
+  #home .custom-tabs .nav-link {
 padding: 9px 17px; /* Reduced padding */
 font-size: 14px; /* Smaller font size */
 margin-right: 5px; /* Reduced margin for less gap */
 }
 }
 
-.modal-dialog {
+#home .modal-dialog {
     max-width: 80vw;
 }
 
-.modal-body {
+#home .modal-body {
     padding: 0;
 }
 
-.modal-body img {
+#home .modal-body img {
     width: 100%;
     height: auto;
     display: block;
@@ -1365,7 +1365,7 @@ header {
 /* change_password jishu */
 
 
-.title {
+#change-password .title {
   background-color: #3e152f;
   color: white;
   padding: 20px 0;
@@ -1376,25 +1376,18 @@ header {
   font-weight: bold;
 }
 
-.top-rounded-white-box {
-  position: fixed;
-  border-radius: 50px 50px 0px 0px;
-  background-color: white;
-  height: calc(100vh - 68px);
-  width: 100%;
-}
 
-.changepass-container {
+#change-password .changepass-container {
   margin: 30px;
   background-color: white;
 }
 
-.changepass-form-group {
+#change-password .changepass-form-group {
   position: relative;
 }
 
 
-  .toggle-password {
+#change-password .toggle-password {
     position: absolute;
     right: 10px;
     top: 70%;
@@ -1402,7 +1395,7 @@ header {
     cursor: pointer;
   }
 
-.changepass-btn-update {
+#change-password .changepass-btn-update {
   background-color: #4e0834;
   color: white;
   width: 100%;
@@ -1574,21 +1567,21 @@ header {
 
 /* upgrade story  */
  /* Centered modal content */
- .modal-dialog {
+#story .modal-dialog {
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
 }
-.modal-content {
+#story .modal-content {
   text-align: center;
   width: 100%;
   max-width: 500px;
 }
-.modal-backdrop {
+#story .modal-backdrop {
   background-color: rgba(0, 0, 0, 0.5);
 }
-.upgrade-card {
+#story .upgrade-card {
   background: rgba(255, 255, 255, 0.95);
   border-radius: 15px;
   max-width: 340px;
@@ -1599,24 +1592,24 @@ header {
   position: relative;
   z-index: 1;
 }
-.upgrade-card:hover {
+#story .upgrade-card:hover {
   transform: translateY(-8px);
   box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.2);
 }
-.upgrade-text {
+#story .upgrade-text {
   font-size: 1.90rem;
   font-weight: 600;
   color: #333;
   margin-bottom: 30px;
   line-height: 2.5;
 }
-.btn-container {
+#story .btn-container {
   display: flex;
   justify-content: space-between;
   gap: 10px;
 }
-.btn-upgrade,
-.btn-home {
+#story .btn-upgrade,
+#story .btn-home {
   background-color: #5C105D;
   color: #fff;
   border-radius: 40px;
@@ -1631,16 +1624,16 @@ header {
   text-align: center;
   white-space: nowrap;
 }
-.btn-upgrade:hover,
-.btn-home:hover {
+#story .btn-upgrade:hover,
+#story .btn-home:hover {
   background-color: #4e0a4d;
   transform: translateY(-3px);
   box-shadow: 0px 8px 20px rgba(92, 16, 93, 0.5);
 }
-.modal {
+#story .modal {
   pointer-events: none;
 }
-.modal-dialog {
+#story .modal-dialog {
   pointer-events: auto;
 }
 /* end upgrade story  */
@@ -1653,7 +1646,17 @@ header {
   background-color: white;
   height: calc(100vh - 68px);
   width: 100%;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  padding-bottom: 100px;
+  /* Hide the scrollbar */
+  scrollbar-width: none;  /* For Firefox */
+  -ms-overflow-style: none;  /* For Internet Explorer and Edge */
+}
+
+.top-rounded-white-box::-webkit-scrollbar {
+  display: none;  /* For Chrome, Safari, and Opera */
 }
 
 #contents  .list-group > .alphabet-header {
@@ -1662,14 +1665,13 @@ header {
   color: black;
   background-color: transparent;
   border: none;
-  scroll-behavior: smooth;
 }
 
 #contents .top-rounded-white-box > .list-group {
   margin-top: 30px ;
   background-color: white;
   max-height: calc(100vh - 90px); /* Adjust based on top margin and padding */
-  overflow-y: auto;
+
 }
 #contents .top-rounded-white-box .list-group::-webkit-scrollbar {
   width: 0px;
@@ -1739,42 +1741,42 @@ header {
   flex-direction: column;
 }
 
-.heading-container {
+#message .heading-container {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.heading-container > .title-text {
+#message .heading-container > .title-text {
     flex: 1;
     text-align: center;
 }
-.heading-container > .back-icon {
+#message .heading-container > .back-icon {
     margin-left: 10px; /* Adjust spacing between text and icon */
 }
-.match-avatars {
+#message .match-avatars {
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
 }
-.match-avatar {
+#message .match-avatar {
   width: 100px; /* Large size */
   height: 100px; /* Large size */
   border-radius: 15px;
   overflow: hidden;
 }
 
-.match-avatar img {
+#message .match-avatar img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
 @media only screen and (min-width: 1200px) {
-  .m-recent-matches{
+  #message .m-recent-matches{
     width: 63%;
     margin-left:  190px;
   }
-  .heading-container > .back-icon {
+  #message .heading-container > .back-icon {
     margin-right:30px ; /* Adjust spacing between text and icon */
 }
 }
