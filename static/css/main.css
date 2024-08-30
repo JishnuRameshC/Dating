@@ -1313,17 +1313,7 @@ svg {
 /* settings rheshikes ends */
 
 /* tinu */
-:root {
-    --primary-bg-color: #5a2d82;
-    --primary-font: Arial, sans-serif;
-    --primary-padding: 60px;
-    --primary-display: flex;
-    --primary-justify-content: center;
-    --primary-align-items: center;
-    --primary-min-height: 100vh;
-    --primary-margin: 0;
-    --primary-color: #ffffff;
-}
+
 
 body {
     font-family: var(--primary-font);

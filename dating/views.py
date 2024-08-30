@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import View, TemplateView
+from accounts.models import CustomUser, Address
 
 
 class SelectgenderView(TemplateView):
@@ -143,8 +144,42 @@ class Error404View(TemplateView):
     template_name='error_page/error404.html'
 
 
+
+
 class HomeView(TemplateView):
     template_name = 'Dating/home.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user_city = None
+        user_qualification = None
+        user_designation = None
+
+        # Check if the user is authenticated and get their city, qualification, and designation
+        if self.request.user.is_authenticated:
+            address = self.request.user.address.first()
+            if address:
+                user_city = address.city
+            user_qualification = self.request.user.qualifications
+            user_designation = user_qualification  # Assuming designation is the same as qualifications
+
+        # Retrieve users based on city, qualification, and designation (qualification)
+        users = CustomUser.objects.exclude(is_superuser=True)
+        if user_city:
+            users = users.filter(address__city=user_city)
+        if user_qualification:
+            users = users.filter(qualifications=user_qualification)
+        if user_designation:
+            users = users.filter(qualifications=user_designation)
+        
+        context['users'] = users
+        context['user_city'] = user_city
+        context['user_qualification'] = user_qualification
+        context['user_designation'] = user_designation
+        
+        return context
+
+
 
 class DiscoverView(TemplateView):
     template_name = 'Dating/discover.html'
