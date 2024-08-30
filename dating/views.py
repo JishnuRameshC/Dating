@@ -133,6 +133,9 @@ def reject(request):
 
 def viewed_myprofile(request):
     return render(request, 'contents/viewed_myprofile.html')
+
+def matches(request):
+    return render(request, 'contents/matches.html')
   
 #   G3
 class Error403View(TemplateView):

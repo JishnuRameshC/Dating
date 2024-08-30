@@ -1,16 +1,16 @@
 {% extends 'shared/base.html' %}
 
 {% block meta %}
-  <title>Accept</title>
+  <title>Contacted</title>
 {% endblock %}
 
 {% block style %}
-
 {% endblock %}
 
 {% block content %}
-  <h1 class="settings-text top-navbar">Accept</h1>
+  <h1 class="settings-text top-navbar">Contacted</h1>
   <div class="content-section">
+   
       <div class="list-group">
         <div class="alphabet-header">A</div>
         <div class="list-group-item">
@@ -22,8 +22,9 @@
             </div>
           </div>
           <div class="action-icons">
-            <button class="phone-btn"><i class="bi bi-telephone"></i></button>
-            <button class="video-btn"><i class="bi bi-camera-video"></i></button>
+            {% comment %} <i class="bi bi-heart-fill"></i> {% endcomment %}
+            <button class="phone-btn"> <i class="bi bi-heart"></i></button>
+            <button class="video-btn"><i class="bi bi-x-lg"></i></i></button>
           </div>
         </div>
         <div class="list-group-item">
@@ -63,7 +64,6 @@
           </div>
           <div class="action-icons">
             <button class="phone-btn"><i class="bi bi-telephone"></i></button>
-            <button class="video-btn"><i class="bi bi-camera-video"></i></button>
           </div>
         </div>
         <div class="list-group-item">
@@ -165,5 +165,6 @@
     </div>
   </div>
 {% endblock %}
+
 {% block scripts %}
 {% endblock %}

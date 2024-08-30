@@ -33,7 +33,7 @@ urlpatterns = [
   
 #   G2  userprofile_flow
     path('settings/', views.settings, name='settings'),
-    path('privacy_settings', views.privacy_settings, name='privacy_settings'),
+    path('privacy_settings/', views.privacy_settings, name='privacy_settings'),
     path('preferences', views.preferences, name='preferences'),
     path('filter', views.filter, name='filter'),
     path('user', views.user_profile, name='user_profile'),
@@ -43,7 +43,7 @@ urlpatterns = [
     # path('profile/', views.ProfileView.as_view(), name='profile'),
     path('change_password/', views.ChangePasswordView.as_view(), name='change_password'),
     path('upgrade/',views.UpgradeStoryView.as_view(),name="upgrade"),
-    path('edite_profile/',views.EditMyProfile.as_view(),name="edite_profile"),
+    path('edit_profile/',views.EditMyProfile.as_view(),name="edite_profile"),
 
     path('message', views.messgage, name='message'),
     path('contact', views.contact, name='contact'),
@@ -54,6 +54,7 @@ urlpatterns = [
     path('viewed_myprofile', views.viewed_myprofile, name='viewed_myprofile'),
     path('sent', views.sent, name='sent'),
     path('accept', views.accept, name='accept'),
+    path('matched', views.matches, name='matches'),
     
 #     G3
     path("selectgender/", SelectgenderView.as_view(), name="selectgender"),
