@@ -117,11 +117,11 @@ def signout(request):
 
 
     
-class PersonalDetailsCreateView(UpdateView):
+class PersonalDetailsCreateView(LoginRequiredMixin, UpdateView):
     model = CustomUser
     form_class = CustomUserForm
     template_name = 'personal_details.html'
-    success_url = reverse_lazy('accounts:address')
+    success_url = reverse_lazy('Dating:home')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

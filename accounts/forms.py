@@ -31,13 +31,16 @@ class CustomUserForm(forms.ModelForm):
     class Meta:
         model = CustomUser
         fields = [
-            'age', 'dob', 'hobbies', 'interests', 
+            'gender', 'dob', 'hobbies', 'interests', 
             'smoking_habits', 'drinking_habits', 
             'qualifications', 'profile_pic', 'short_reel'
         ]
         widgets = {
             'dob': forms.DateInput(attrs={'type': 'date'}),
         }
+        def __init__(self, *args, **kwargs):
+          super().__init__(*args, **kwargs)
+           # Provide initial values if any
 
 class AdditionalImageForm(forms.ModelForm):
     class Meta:

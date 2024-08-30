@@ -1,3 +1,4 @@
+from datetime import date
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
@@ -6,6 +7,16 @@ class CustomUser(AbstractUser):
         ('N', 'Never'),
         ('O', 'Occasionally'),
         ('F', 'Frequently'),
+    ]
+    GENDER_CHOICES = [
+        ('Male', 'Male'),
+        ('Female', 'Female'),
+        ('Other', 'Other'),
+    ]
+    INTEREST_CHOICES = [
+        ('M', 'Male'),
+        ('F', 'Female'),
+        ('B', 'Both'),
     ]
     QUALIFICATION_CHOICES = [
         ('SSLC', 'SSLC'),
@@ -19,13 +30,13 @@ class CustomUser(AbstractUser):
     mobile = models.CharField(max_length=15, unique=True, blank=True, null=True)
 
     # Personal Details fields
-    age = models.PositiveIntegerField(null=True, blank=True, default=None)
+    gender=models.CharField(max_length=25,choices=GENDER_CHOICES,blank=True, default='')
     dob = models.DateField(null=True, blank=True, default=None)
     hobbies = models.CharField(max_length=255, blank=True, default='')
-    interests = models.CharField(max_length=255, blank=True, default='')
+    interests = models.CharField(max_length=255,choices=INTEREST_CHOICES, blank=True, default='')
     smoking_habits = models.CharField(max_length=50, choices=HABITS_CHOICES, blank=True, default='')
     drinking_habits = models.CharField(max_length=50, choices=HABITS_CHOICES, blank=True, default='')
-    qualifications = models.CharField(max_length=255, blank=True, default='')
+    qualifications = models.CharField(max_length=255,choices=QUALIFICATION_CHOICES, blank=True, default='')
     profile_pic = models.ImageField(upload_to='profile_pics/', null=True, blank=True, default='')
     additional_images = models.ManyToManyField('AdditionalImage', blank=True)
     short_reel = models.FileField(upload_to='short_reels/', null=True, blank=True, default='')
@@ -44,7 +55,14 @@ class CustomUser(AbstractUser):
         related_name='customuser_permissions_set',  # Unique related_name for CustomUser
         blank=True,
     )
-
+    
+    def get_age(self):
+        if self.dob:
+            today = date.today()
+            age = today.year - self.dob.year - ((today.month, today.day) < (self.dob.month, self.dob.day))
+            return age
+        return None
+    
     def __str__(self):
         return self.username
     
