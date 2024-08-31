@@ -2,88 +2,74 @@
 {% load static %}
 
 {% block content %}
-<div class="row top-heading">
-    <div class="col-12">
-        <div class="heading-container">
-          <div class="back-icon">
-            <i class="bi bi-chevron-left"></i>
-          </div>
-          <div class="title-text">
-              <h1>Filter</h1>
-          </div>
-        </div>
-    </div>
-</div>
-<div class="row d-flex justify-content-center" id="filter">
-    <div class="col-12 col-md-10 col-lg-8 top-rounded-white-box contents"> 
-        <div class="content-section">
+        <h1 class="settings-text top-navbar">Filter</h1>
+<div class="content-section">
             <h3>Sort By</h3>
             <div class="list-group">
-            <div class="list-group-item">
-                <span>Newest Members</span>
-                <i class="bi bi-check"></i>
-            </div>
-            <div class="list-group-item">
-                <span>Last Active</span>
-                <i class="bi bi-check"></i>
-            </div>
-            <div class="list-group-item">
-                <span>Distance</span>
-                <i class="bi bi-check"></i>
-            </div>
-            <div class="list-group-item">
-                <span>Popularity</span>
-                <i class="bi bi-check"></i>
-            </div>
-            <div class="list-group-item">
-                <span>Age</span>
-                <i class="bi bi-check"></i>
-            </div>
+                <div class="list-group-item">
+                    <span>Newest Members</span>
+                    <i class="bi bi-check"></i>
+                </div>
+                <div class="list-group-item">
+                    <span>Last Active</span>
+                    <i class="bi bi-check"></i>
+                </div>
+                <div class="list-group-item">
+                    <span>Distance</span>
+                    <i class="bi bi-check"></i>
+                </div>
+                <div class="list-group-item">
+                    <span>Popularity</span>
+                    <i class="bi bi-check"></i>
+                </div>
+                <div class="list-group-item">
+                    <span>Age</span>
+                    <i class="bi bi-check"></i>
+                </div>
             </div>
 
             <h3 class="mt-4">Filter By</h3>
             <div class="list-group">
-            <div class="list-group-item">
-                <span>Gender</span>
-                <i class="bi bi-check"></i>
-            </div>
-            <div class="list-group-item">
-                <span>Location</span>
-                <i class="bi bi-check"></i>
-            </div>
-            <div class="list-group-item">
-                <span>Interests/Hobbies</span>
-                <i class="bi bi-check"></i>
-            </div>
-            <div class="list-group-item">
-                <span>Languages Spoken</span>
-                <i class="bi bi-check"></i>
-            </div>
-            <div class="list-group-item">
-                <span>Relationship Goals</span>
-                <i class="bi bi-check"></i>
-            </div>
+                <div class="list-group-item">
+                    <span>Gender</span>
+                    <i class="bi bi-check"></i>
+                </div>
+                <div class="list-group-item">
+                    <span>Location</span>
+                    <i class="bi bi-check"></i>
+                </div>
+                <div class="list-group-item">
+                    <span>Interests/Hobbies</span>
+                    <i class="bi bi-check"></i>
+                </div>
+                <div class="list-group-item">
+                    <span>Languages Spoken</span>
+                    <i class="bi bi-check"></i>
+                </div>
+                <div class="list-group-item">
+                    <span>Relationship Goals</span>
+                    <i class="bi bi-check"></i>
+                </div>
             </div>
 
             <div class="d-flex justify-content-between mt-4">
-            <button class="btn btn-custom cancel-btn">Cancel</button>
-            <button class="btn btn-custom apply-btn">Apply</button>
+                <button class="btn btn-custom cancel-btn">Cancel</button>
+                <button class="btn btn-custom apply-btn">Apply</button>
             </div>
         </div>
-    </div>
 </div>
 {% endblock %}
 
 {% block script %}
-  <script>
-    $(document).ready(function () {
-      $('.list-group-item').on('click', function () {
-        $(this).toggleClass('active')
-        $(this).find('i').toggle()
-      })
-    
-      // Initially hide all checkmarks
-      $('.list-group-item i').hide()
-    })
-  </script>
-{% endblock %}
+<script>
+    $(document).ready(function() {
+        $('.list-group-item').on('click', function() {
+            $(this).toggleClass('active');
+            $(this).find('i').toggle();
+        });
+
+        // Initially hide all checkmarks
+        $('.list-group-item i').hide();
+    });
+</script>
+{% endblock script %}

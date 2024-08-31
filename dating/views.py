@@ -91,8 +91,8 @@ class EditMyProfile(TemplateView):
 def settings(request):
     return render(request, 'User_profile/settings.html')
 
-def privacy_settings(request):
-    return render(request, 'User_profile/privacy_settings.html')
+class PrivacySettingsView(TemplateView):
+    template_name = 'User_profile/privacy_settings.html'
 
 def preferences(request):
     return render(request, 'User_profile/preference.html')
