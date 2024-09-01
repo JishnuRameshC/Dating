@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <style>
+
+        .job_details_container-fluid {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f8d5e0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .job_details_container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+            max-width: 380px; /* Consistent width */
+            width: 100%;
+        }
+
+        .job_details_form-header {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .job_details_form-control {
+            border-radius: 8px;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            width: 100%;
+        }
+
+        .job_details_btn-custom {
+            border-radius: 15px;
+            border: 0;
+            color: #fff;
+            padding: 13px 20px;
+            margin-top: 20px;
+            width: 100%;
+            cursor: pointer;
+            font-size: 15px;
+            transition: background-color 0.3s ease;
+        }
+
+        .job_details_btn-custom {
+            background-color: black;
+        }
+
+        .job_details_btn-custom:hover {
+            background-color: #333;
+        }
+    </style>
+    <div class="container-fluid job_details_container-fluid ">
+    <div class="container job_details_container">
+        <h2 class="form-header job_details_form-header">Job Details</h2>
+        <form action="/submit-form">
+            <!-- Add your form fields here -->
+            <input type="text" class="form-control job_details_form-control" placeholder="Job Title">
+            <input type="text" class="form-control job_details_form-control" placeholder="Company Name">
+            <input type="text" class="form-control job_details_form-control" placeholder="Location">
+            <input type="number" class="form-control job_details_form-control" placeholder="Salary" min="0">
+            <input type="text" class="form-control job_details_form-control" placeholder="Experience Required">
+            <button type="submit" class="btn-custom btn-primary-custom job_details_btn-custom">Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock content %}

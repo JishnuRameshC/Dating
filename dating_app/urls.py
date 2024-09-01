@@ -25,4 +25,5 @@ urlpatterns = [
     path('dating/', include('dating.urls')),
     path('job', include('jobPortal.urls')),
     path('matrimony', include('matrimony.urls')),
+    path('accounts/', include('accounts.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -15,14 +15,14 @@
                         <div class="story-sec me-3">
                             <div class="story-image" data-bs-toggle="modal" data-bs-target="#storyModal" onclick="showStory('a1.jpg')">
                                 <img src="{% static 'images/a2.jpg' %}" alt="My Story" class="img-fluid">
-                                <button class="add-story-btn" onclick="addStory(event)">
+                                <button class="add-story-btn">
                                     <i class="fas fa-plus"></i>
                                 </button>
                             </div>
                             <p>My Story</p>
                         </div>
                         <div class="story-sec me-3">
-                            <div class="story-image" data-bs-toggle="modal" data-bs-target="#storyModal" onclick="showStory('story1.jpg')">
+                            <div class="story-image" data-bs-toggle="modal" data-bs-target="#storyModal">
                                 <img src="story1.jpg" alt="Selena" class="img-fluid">
                             </div>
                             <p>Selena</p>
@@ -60,11 +60,11 @@
         <div class="row mt-4">
             {% for user in users %}
             <div class="col-lg-3 col-md-6 mb-4">
-                <div class="prof-card" 
-                    {% for address in user.address.all %} 
-                        data-location="{{ address.city }}" 
+                <div class="prof-card"
+                    {% for address in user.address.all %}
+                        data-location="{{ address.city }}"
                     {% endfor %}
-                    data-designation="{{ user.qualifications }}" 
+                    data-designation="{{ user.qualifications }}"
                     data-qualification="{{ user.qualifications }}">
                     <img src="{{ user.profile_pic.url }}" alt="{{ user.username }}">
                     <div class="gradient-overlay"></div>
@@ -75,7 +75,7 @@
                         {% empty %}
                             No Address Available
                         {% endfor %}
-                    </div> 
+                    </div>
                     <div class="online-badge">Online</div>
                     <div class="action-buttons">
                         <button><i class="fas fa-heart"></i></button>
@@ -88,60 +88,46 @@
         </div>
     </div>
 
-    <!-- Modal for Stories -->
-    <div class="modal fade" id="storyModal" tabindex="-1" aria-labelledby="storyModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <img src="" id="storyImage" alt="Story">
-                </div>
-            </div>
-        </div>
-    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        function showStory(imageSrc) {
-            document.getElementById('storyImage').src = imageSrc;
-        }
+       document.querySelectorAll('.custom-tabs .nav-link').forEach(tab => {
+    tab.addEventListener('click', function (event ) {
+        event.preventDefault();
+        const filter = this.dataset.filter.toLowerCase();
+        const profileCards = document.querySelectorAll('.prof-card');
 
-        function addStory(event) {
-            event.stopPropagation();
-            alert('Add Story Clicked');
-        }
+        profileCards.forEach(card => {
+            const cardLocation = card.dataset.location ? card.dataset.location.toLowerCase() : '';
+            const cardDesignation = card.dataset.designation ? card.dataset.designation.toLowerCase() : '';
+            const cardQualification = card.dataset.qualification ? card.dataset.qualification.toLowerCase() : '';
+            let showCard = false;
 
-        document.querySelectorAll('.custom-tabs .nav-link').forEach(tab => {
-            tab.addEventListener('click', function (event) {
-                event.preventDefault();
-                const filter = this.dataset.filter.toLowerCase();
-                const profileCards = document.querySelectorAll('.prof-card');
+            if (filter === 'location') {
+                showCard = cardLocation === '{{ user_city|lower }}';
+            } else if (filter === 'designation') {
+                showCard = cardDesignation === '{{ user_designation|lower }}';
+            } else if (filter === 'education') {
+                showCard = cardQualification === '{{ user_qualification|lower }}';
+            }
 
-                profileCards.forEach(card => {
-                    const cardLocation = card.dataset.location.toLowerCase();
-                    const cardDesignation = card.dataset.designation.toLowerCase();
-                    const cardQualification = card.dataset.qualification.toLowerCase();
-                    let showCard = false;
-
-                    if (filter === 'location') {
-                        showCard = cardLocation === '{{ user_city }}';
-                    } else if (filter === 'designation') {
-                        showCard = cardDesignation === '{{ user_designation }}';
-                    } else if (filter === 'education') {
-                        showCard = cardQualification === '{{ user_qualification }}';
-                    }
-
-                    if (showCard) {
-                        card.classList.remove('d-none');
-                    } else {
-                        card.classList.add('d-none');
-                    }
-                });
-
-                // Mark the clicked tab as active
-                document.querySelectorAll('.custom-tabs .nav-link').forEach(tab => tab.classList.remove('active'));
-                this.classList.add('active');
-            });
+            if (showCard) {
+                card.classList.remove('d-none'); // Show card
+                card.style.display = 'block';    // Ensure it's displayed as a block element
+            } else {
+                card.classList.add('d-none');   // Hide card
+                card.style.display = 'none';    // Ensure no space is taken up
+            }
         });
-    </script>
 
-{% endblock %}
+        // Mark the clicked tab as active
+        document.querySelectorAll('.custom-tabs .nav-link').forEach(tab => tab.classList.remove('active'));
+        this.classList.add('active');
+    });
+});
+    </script>
+{% endblock content %}
+
+
+
+

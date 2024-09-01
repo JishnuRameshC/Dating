@@ -7,6 +7,16 @@ class CustomUser(AbstractUser):
         ('O', 'Occasionally'),
         ('F', 'Frequently'),
     ]
+    GENDER_CHOICES = [
+        ('Male', 'Male'),
+        ('Female', 'Female'),
+        ('Other', 'Other'),
+    ]
+    INTEREST_CHOICES = [
+        ('M', 'Male'),
+        ('F', 'Female'),
+        ('B', 'Both'),
+    ]
     QUALIFICATION_CHOICES = [
         ('SSLC', 'SSLC'),
         ('+2', 'Plus Two'),
@@ -19,13 +29,14 @@ class CustomUser(AbstractUser):
     mobile = models.CharField(max_length=15, unique=True, blank=True, null=True)
 
     # Personal Details fields
+    gender=models.CharField(max_length=25,choices=GENDER_CHOICES,blank=True, default='')
     age = models.PositiveIntegerField(null=True, blank=True, default=None)
     dob = models.DateField(null=True, blank=True, default=None)
     hobbies = models.CharField(max_length=255, blank=True, default='')
-    interests = models.CharField(max_length=255, blank=True, default='')
+    interests = models.CharField(max_length=255,choices=INTEREST_CHOICES, blank=True, default='')
     smoking_habits = models.CharField(max_length=50, choices=HABITS_CHOICES, blank=True, default='')
     drinking_habits = models.CharField(max_length=50, choices=HABITS_CHOICES, blank=True, default='')
-    qualifications = models.CharField(max_length=255, blank=True, default='')
+    qualifications = models.CharField(max_length=255, choices=QUALIFICATION_CHOICES, blank=True, default='')
     profile_pic = models.ImageField(upload_to='profile_pics/', null=True, blank=True, default='')
     additional_images = models.ManyToManyField('AdditionalImage', blank=True)
     short_reel = models.FileField(upload_to='short_reels/', null=True, blank=True, default='')

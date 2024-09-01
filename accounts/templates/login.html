@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+<div class="login-custom-container container-fluid">
+    <div class="container login-container">
+        <form method="post" action="{% url 'accounts:login' %}">
+            {% csrf_token %}
+            <h3 class="text-center mb-3">Login</h3>
+
+            <!-- Display Error Message -->
+            {% if error_message %}
+                <div class="alert alert-danger">
+                    <p>{{ error_message }}</p>
+                </div>
+            {% endif %}
+            
+            <!-- Email/Mobile Field -->
+            <div class="mb-1">
+                <label for="email" class="form-label">Email/Mobile</label>
+                <input type="text" name="username" class="form-control" id="email" placeholder="Enter your email or mobile number" value="{{ username }}">
+            </div>
+            
+            <!-- Password Field -->
+            <div class="mb-1">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" name="password" class="form-control" id="password" placeholder="Enter your password">
+            </div>
+            
+            <!-- Submit Button -->
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn login-btn-custom btn-primary-custom my-3">Login</button>
+            </div>
+
+            <!-- Additional Links -->
+            <p><small><a href="">Forgot password?</a></small></p>
+            <p>Don't have an account? <a href="{% url 'accounts:signup' %}" class="link-custom">Signup</a></p>
+        </form>
+    </div>
+</div>
+{% endblock content %}

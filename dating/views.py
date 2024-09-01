@@ -163,22 +163,27 @@ class HomeView(TemplateView):
             user_qualification = self.request.user.qualifications
             user_designation = user_qualification  # Assuming designation is the same as qualifications
 
-        # Retrieve users based on city, qualification, and designation (qualification)
+        # Retrieve users based on city, qualification, and designation
         users = CustomUser.objects.exclude(is_superuser=True)
-        if user_city:
-            users = users.filter(address__city=user_city)
-        if user_qualification:
-            users = users.filter(qualifications=user_qualification)
-        if user_designation:
-            users = users.filter(qualifications=user_designation)
         
+        # Only filter if the values are different from the logged-in user's values
+        filter_city = self.request.GET.get('filter_city')
+        filter_qualification = self.request.GET.get('filter_qualification')
+        filter_designation = self.request.GET.get('filter_designation')
+
+        if filter_city and filter_city != user_city:
+            users = users.filter(address__city=filter_city)
+        if filter_qualification and filter_qualification != user_qualification:
+            users = users.filter(qualifications=filter_qualification)
+        if filter_designation and filter_designation != user_designation:
+            users = users.filter(qualifications=filter_designation)
+
         context['users'] = users
         context['user_city'] = user_city
         context['user_qualification'] = user_qualification
         context['user_designation'] = user_designation
         
         return context
-
 
 
 class DiscoverView(TemplateView):
