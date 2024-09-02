@@ -8,23 +8,7 @@ class CustomUserCreationForm(UserCreationForm):
         model = CustomUser
         fields = ['username', 'email', 'mobile', 'password1', 'password2']
 
-    def clean_email(self):
-        email = self.cleaned_data.get('email')
-        if CustomUser.objects.filter(email=email).exists():
-            raise ValidationError("A user with this email already exists.")
-        return email
-
-    def clean_mobile(self):
-        mobile = self.cleaned_data.get('mobile')
-        if mobile and CustomUser.objects.filter(mobile=mobile).exists():
-            raise ValidationError("A user with this mobile number already exists.")
-        return mobile
-
-    def clean_username(self):
-        username = self.cleaned_data.get('username')
-        if CustomUser.objects.filter(username=username).exists():
-            raise ValidationError("This username is already taken.")
-        return username
+    
 
 
 class CustomUserForm(forms.ModelForm):
@@ -40,7 +24,8 @@ class CustomUserForm(forms.ModelForm):
         }
         def __init__(self, *args, **kwargs):
           super().__init__(*args, **kwargs)
-           # Provide initial values if any
+        # Example: Set custom class for fields
+          
 
 class AdditionalImageForm(forms.ModelForm):
     class Meta:
