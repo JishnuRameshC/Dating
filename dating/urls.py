@@ -32,10 +32,22 @@ urlpatterns = [
     path('user', views.user_profile, name='user_profile'),
 
     path('test', views.TestView, name='test'),
-    path('story/', views.StoryPageView.as_view(), name='story'),
-    # path('profile/', views.ProfileView.as_view(), name='profile'),
-    path('change_password/', views.ChangePasswordView.as_view(), name='change_password'),
-    path('upgrade/',views.UpgradeStoryView.as_view(),name="upgrade"),
+    path('story/<int:pk>/', StoryDetailView.as_view(), name='story-detail'),
+
+    path('profile/<str:username>/', views.UserProfileView.as_view(), name='profile'),
+    # Match Requests
+    path('send_request/', SendRequestView.as_view(), name='send_request'),
+    path('received_requests/', ReceiveRequestView.as_view(), name='received_requests'),
+    path('accept_request/', AcceptRequestView.as_view(), name='accept_request'),
+    path('reject_request/', RejectRequestView.as_view(), name='reject_request'),
+    path('shortlist/', ShortlistView.as_view(), name='shortlist_user'),
+
+# 
+    
+    # Contacted
+    path('contact/<str:username>/', ContactUserView.as_view(), name='contact_user'),
+    
+    path('change-password/', ChangePasswordView.as_view(), name='change_password'),    path('upgrade/',views.UpgradeStoryView.as_view(),name="upgrade"),
     path('edite_profile/',views.EditMyProfile.as_view(),name="edite_profile"),
 
     path('message', views.messgage, name='message'),
