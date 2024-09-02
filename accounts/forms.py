@@ -12,6 +12,71 @@ class CustomUserCreationForm(UserCreationForm):
 
 
 class CustomUserForm(forms.ModelForm):
+    GENDER_CHOICES = [
+      # This will be our placeholder
+        ('M', 'Male'),
+        ('F', 'Female'),
+        ('O', 'Other')
+        # Add other options as needed
+    ]
+    INTERESTS_CHOICES = [
+       # This will be our placeholder
+        ('M', 'Male'),
+        ('F', 'Female'),
+        ('B', 'both'),
+        # Add other options as needed
+    ]
+
+    SMOKING_CHOICES = [
+        ('N', 'Never'),
+        ('O', 'Occasionally'),
+        ('F', 'Frequently'),
+    ]
+    
+    DRINKING_CHOICES = [
+        ('N', 'Never'),
+        ('O', 'Occasionally'),
+        ('F', 'Frequently'),
+    ]
+    
+    
+    QUALIFICATION_CHOICES = [
+        ('SSLC', 'SSLC'),
+        ('+2', 'Plus Two'),
+        ('diploma', 'Diploma'),
+        ('degree', 'Degree'),
+        ('PG', 'Postgraduate'),
+        ('PHD', 'PhD'),
+    ]
+    
+    
+    
+    gender = forms.ChoiceField(
+        choices=GENDER_CHOICES,
+        required=True,
+        widget=forms.Select(attrs={'class': 'p_details-input'})
+    )
+    interests = forms.ChoiceField(
+        choices=INTERESTS_CHOICES,
+        required=True,
+        widget=forms.Select(attrs={'class': 'p_details-input'})
+    )
+    smoking_habits = forms.ChoiceField(
+        choices=SMOKING_CHOICES,
+        required=True,
+        widget=forms.Select(attrs={'class': 'p_details-input'})
+    )
+    drinking_habits = forms.ChoiceField(
+        choices=DRINKING_CHOICES,
+        required=True,
+        widget=forms.Select(attrs={'class': 'p_details-input'})
+    )
+    qualifications = forms.ChoiceField(
+        choices=QUALIFICATION_CHOICES,
+        required=True,
+        widget=forms.Select(attrs={'class': 'p_details-input'})
+    )
+
     class Meta:
         model = CustomUser
         fields = [
@@ -24,8 +89,7 @@ class CustomUserForm(forms.ModelForm):
         }
         def __init__(self, *args, **kwargs):
           super().__init__(*args, **kwargs)
-        # Example: Set custom class for fields
-          
+           # Provide initial values if any
 
 class AdditionalImageForm(forms.ModelForm):
     class Meta:
