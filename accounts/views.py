@@ -14,8 +14,6 @@ from django.contrib.auth import get_user_model,logout,authenticate, login
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 
- 
-
 # Create your views here.
 
 class FirstView(TemplateView):

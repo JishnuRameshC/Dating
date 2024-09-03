@@ -2,6 +2,12 @@
 {% extends 'shared/account_base.html' %}
 {% load static %}
 
+{% block navbar %}
+
+{% include 'shared/navbar.html' %}
+{% comment %} {% include 'shared/navbar_copy_matermony.html' %} {% endcomment %}
+{% endblock navbar %}
+
 {% block content %}
 <head>
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
