@@ -123,7 +123,7 @@
         <form class="p_details-form" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             
-            <label for="gender">Gender</label>
+           
     <select id="gender" name="gender" class="p_details-input">
         <option value="" disabled selected>Select gender</option>
         {% for value, label in form.gender.field.choices %}
@@ -132,44 +132,44 @@
     </select>
 
     <!-- Date of Birth -->
-    <label for="dob">Date of Birth</label>
+    
     <input type="date" id="dob" name="dob" class="p_details-input">
 
     <!-- Hobbies -->
-    <label for="hobbies">Hobbies</label>
+    
     <input type="text" id="hobbies" name="hobbies" placeholder="Hobbies" class="p_details-input">
 
     <!-- Interests Select -->
-    <label for="interests">Interests</label>
+   
     <select id="interests" name="interests" class="p_details-input">
-        <option value="" disabled selected hidden>Select interest</option>
+        <option value="" disabled selected >Select interest</option>
         {% for value, label in form.interests.field.choices %}
             <option value="{{ value }}" {% if form.interests.value == value %}selected{% endif %}>{{ label }}</option>
         {% endfor %}
     </select>
 
     <!-- Smoking Habits Select -->
-    <label for="smoking_habits">Smoking Habits</label>
+    
     <select id="smoking_habits" name="smoking_habits" class="p_details-input">
-        <option value="" disabled selected hidden>Select Smoking Habits</option>
+        <option value="" disabled selected >Select Smoking Habits</option>
         {% for value, label in form.smoking_habits.field.choices %}
             <option value="{{ value }}" {% if form.smoking_habits.value == value %}selected{% endif %}>{{ label }}</option>
         {% endfor %}
     </select>
 
     <!-- Drinking Habits Select -->
-    <label for="drinking_habits">Drinking Habits</label>
+    
     <select id="drinking_habits" name="drinking_habits" class="p_details-input">
-        <option value="" disabled selected hidden>Select Drinking Habits</option>
+        <option value="" disabled selected >Select Drinking Habits</option>
         {% for value, label in form.drinking_habits.field.choices %}
             <option value="{{ value }}" {% if form.drinking_habits.value == value %}selected{% endif %}>{{ label }}</option>
         {% endfor %}
     </select>
 
     <!-- Qualifications Select -->
-    <label for="qualifications">Qualifications</label>
+    
     <select id="qualifications" name="qualifications" class="p_details-input">
-        <option value="" disabled selected hidden>Select Qualification</option>
+        <option value="" disabled selected >Select Qualification</option>
         {% for value, label in form.qualifications.field.choices %}
             <option value="{{ value }}" {% if form.qualifications.value == value %}selected{% endif %}>{{ label }}</option>
         {% endfor %}

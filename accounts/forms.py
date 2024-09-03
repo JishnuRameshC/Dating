@@ -1,7 +1,7 @@
 from django import forms
 from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import UserCreationForm
-from .models import AdditionalImage, CustomUser
+from .models import AdditionalImage, CustomUser, JobProfile
 
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
@@ -99,3 +99,30 @@ class AdditionalImageForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['image'].widget.attrs.update({'multiple': True})
+
+
+class JobProfileForm(forms.ModelForm):
+    class Meta:
+        model = JobProfile
+        fields = ['job_status']
+        
+class EmployerDetailsForm(forms.ModelForm):
+    class Meta:
+        model = JobProfile
+        fields = [
+            'company_name', 
+            'designation', 
+            'location', 
+            
+            
+            
+        ]
+        
+class EmployeeDetailsForm(forms.ModelForm):
+    class Meta:
+        model=JobProfile
+        fields=[
+            'job_title',
+            'expertise_level'
+            ]
+        

@@ -16,8 +16,9 @@ urlpatterns = [
     path('personal_details/<int:pk>/',views.PersonalDetailsCreateView.as_view(),name='personal_details'),
     
     path('job_status',views.JobStatusView.as_view(),name="job_status"),
-    path('job_details',views.JobDetailsView.as_view(),name="job_Details"),
-    path('profession',views.ProfessionView.as_view(),name='profession'),
+    path('job-details/<int:user_id>/', EmployerDetailsView.as_view(), name='job_Details'),
+
+    path('profession/<int:user_id>/',views.EmployeeDetailsView.as_view(),name='profession'),
     path('relationship_goal',views.Rel_GoalView.as_view(),name="relationship_goal"),
     path('interest',views.InterestView.as_view(),name='interest'),
                   

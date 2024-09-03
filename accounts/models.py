@@ -9,9 +9,9 @@ class CustomUser(AbstractUser):
         ('F', 'Frequently'),
     ]
     GENDER_CHOICES = [
-        ('Male', 'Male'),
-        ('Female', 'Female'),
-        ('Other', 'Other'),
+        ('M', 'Male'),
+        ('F', 'Female'),
+        ('O', 'Other'),
     ]
     INTEREST_CHOICES = [
         ('M', 'Male'),
@@ -100,3 +100,26 @@ class Address(models.Model):
             {self.state}
             {self.country}
             '''
+            
+class JobProfile(models.Model):
+    STATUS_CHOICES = [
+        ('employer', 'Employer'),
+        ('employee', 'Employee'),
+        ('job_seeker', 'Job Seeker'),
+    ]
+
+    EXPERTISE_CHOICES = [
+        ('beginner', 'Beginner'),
+        ('intermediate', 'Intermediate'),
+        ('expert', 'Expert'),
+    ]
+    user=models.OneToOneField(CustomUser,on_delete=models.CASCADE)
+    job_status = models.CharField(max_length=20, choices=STATUS_CHOICES)
+    company_name = models.CharField(max_length=255, blank=True, null=True)
+    designation=models.CharField(max_length=100,blank=True,null=True,default='')
+    location = models.CharField(max_length=255, blank=True, null=True)
+    job_title=models.CharField(max_length=100,blank=True,null=True,default='')
+    expertise_level = models.CharField(max_length=20, choices=EXPERTISE_CHOICES, blank=True, null=True)
+
+    def __str__(self):
+        return f" {self.user.username}_{self.get_job_status_display()}"
