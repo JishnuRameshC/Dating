@@ -1531,12 +1531,8 @@ margin-right: 5px; /* Reduced margin for less gap */
   background-color: #4a246c;
 }
 
-/*---------------- privacy_settings page tinu end ---------------- */
-/*---------------- settings page tinu start ---------------- */
-/*---------------- settings page tinu end ---------------- */
-/*---------------- preference page tinu start ---------------- */
-/*---------------- preference page tinu end ---------------- */
-/*---------------- user profile page tinu start ---------------- */
+
+/*---------------- user profile page  start ---------------- */
 #user-profile .profile-header {
     position: relative;
     background-size: cover;
