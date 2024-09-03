@@ -1,6 +1,22 @@
 {% extends 'shared/base.html' %}
 {% load static %}
 
+
+{% block style %}
+  <style>
+    body{
+      background-color: var(--primary-color);
+    }
+    .top-heading{
+      color: white;
+    }
+    #filter .top-rounded-white-box{
+        padding: 20px;
+    }
+  </style>
+{% endblock style %}
+    
+
 {% block content %}
 <div class="row top-heading">
     <div class="col-12">
@@ -15,7 +31,7 @@
     </div>
 </div>
 <div class="row d-flex justify-content-center" id="filter">
-    <div class="col-12 col-md-10 col-lg-8 top-rounded-white-box contents"> 
+    <div class="col-12 col-md-10 col-lg-8 top-rounded-white-box"> 
         <div class="content-section">
             <h3>Sort By</h3>
             <div class="list-group">
