@@ -44,14 +44,14 @@ class Message(models.Model):
     def _str_(self):
         return f'Message from {self.sender} to {self.receiver} at {self.timestamp}'
 
-class Contacted(models.Model):
+class Contact(models.Model):
     id = models.BigAutoField(primary_key=True)
     user = models.ForeignKey(CustomUser, related_name='contacts_made', on_delete=models.CASCADE)
     contacted_user = models.ForeignKey(CustomUser, related_name='contacts_received', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def _str_(self):
-        return f'{self.user} contacted {self.contacted_user}'
+        return f'{self.user} contact{self.contacted_user}'
 
 
 class ProfileView(models.Model):

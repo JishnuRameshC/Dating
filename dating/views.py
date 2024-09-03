@@ -116,7 +116,7 @@ def messgage(request):
     return render(request, 'contents/message.html')
 
 def contact(request):
-    return render(request, 'contents/contacted.html')
+    return render(request, 'contents/contact.html')
 
 def shortlist(request):
     return render(request, 'contents/shortlist.html')
