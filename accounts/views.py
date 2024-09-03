@@ -7,8 +7,8 @@ from django.core.mail import send_mail
 from django.views import View
 from django.views.generic.edit import FormView
 
-from .forms import AdditionalImageForm, CustomUserCreationForm, CustomUserForm, EmployeeDetailsForm, EmployerDetailsForm, JobProfileForm
-from .models import AdditionalImage, CustomUser, JobProfile
+from .forms import AdditionalImageForm, CustomUserCreationForm, PersonalDetailsForm, EmployeeDetailsForm, EmployerDetailsForm, JobProfileForm, RelationshipGoalsForm
+from .models import AdditionalImage, CustomUser, JobProfile,PersonalDetails
 from django.views.generic import TemplateView,CreateView,UpdateView,DetailView
 from django.contrib.auth import get_user_model,logout,authenticate, login
 from django.contrib import messages
@@ -41,8 +41,7 @@ class FirstView(TemplateView):
 #     template_name='profession.html'
 
 
-class Rel_GoalView(TemplateView):
-    template_name='relationship_goal.html'
+
 
 
 class InterestView(TemplateView):
@@ -56,12 +55,12 @@ def TestView(request):
 class SignupView(FormView):
     template_name = 'signup.html'  # Replace with your template path
     form_class = CustomUserCreationForm
-    success_url = None # Redirect to the homepage after successful signup
+    success_url = reverse_lazy('accounts:personal_details')# Redirect to the homepage after successful signup
 
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        self.success_url = reverse_lazy('accounts:personal_details', kwargs={'pk': user.pk})
+        
 
         return super().form_valid(form)
     
@@ -117,9 +116,9 @@ def signout(request):
 
 
     
-class PersonalDetailsCreateView(LoginRequiredMixin, UpdateView):
-    model = CustomUser
-    form_class = CustomUserForm
+class PersonalDetailsCreateView(LoginRequiredMixin, FormView):
+    model = PersonalDetails
+    form_class = PersonalDetailsForm
     template_name = 'personal_details.html'
     success_url = reverse_lazy('accounts:job_status')
 
@@ -129,28 +128,29 @@ class PersonalDetailsCreateView(LoginRequiredMixin, UpdateView):
             context['additional_image_form'] = AdditionalImageForm(self.request.POST, self.request.FILES)
         else:
             context['additional_image_form'] = AdditionalImageForm()
-        context['additional_images'] = self.object.additional_images.all()
         return context
 
     def form_valid(self, form):
         context = self.get_context_data()
         additional_image_form = context['additional_image_form']
 
-        if additional_image_form.is_valid():
-            self.object = form.save()
+        if form.is_valid() and additional_image_form.is_valid():
+            # Assign the current user to the form instance
+            personal_details = form.save(commit=False)
+            personal_details.user = self.request.user
+            personal_details.save()
 
             # Handle multiple additional images
             for image in self.request.FILES.getlist('image'):
-                AdditionalImage.objects.create(user=self.object, image=image)
+                AdditionalImage.objects.create(user=self.request.user, image=image)
 
-            return super().form_valid(form)
+            return redirect(self.success_url)
         else:
             return self.form_invalid(form)
 
     def form_invalid(self, form):
-      print(form.errors)  # or use logging
-      context = self.get_context_data(form=form)
-      return self.render_to_response(context)
+        context = self.get_context_data(form=form)
+        return self.render_to_response(context)
 
 class JobStatusView(FormView):
     template_name = 'job_status.html'  # The template you provided
@@ -175,7 +175,7 @@ class JobStatusView(FormView):
         elif selected_status == 'employee':
             return redirect(reverse('accounts:profession', kwargs={'user_id': self.request.user.id}))
         else:
-            return redirect('accounts:relationship_goal')
+            return redirect(reverse('accounts:relationship_goal', kwargs={'user_id': self.request.user.id}))
         
         # Use the default success_url if no redirection conditions are met
         return super().form_valid(form)
@@ -185,18 +185,36 @@ class EmployerDetailsView(UpdateView,LoginRequiredMixin):
     model = JobProfile
     form_class = EmployerDetailsForm
     template_name = 'job_details.html'  # Update this with the correct template path
-    success_url = reverse_lazy('accounts:relationship_goal')  # Update with the correct URL name
+     # Update with the correct URL name
 
     def get_object(self, queryset=None):
         # Assuming each user has only one job profile
         return JobProfile.objects.get(user=self.request.user)
+    def get_success_url(self):
+        # Pass the user_id into the URL
+        return reverse_lazy('accounts:relationship_goal', kwargs={'user_id': self.request.user.id})
     
 class EmployeeDetailsView(UpdateView,LoginRequiredMixin):
     model = JobProfile
     form_class = EmployeeDetailsForm
     template_name = 'profession.html'  # Update this with the correct template path
-    success_url = reverse_lazy('accounts:relationship_goal')  # Update with the correct URL name
+     # Update with the correct URL name
 
     def get_object(self, queryset=None):
         # Assuming each user has only one job profile
         return JobProfile.objects.get(user=self.request.user)
+    def get_success_url(self):
+        # Pass the user_id into the URL
+        return reverse_lazy('accounts:relationship_goal', kwargs={'pk': self.request.user.id})
+    
+    
+class RelationshipGoalsView(LoginRequiredMixin, UpdateView):
+    model = PersonalDetails
+    form_class = RelationshipGoalsForm
+    template_name = 'relationship_goal.html'  # Update this with the correct template path
+    success_url=reverse_lazy('accounts:interest')
+
+    def get_object(self, queryset=None):
+        # Assuming each user has only one job profile
+        return PersonalDetails.objects.get(user=self.request.user)
+    

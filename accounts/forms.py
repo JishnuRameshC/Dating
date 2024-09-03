@@ -1,7 +1,7 @@
 from django import forms
 from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import UserCreationForm
-from .models import AdditionalImage, CustomUser, JobProfile
+from .models import AdditionalImage, CustomUser, JobProfile,PersonalDetails
 
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
@@ -11,7 +11,7 @@ class CustomUserCreationForm(UserCreationForm):
     
 
 
-class CustomUserForm(forms.ModelForm):
+class PersonalDetailsForm(forms.ModelForm):
     GENDER_CHOICES = [
       # This will be our placeholder
         ('M', 'Male'),
@@ -48,11 +48,23 @@ class CustomUserForm(forms.ModelForm):
         ('PG', 'Postgraduate'),
         ('PHD', 'PhD'),
     ]
-    
+    RELIGION_CHOICES=[
+        ('christianity','christianity'),
+        ('islam','islam'),
+        ('hindhuism','hindhuism'),
+        ('judaism','judaism'),
+        ('atheism','atheism'),
+        ('other','other'),
+    ]
     
     
     gender = forms.ChoiceField(
         choices=GENDER_CHOICES,
+        required=True,
+        widget=forms.Select(attrs={'class': 'p_details-input'})
+    )
+    religion = forms.ChoiceField(
+        choices=RELIGION_CHOICES,
         required=True,
         widget=forms.Select(attrs={'class': 'p_details-input'})
     )
@@ -78,9 +90,9 @@ class CustomUserForm(forms.ModelForm):
     )
 
     class Meta:
-        model = CustomUser
+        model = PersonalDetails
         fields = [
-            'gender', 'dob', 'hobbies', 'interests', 
+            'gender', 'dob','religion', 'hobbies', 'interests', 
             'smoking_habits', 'drinking_habits', 
             'qualifications', 'profile_pic', 'short_reel'
         ]
@@ -126,3 +138,9 @@ class EmployeeDetailsForm(forms.ModelForm):
             'expertise_level'
             ]
         
+class RelationshipGoalsForm(forms.ModelForm):
+    class Meta:
+        model=PersonalDetails
+        fields=[
+            'relationship_goals'
+        ]

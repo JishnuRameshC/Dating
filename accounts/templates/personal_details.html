@@ -135,6 +135,15 @@
     
     <input type="date" id="dob" name="dob" class="p_details-input">
 
+    <!-- religion -->
+
+    <select id="religion" name="religion" class="p_details-input">
+        <option value="" disabled selected>Select religion</option>
+        {% for value, label in form.religion.field.choices %}
+            <option value="{{ value }}" {% if form.religion.value == value %}selected{% endif %}>{{ label }}</option>
+        {% endfor %}
+    </select>
+
     <!-- Hobbies -->
     
     <input type="text" id="hobbies" name="hobbies" placeholder="Hobbies" class="p_details-input">

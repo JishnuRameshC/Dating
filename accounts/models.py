@@ -3,6 +3,31 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 class CustomUser(AbstractUser):
+    
+    email = models.EmailField(unique=True)
+    mobile = models.CharField(max_length=15, unique=True, blank=True, null=True)
+    
+    # Overriding fields for custom behavior
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['username']
+
+    groups = models.ManyToManyField(
+        'auth.Group',
+        related_name='customuser_set',  # Unique related_name for CustomUser
+        blank=True,
+    )
+    user_permissions = models.ManyToManyField(
+        'auth.Permission',
+        related_name='customuser_permissions_set',  # Unique related_name for CustomUser
+        blank=True,
+    )
+    
+    
+    def __str__(self):
+        return self.username
+    
+    
+class PersonalDetails(models.Model):
     HABITS_CHOICES = [
         ('N', 'Never'),
         ('O', 'Occasionally'),
@@ -26,35 +51,31 @@ class CustomUser(AbstractUser):
         ('PG', 'Postgraduate'),
         ('PHD', 'PhD'),
     ]
-    email = models.EmailField(unique=True)
-    mobile = models.CharField(max_length=15, unique=True, blank=True, null=True)
-
-    # Personal Details fields
+    RELIGION_CHOICES=[
+        ('christianity','christianity'),
+        ('islam','islam'),
+        ('hindhuism','hindhuism'),
+        ('judaism','judaism'),
+        ('atheism','atheism'),
+        ('other','other'),
+    ]
+    RELATIONSHIP_CHOICES=[
+        ('long_term','short_term'),
+        ('short_term','short_term')
+    ]
+    user=models.OneToOneField(CustomUser,on_delete=models.CASCADE)
     gender=models.CharField(max_length=25,choices=GENDER_CHOICES,blank=True, default='')
     dob = models.DateField(null=True, blank=True, default=None)
+    religion=models.CharField(max_length=25,null=True,blank=True,default='')
     hobbies = models.CharField(max_length=255, blank=True, default='')
-    interests = models.CharField(max_length=255,choices=INTEREST_CHOICES, blank=True, default='')
-    smoking_habits = models.CharField(max_length=50, choices=HABITS_CHOICES, blank=True, default='')
-    drinking_habits = models.CharField(max_length=50, choices=HABITS_CHOICES, blank=True, default='')
-    qualifications = models.CharField(max_length=255,choices=QUALIFICATION_CHOICES, blank=True, default='')
+    interests = models.CharField(max_length=25,choices=INTEREST_CHOICES, blank=True, default='')
+    smoking_habits = models.CharField(max_length=25, choices=HABITS_CHOICES, blank=True, default='')
+    drinking_habits = models.CharField(max_length=25, choices=HABITS_CHOICES, blank=True, default='')
+    qualifications = models.CharField(max_length=25,choices=QUALIFICATION_CHOICES, blank=True, default='')
     profile_pic = models.ImageField(upload_to='profile_pics/', null=True, blank=True, default='')
     additional_images = models.ManyToManyField('AdditionalImage', blank=True)
     short_reel = models.FileField(upload_to='short_reels/', null=True, blank=True, default='')
-
-    # Overriding fields for custom behavior
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username']
-
-    groups = models.ManyToManyField(
-        'auth.Group',
-        related_name='customuser_set',  # Unique related_name for CustomUser
-        blank=True,
-    )
-    user_permissions = models.ManyToManyField(
-        'auth.Permission',
-        related_name='customuser_permissions_set',  # Unique related_name for CustomUser
-        blank=True,
-    )
+    relationship_goals=models.CharField(max_length=25,choices=RELATIONSHIP_CHOICES,blank=True,null=True,default='')
     
     def get_age(self):
         if self.dob:
@@ -63,8 +84,8 @@ class CustomUser(AbstractUser):
             return age
         return None
     
-    def __str__(self):
-        return self.username
+    def __str__(self) -> str:
+        return self.user.username
     
 
 class AdditionalImage(models.Model):
@@ -123,3 +144,4 @@ class JobProfile(models.Model):
 
     def __str__(self):
         return f" {self.user.username}_{self.get_job_status_display()}"
+    
