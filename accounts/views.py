@@ -27,8 +27,8 @@ class FirstView(TemplateView):
 # class LoginView(TemplateView):
 #     template_name='login.html'
     
-# class PersonalDetailsView(TemplateView):
-#     template_name='personal_details.html'
+class PersonalDetailsView(TemplateView):
+    template_name='personal_details.html'
 
 class JobStatusView(TemplateView):
     template_name='job_status.html'
@@ -117,36 +117,5 @@ def signout(request):
 
 
     
-class PersonalDetailsCreateView(LoginRequiredMixin, UpdateView):
-    model = CustomUser
-    form_class = CustomUserForm
+class PersonalDetailsCreateView( TemplateView):
     template_name = 'personal_details.html'
-    success_url = reverse_lazy('Dating:home')
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        if self.request.POST:
-            context['additional_image_form'] = AdditionalImageForm(self.request.POST, self.request.FILES)
-        else:
-            context['additional_image_form'] = AdditionalImageForm()
-        context['additional_images'] = self.object.additional_images.all()
-        return context
-
-    def form_valid(self, form):
-        context = self.get_context_data()
-        additional_image_form = context['additional_image_form']
-
-        if additional_image_form.is_valid():
-            self.object = form.save()
-
-            # Handle multiple additional images
-            for image in self.request.FILES.getlist('image'):
-                AdditionalImage.objects.create(user=self.object, image=image)
-
-            return super().form_valid(form)
-        else:
-            return self.form_invalid(form)
-
-    def form_invalid(self, form):
-        context = self.get_context_data(form=form)
-        return self.render_to_response(context)
