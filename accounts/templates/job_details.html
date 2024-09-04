@@ -58,13 +58,13 @@
     <div class="container-fluid job_details_container-fluid ">
     <div class="container job_details_container">
         <h2 class="form-header job_details_form-header">Job Details</h2>
-        <form action="/submit-form">
+        <form method="post">
+            {% csrf_token %}
             <!-- Add your form fields here -->
-            <input type="text" class="form-control job_details_form-control" placeholder="Job Title">
-            <input type="text" class="form-control job_details_form-control" placeholder="Company Name">
-            <input type="text" class="form-control job_details_form-control" placeholder="Location">
-            <input type="number" class="form-control job_details_form-control" placeholder="Salary" min="0">
-            <input type="text" class="form-control job_details_form-control" placeholder="Experience Required">
+            <input type="text" class="form-control job_details_form-control" name="company_name" placeholder="Company Name">
+            <input type="text" class="form-control job_details_form-control" name="designation" placeholder="Designation">
+            <input type="text" class="form-control job_details_form-control" name="location" placeholder="Location">
+            
             <button type="submit" class="btn-custom btn-primary-custom job_details_btn-custom">Submit</button>
         </form>
     </div>

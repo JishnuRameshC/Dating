@@ -6,128 +6,123 @@
 {% endblock navbar %}
 
 {% block content %}
-    <div class="container">
-        <!-- Stories Section -->
-        <div class="stories-section">
-            <div class="row">
-                <div class="col-12">
-                    <div class="d-flex overflow-auto">
-                        <div class="story-sec me-3">
-                            <div class="story-image" data-bs-toggle="modal" data-bs-target="#storyModal" onclick="showStory('a1.jpg')">
-                                <img src="{% static 'images/a2.jpg' %}" alt="My Story" class="img-fluid">
-                                <button class="add-story-btn">
-                                    <i class="fas fa-plus"></i>
-                                </button>
-                            </div>
-                            <p>My Story</p>
+<div class="container">
+    <!-- Stories Section -->
+    <div class="stories-section">
+        <div class="row">
+            <div class="col-12">
+                <div class="d-flex overflow-auto">
+                    <div class="story-sec me-3">
+                        <div class="story-image" data-bs-toggle="modal" data-bs-target="#storyModal" onclick="showStory('a1.jpg')">
+                            <img src="{% static 'images/a2.jpg' %}" alt="My Story" class="img-fluid">
+                            <button class="add-story-btn">
+                                <i class="fas fa-plus"></i>
+                            </button>
                         </div>
-                        <div class="story-sec me-3">
-                            <div class="story-image" data-bs-toggle="modal" data-bs-target="#storyModal">
-                                <img src="story1.jpg" alt="Selena" class="img-fluid">
-                            </div>
-                            <p>Selena</p>
-                        </div>
-                        <div class="story-sec me-3">
-                            <div class="story-image" data-bs-toggle="modal" data-bs-target="#storyModal" onclick="showStory('story2.jpg')">
-                                <img src="story2.jpg" alt="Clara" class="img-fluid">
-                            </div>
-                            <p>Clara</p>
-                        </div>
-                        <!-- Add more stories as needed -->
+                        <p>My Story</p>
                     </div>
+                    <div class="story-sec me-3">
+                        <div class="story-image" data-bs-toggle="modal" data-bs-target="#storyModal">
+                            <img src="story1.jpg" alt="Selena" class="img-fluid">
+                        </div>
+                        <p>Selena</p>
+                    </div>
+                    <div class="story-sec me-3">
+                        <div class="story-image" data-bs-toggle="modal" data-bs-target="#storyModal" onclick="showStory('story2.jpg')">
+                            <img src="story2.jpg" alt="Clara" class="img-fluid">
+                        </div>
+                        <p>Clara</p>
+                    </div>
+                    <!-- Add more stories as needed -->
                 </div>
             </div>
-        </div>
-
-        <!-- Custom Tabs -->
-        <div class="container mt-4">
-            <div class="custom-tabs-container d-flex justify-content-center">
-                <ul class="nav nav-pills custom-tabs">
-                    <li class="nav-item">
-                        <a class="nav-link" data-filter="location">Location</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-filter="designation">Designation</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-filter="education">Education</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Profile Cards -->
-        <div class="row mt-4">
-            {% for user in users %}
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="prof-card"
-                    {% for address in user.address.all %}
-                        data-location="{{ address.city }}"
-                    {% endfor %}
-                    data-designation="{{ user.qualifications }}"
-                    data-qualification="{{ user.qualifications }}">
-                    <img src="{{ user.profile_pic.url }}" alt="{{ user.username }}">
-                    <div class="gradient-overlay"></div>
-                    <div class="prof-info">
-                        <div class="prof-name">{{ user.username }}</div>
-                        {% for address in user.address.all %}
-                            {{ address.city }}, {{ address.state }}
-                        {% empty %}
-                            No Address Available
-                        {% endfor %}
-                    </div>
-                    <div class="online-badge">Online</div>
-                    <div class="action-buttons">
-                        <button><i class="fas fa-heart"></i></button>
-                        <button><i class="fas fa-comment"></i></button>
-                        <button><i class="fa-regular fa-eye"></i></button>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
         </div>
     </div>
 
+    <!-- Custom Tabs -->
+    <div class="container mt-4">
+        <div class="custom-tabs-container d-flex justify-content-center">
+            <ul class="nav nav-pills custom-tabs">
+                <li class="nav-item">
+                    <a class="nav-link" data-filter="location">Location</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-filter="designation">Designation</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-filter="education">Education</a>
+                </li>
+            </ul>
+        </div>
+    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-       document.querySelectorAll('.custom-tabs .nav-link').forEach(tab => {
-    tab.addEventListener('click', function (event ) {
-        event.preventDefault();
-        const filter = this.dataset.filter.toLowerCase();
-        const profileCards = document.querySelectorAll('.prof-card');
+    <!-- Profile Cards -->
+    <div class="row mt-4">
+        {% for user in users %}
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="prof-card"
+                {% for address in user.address_set.all %}
+                    data-location="{{ address.city|lower }}"
+                {% endfor %}
+                data-designation="{{ user.jobprofile.designation|lower }}"
+                data-education="{{ user.personaldetails.qualifications|lower }}">
+                <img src="{{ user.personaldetails.profile_pic.url }}" alt="{{ user.username }}">
+                <div class="gradient-overlay"></div>
+                <div class="prof-info">
+                    <div class="prof-name">{{ user.username }}</div>
+                    {% for address in user.address_set.all %}
+                        {{ address.city }}, {{ address.state }}
+                    {% empty %}
+                        No Address Available
+                    {% endfor %}
+                </div>
+                <div class="online-badge">Online</div>
+                <div class="action-buttons">
+                    <button><i class="fas fa-heart"></i></button>
+                    <button><i class="fas fa-comment"></i></button>
+                    <button><i class="fa-regular fa-eye"></i></button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
 
-        profileCards.forEach(card => {
-            const cardLocation = card.dataset.location ? card.dataset.location.toLowerCase() : '';
-            const cardDesignation = card.dataset.designation ? card.dataset.designation.toLowerCase() : '';
-            const cardQualification = card.dataset.qualification ? card.dataset.qualification.toLowerCase() : '';
-            let showCard = false;
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.querySelectorAll('.custom-tabs .nav-link').forEach(tab => {
+        tab.addEventListener('click', function (event) {
+            event.preventDefault();
+            const filter = this.dataset.filter.toLowerCase();
+            const profileCards = document.querySelectorAll('.prof-card');
 
-            if (filter === 'location') {
-                showCard = cardLocation === '{{ user_city|lower }}';
-            } else if (filter === 'designation') {
-                showCard = cardDesignation === '{{ user_designation|lower }}';
-            } else if (filter === 'education') {
-                showCard = cardQualification === '{{ user_qualification|lower }}';
-            }
+            profileCards.forEach(card => {
+                const cardLocation = card.dataset.location ? card.dataset.location.toLowerCase() : '';
+                const cardDesignation = card.dataset.designation ? card.dataset.designation.toLowerCase() : '';
+                const cardEducation = card.dataset.education ? card.dataset.education.toLowerCase() : '';
+                let showCard = false;
 
-            if (showCard) {
-                card.classList.remove('d-none'); // Show card
-                card.style.display = 'block';    // Ensure it's displayed as a block element
-            } else {
-                card.classList.add('d-none');   // Hide card
-                card.style.display = 'none';    // Ensure no space is taken up
-            }
+                if (filter === 'location') {
+                    showCard = cardLocation === '{{ user_city|lower }}';
+                } else if (filter === 'designation') {
+                    showCard = cardDesignation === '{{ user_designation|lower }}';
+                } else if (filter === 'education') {
+                    showCard = cardEducation === '{{ user_qualification|lower }}';
+                }
+
+                if (showCard) {
+                    card.classList.remove('d-none'); // Show card
+                    card.style.display = 'block';    // Ensure it's displayed as a block element
+                } else {
+                    card.classList.add('d-none');   // Hide card
+                    card.style.display = 'none';    // Ensure no space is taken up
+                }
+            });
+
+            // Mark the clicked tab as active
+            document.querySelectorAll('.custom-tabs .nav-link').forEach(tab => tab.classList.remove('active'));
+            this.classList.add('active');
         });
-
-        // Mark the clicked tab as active
-        document.querySelectorAll('.custom-tabs .nav-link').forEach(tab => tab.classList.remove('active'));
-        this.classList.add('active');
     });
-});
-    </script>
+</script>
 {% endblock content %}
-
-
-
-
