@@ -15,7 +15,7 @@ from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 
  
-
+app_name = 'accounts'
 # Create your views here.
 
 class FirstView(TemplateView):
@@ -117,7 +117,7 @@ def signout(request):
 
 
     
-class PersonalDetailsCreateView(LoginRequiredMixin, UpdateView):
+class PersonalDetailsCreateView( UpdateView):
     model = CustomUser
     form_class = CustomUserForm
     template_name = 'personal_details.html'

@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from accounts.models import CustomUser
-from .models import MatchRequest, Shortlist, Contacted, ProfileView, Story
+# from .models import MatchRequest, Shortlist, Contacted, ProfileView, Story
 from django.views.generic import TemplateView, DetailView, ListView
 from django.contrib.auth.views import PasswordChangeView
 from .forms import CustomPasswordChangeForm
@@ -40,21 +40,10 @@ class AddPaymentMethodsView(TemplateView):
 
 
 # G2
-class StoryDetailView(DetailView):
-    model = Story
-    template_name = "User_profile/story.html"
-    context_object_name = "story"
-
-    def get_queryset(self):
-        # Customize the queryset to filter active stories, etc.
-        return Story.objects.filter(is_active=True)
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["other_stories"] = Story.objects.exclude(pk=self.object.pk)[
-            :5
-        ]  # Example: Include additional stories
-        return context
+# class StoryDetailView(DetailView):
+#     model = Story
+#     template_name = "User_profile/story.html"
+#     context_object_name = "story"
 
 
 class ChangePasswordView(LoginRequiredMixin,PasswordChangeView):
@@ -62,21 +51,17 @@ class ChangePasswordView(LoginRequiredMixin,PasswordChangeView):
     success_url = reverse_lazy("home")
     template_name = "User_profile/change_password.html"
 
-
-# here
-
-
 class UserProfileView(DetailView):
     model = CustomUser
     template_name = "User_profile/user_profile.html"
     context_object_name = "profile_user"
 
-    def get_object(self):
+    def get_object(self):        
         return get_object_or_404(CustomUser, username=self.kwargs["username"])
 
 
-class SendRequestView(LoginRequiredMixin, View):
-    def post(self, request, username):
+# class SendRequestView(LoginRequiredMixin, View):
+#     def post(self, request, username):
         receiver = get_object_or_404(CustomUser, username=username)
         sender = request.user
 
@@ -99,60 +84,60 @@ class SendRequestView(LoginRequiredMixin, View):
         return redirect("profile", username=username)
 
 
-class ReceiveRequestView(LoginRequiredMixin, ListView):
-    model = MatchRequest
-    template_name = "contents/received_request.html"
-    context_object_name = "received_requests"
+# class ReceiveRequestView(LoginRequiredMixin, ListView):
+#     model = MatchRequest
+#     template_name = "contents/received_request.html"
+#     context_object_name = "received_requests"
 
-    def get_queryset(self):
-        return MatchRequest.objects.filter(receiver=self.request.user, status="sent")
-
-
-class SendMatchRequestView(View):
-    def post(self, request, username):
-        recipient = get_object_or_404(CustomUser, username=username)
-        MatchRequest.objects.get_or_create(sender=request.user, receiver=recipient)
-        return redirect("profile", username=username)
+#     def get_queryset(self):
+#         return MatchRequest.objects.filter(receiver=self.request.user, status="sent")
 
 
-class AcceptRequestView(LoginRequiredMixin, View):
-    def post(self, request, request_id):
-        match_request = get_object_or_404(
-            MatchRequest, id=request_id, receiver=request.user
-        )
-        match_request.status = "accepted"
-        match_request.save()
-        # Optionally, create a mutual match or notify the sender
-        return redirect("received_requests")
+# class SendMatchRequestView(View):
+#     def post(self, request, username):
+#         recipient = get_object_or_404(CustomUser, username=username)
+#         MatchRequest.objects.get_or_create(sender=request.user, receiver=recipient)
+#         return redirect("profile", username=username)
 
 
-class RejectRequestView(LoginRequiredMixin, View):
-    def post(self, request, request_id):
-        match_request = get_object_or_404(
-            MatchRequest, id=request_id, receiver=request.user
-        )
-        match_request.status = "rejected"
-        match_request.save()
-        return redirect("received_requests")
+# class AcceptRequestView(LoginRequiredMixin, View):
+#     def post(self, request, request_id):
+#         match_request = get_object_or_404(
+#             MatchRequest, id=request_id, receiver=request.user
+#         )
+#         match_request.status = "accepted"
+#         match_request.save()
+#         # Optionally, create a mutual match or notify the sender
+#         return redirect("received_requests")
 
 
-class ShortlistView(LoginRequiredMixin, View):
-    def post(self, request, username):
-        shortlisted_user = get_object_or_404(CustomUser, username=username)
-        Shortlist.objects.get_or_create(
-            user=request.user, shortlisted_user=shortlisted_user
-        )
-        return redirect("profile", username=username)
+# class RejectRequestView(LoginRequiredMixin, View):
+#     def post(self, request, request_id):
+#         match_request = get_object_or_404(
+#             MatchRequest, id=request_id, receiver=request.user
+#         )
+#         match_request.status = "rejected"
+#         match_request.save()
+#         return redirect("received_requests")
 
 
-class ContactUserView(LoginRequiredMixin, View):
-    def post(self, request, username):
-        contacted_user = get_object_or_404(CustomUser, username=username)
-        Contacted.objects.get_or_create(
-            user=request.user, contacted_user=contacted_user
-        )
-        # Optionally, send notification or email
-        return redirect("profile", username=username)
+# class ShortlistView(LoginRequiredMixin, View):
+#     def post(self, request, username):
+#         shortlisted_user = get_object_or_404(CustomUser, username=username)
+#         Shortlist.objects.get_or_create(
+#             user=request.user, shortlisted_user=shortlisted_user
+#         )
+#         return redirect("profile", username=username)
+
+
+# class ContactUserView(LoginRequiredMixin, View):
+#     def post(self, request, username):
+#         contacted_user = get_object_or_404(CustomUser, username=username)
+#         Contacted.objects.get_or_create(
+#             user=request.user, contacted_user=contacted_user
+#         )
+#         # Optionally, send notification or email
+#         return redirect("profile", username=username)
 
 
 class UpgradeStoryView(TemplateView):

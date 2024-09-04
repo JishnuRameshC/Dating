@@ -21,7 +21,7 @@ urlpatterns = [
     path('relationship_goal',views.Rel_GoalView.as_view(),name="relationship_goal"),
     path('interest',views.InterestView.as_view(),name='interest'),
                   
-              ]
+]
 
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
