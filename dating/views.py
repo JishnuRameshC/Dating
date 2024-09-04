@@ -43,8 +43,8 @@ class ChangePasswordView(TemplateView):
     template_name = 'User_profile/change_password.html'
 
 
-# class ProfileView(TemplateView):
-#     template_name = 'user_profile.html'
+class UserProfileView(TemplateView):
+    template_name = 'User_profile/user_profile.html'
 
 
 class UpgradeStoryView(TemplateView):
