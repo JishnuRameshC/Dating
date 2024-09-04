@@ -1,105 +1,115 @@
-{% extends 'shared/base.html' %}
-{% load static %}
-
-
-{% block style %}
-  <style>
-    body{
-      background-color: var(--primary-color);
-    }
-    .top-heading{
-      color: white;
-    }
-    #filter .top-rounded-white-box{
-        padding: 20px;
-    }
-  </style>
-{% endblock style %}
-    
-
+{% extends "shared/base.html" %}
 {% block content %}
-<div class="row top-heading">
-    <div class="col-12">
-        <div class="heading-container">
-          <div class="back-icon">
-            <i class="bi bi-chevron-left"></i>
-          </div>
-          <div class="title-text">
-              <h1>Filter</h1>
-          </div>
-        </div>
-    </div>
-</div>
-<div class="row d-flex justify-content-center" id="filter">
-    <div class="col-12 col-md-10 col-lg-8 top-rounded-white-box"> 
-        <div class="content-section">
-            <h3>Sort By</h3>
-            <div class="list-group">
-            <div class="list-group-item">
-                <span>Newest Members</span>
-                <i class="bi bi-check"></i>
+<div class="container-fluid">
+    <div class="row">
+        <!-- Add left sidebar content here -->
+        <nav class="col-md-2 left-sidebar d-none d-md-block">
+            <!-- Footer Menu for PC View -->
+            <div class="bottom-bar-fil">
+                <a href="#" title="Home">
+                    <div class="icon-container-fil">
+                        <i class="fas fa-home"></i>
+                        <h5>Home</h5>
+                    </div>
+                </a>
+                <a href="#" title="Chat">
+                    <div class="icon-container-fil">
+                        <i class="fas fa-comments"></i>
+                        <h5>Chat</h5>
+                    </div>
+                </a>
+                <a href="#" title="Search">
+                    <div class="icon-container-fil">
+                        <i class="fas fa-search"></i>
+                        <h5>Search</h5>
+                    </div>
+                </a>
+                <a href="#" title="Favorites">
+                    <div class="icon-container-fil">
+                        <i class="fas fa-star"></i>
+                        <h5>Favorites</h5>
+                    </div>
+                </a>
+                <a href="#" title="Profile">
+                    <div class="icon-container-fil">
+                        <i class="fas fa-user"></i>
+                        <h5>Profile</h5>
+                    </div>
+                </a>
             </div>
-            <div class="list-group-item">
-                <span>Last Active</span>
-                <i class="bi bi-check"></i>
+        </nav>
+        
+        <div class="col-md-6 main-content-fil">
+            <div class="top-navbar-fil">
+                <h1 class="settings-text-fil">Filter</h1>
             </div>
-            <div class="list-group-item">
-                <span>Distance</span>
-                <i class="bi bi-check"></i>
-            </div>
-            <div class="list-group-item">
-                <span>Popularity</span>
-                <i class="bi bi-check"></i>
-            </div>
-            <div class="list-group-item">
-                <span>Age</span>
-                <i class="bi bi-check"></i>
-            </div>
-            </div>
+            <div class="main-content-fil">
+                <h3>Sort By</h3>
+                <div class="list-group-fil">
+                    <div class="list-group-item-fil">
+                        <span>Newest Members</span>
+                        <i class="bi bi-check"></i>
+                    </div>
+                    <div class="list-group-item-fil">
+                        <span>Last Active</span>
+                        <i class="bi bi-check"></i>
+                    </div>
+                    <div class="list-group-item-fil">
+                        <span>Distance</span>
+                        <i class="bi bi-check"></i>
+                    </div>
+                    <div class="list-group-item-fil">
+                        <span>Popularity</span>
+                        <i class="bi bi-check"></i>
+                    </div>
+                    <div class="list-group-item-fil">
+                        <span>Age</span>
+                        <i class="bi bi-check"></i>
+                    </div>
+                </div>
 
-            <h3 class="mt-4">Filter By</h3>
-            <div class="list-group">
-            <div class="list-group-item">
-                <span>Gender</span>
-                <i class="bi bi-check"></i>
-            </div>
-            <div class="list-group-item">
-                <span>Location</span>
-                <i class="bi bi-check"></i>
-            </div>
-            <div class="list-group-item">
-                <span>Interests/Hobbies</span>
-                <i class="bi bi-check"></i>
-            </div>
-            <div class="list-group-item">
-                <span>Languages Spoken</span>
-                <i class="bi bi-check"></i>
-            </div>
-            <div class="list-group-item">
-                <span>Relationship Goals</span>
-                <i class="bi bi-check"></i>
-            </div>
-            </div>
+                <h3 class="mt-4">Filter By</h3>
+                <div class="list-group-fil">
+                    <div class="list-group-item-fil">
+                        <span>Gender</span>
+                        <i class="bi bi-check"></i>
+                    </div>
+                    <div class="list-group-item-fil">
+                        <span>Location</span>
+                        <i class="bi bi-check"></i>
+                    </div>
+                    <div class="list-group-item-fil">
+                        <span>Interests/Hobbies</span>
+                        <i class="bi bi-check"></i>
+                    </div>
+                    <div class="list-group-item-fil">
+                        <span>Languages Spoken</span>
+                        <i class="bi bi-check"></i>
+                    </div>
+                    <div class="list-group-item-fil">
+                        <span>Relationship Goals</span>
+                        <i class="bi bi-check"></i>
+                    </div>
+                </div>
 
-            <div class="d-flex justify-content-between mt-4">
-            <button class="btn btn-custom cancel-btn">Cancel</button>
-            <button class="btn btn-custom apply-btn">Apply</button>
+                <div class="d-flex justify-content-between mt-4">
+                    <button class="btn btn-custom-fil cancel-btn-fil">Cancel</button>
+                    <button class="btn btn-custom-fil apply-btn-fil">Apply</button>
+                </div>
             </div>
         </div>
     </div>
 </div>
 {% endblock %}
-
-{% block script %}
-  <script>
-    $(document).ready(function () {
-      $('.list-group-item').on('click', function () {
-        $(this).toggleClass('active')
-        $(this).find('i').toggle()
-      })
-    
-      // Initially hide all checkmarks
-      $('.list-group-item i').hide()
-    })
-  </script>
-{% endblock %}
+{% block script  %}
+<script>
+  $(document).ready(function() {
+        $('.list-group-item-fil').on('click', function() {
+            $(this).toggleClass('active');
+            $(this).find('i').toggle();
+        });
+        
+        $('.list-group-item-fil i').hide(); // Initially hide all checkmarks
+      });
+    </script>  
+{% endblock  %}

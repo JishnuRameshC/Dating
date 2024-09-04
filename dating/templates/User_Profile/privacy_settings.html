@@ -1,77 +1,144 @@
 {% extends 'shared/base.html' %}
-{% load static %}
+
 {% block content %}
-  <div class="row top-heading">
-    <div class="col-12">
-      <div class="heading-container">
-        <div class="back-icon">
-          <i class="bi bi-chevron-left"></i>
+  
+
+<div class="container-fluid">
+    <div class="row">
+        <!-- Add left sidebar content here -->
+        <nav class="col-md-2 left-sidebar d-none d-md-block">
+            <!-- Footer Menu for PC View -->
+            <div class="pr-st-bottom-bar">
+              <a href="#" title="Home">
+                <div class="pr-st-icon-container">
+                  <i class="fas fa-home"></i>
+                  <h5>Home</h5>
+                </div>
+              </a>
+              <a href="#" title="Chat">
+                <div class="pr-st-icon-container">
+                  <i class="fas fa-comments"></i>
+                  <h5>Chat</h5>
+                </div>
+              </a>
+              <a href="#" title="Search">
+                <div class="pr-st-icon-container">
+                  <i class="fas fa-search"></i>
+                  <h5>Search</h5>
+                </div>
+              </a>
+              <a href="#" title="Favorites">
+                <div class="pr-st-icon-container">
+                  <i class="fas fa-star"></i>
+                  <h5>Favorites</h5>
+                </div>
+              </a>
+              <a href="#" title="Profile">
+                <div class="pr-st-icon-container">
+                  <i class="fas fa-user"></i>
+                  <h5>Profile</h5>
+                </div>
+              </a>
+            </div>
+          </nav>
+
+        <div class="col-md-6">
+            <div class="pr-st-top-navbar">
+                <h1 class="pr-st-settings-text">Privacy & Settings</h1>
+              </div>
+              <div class="pr-st-profile-section">
+                <div class="pr-st-profile-info">
+                  <div>
+                        <h2>Sign-in Email</h2>
+                    </div>
+                </div>
+                <p>johnsmith@gmail.com</p>
+              </div>
+
+            <div class="pr-st-main-content">
+                <div class="list-group">
+                  <div class="pr-st-list-group-item">
+                    <div class="pr-st-item-content">
+                      <div>Password</div>
+                    </div>
+                    <a href="#" class="text-primary">Change password</a>
+                    </div>
+                    <div class="pr-st-list-group-item">
+                      <div class="pr-st-item-content">
+                        <div>2-FA authentication</div>
+                      </div>
+                      <div class="form-check form-switch">
+                        <input class="form-check-input" style=" background-color: #5a2d82;" type="checkbox" id="flexSwitchCheckChecked" checked>
+                      </div>
+                    </div>
+                    <div class="pr-st-list-group-item">
+                        <div class="pr-st-item-content">
+                          <div>Phone number</div>
+                          <div class="pr-st-subheading">+380 93 123 45 67</div>
+                        </div>
+                      </div>
+                      <div class="pr-st-list-group-item">
+                        <div class="pr-st-item-content">
+                          <div>Partner Preference</div>
+                        </div>
+                      </div>
+                    <div class="pr-st-list-group-item">
+                        <div class="pr-st-item-content">
+                          <div>Last sign in</div>
+                            <div class="pr-st-subheading">today at 18:34, Safari 198.123.23.23</div>
+                        </div>
+                    </div>
+                    <div class="pr-st-list-group-item">
+                        <div class="pr-st-item-content">
+                          <div>Total active sessions (5)</div>
+                          <div class="pr-st-subheading">DESKTOP-6TIG6EC • Kyiv, Ukraine<br>Chrome • Used right now</div>
+                            <div class="pr-st-subheading">iPhone 11 • Kyiv, Ukraine<br>Chrome • 04/19/2022</div>
+                          </div>
+                        </div>
+                      </div>
+                <div class="d-flex justify-content-end">
+                  <button class="pr-st-reset-button mt-3"><i class="fas fa-sync-alt"></i> Reset all active sessions</button>
+                </div>
+              </div>
         </div>
-        <div class="title-text">
-          <h1>Privacy & Settings</h1>
+
+        <div class="col-md-3 right-sidebar d-none d-md-block">
+          <!-- Add right sidebar content here -->
         </div>
-      </div>
     </div>
   </div>
-  <div class="row d-flex justify-content-center" id="privacy-settings">
-    <div class="col-12 col-md-10 col-lg-8 top-rounded-white-box contents">
-      <div class="profile-section">
-        <div class="profile-info">
-          <div>
-            <h2>Sign-in Email</h2>
-          </div>
-        </div>
-        <p>johnsmith@gmail.com</p>
+
+  <!-- Mobile Footer Menu -->
+  <div class="pr-st-bottom-bar d-md-none">
+    <a href="#" title="Home">
+      <div class="pr-st-icon-container">
+        <i class="fas fa-home"></i>
+        <h5>Home</h5>
       </div>
-      <div class="content-section">
-        <div class="list-group">
-          <div class="list-group-item">
-            <div class="item-content">
-              <div>Password</div>
-            </div>
-            <a href="#" class="text-primary">Change password</a>
-          </div>
-          <div class="list-group-item">
-            <div class="item-content">
-              <div>2-FA authentification</div>
-            </div>
-            <div class="form-check form-switch">
-              <input class="form-check-input" style=" background-color: #5a2d82;" type="checkbox" id="flexSwitchCheckChecked" checked />
-            </div>
-          </div>
-          <div class="list-group-item">
-            <div class="item-content">
-              <div>Phone number</div>
-              <div class="subheading">+380 93 123 45 67</div>
-            </div>
-          </div>
-          <div class="list-group-item">
-            <div class="item-content">
-              <div>Partner Preference</div>
-            </div>
-          </div>
-          <div class="list-group-item">
-            <div class="item-content">
-              <div>Last sign in</div>
-              <div class="subheading">today at 18:34, Safari 198.123.23.23</div>
-            </div>
-          </div>
-          <div class="list-group-item">
-            <div class="item-content">
-              <div>Total active sessions (5)</div>
-              <div class="subheading">
-                DESKTOP-6TIG6EC • Kyiv, Ukraine<br />Chrome • Used right now
-              </div>
-              <div class="subheading">
-                Iphone 11 • Kyiv, Ukraine<br />Chrome • 04/19/2022
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="d-flex justify-content-end">
-          <button class="reset-button mt-3"><i class="fas fa-sync-alt"></i> Reset all active sessions</button>
-        </div>
+    </a>
+    <a href="#" title="Chat">
+      <div class="pr-st-icon-container">
+        <i class="fas fa-comments"></i>
+        <h5>Chat</h5>
       </div>
-    </div>
+    </a>
+    <a href="#" title="Search">
+      <div class="pr-st-icon-container">
+        <i class="fas fa-search"></i>
+        <h5>Search</h5>
+      </div>
+    </a>
+    <a href="#" title="Favorites">
+      <div class="pr-st-icon-container">
+        <i class="fas fa-star"></i>
+        <h5>Favorites</h5>
+      </div>
+    </a>
+    <a href="#" title="Profile">
+      <div class="pr-st-icon-container">
+        <i class="fas fa-user"></i>
+        <h5>Profile</h5>
+      </div>
+    </a>
   </div>
-{% endblock %}
+  {% endblock content %}

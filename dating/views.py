@@ -59,10 +59,10 @@ class EditMyProfile(TemplateView):
 def settings(request):
     return render(request, 'User_profile/settings.html')
 
-def privacy_settings(request):
+def privacy(request):
     return render(request, 'User_profile/privacy_settings.html')
 
-def preferences(request):
+def preferences_view(request):
     return render(request, 'User_profile/preference.html')
 
 def filter(request):
