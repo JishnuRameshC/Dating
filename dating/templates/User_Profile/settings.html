@@ -1,189 +1,70 @@
 {% extends 'shared/base.html' %}
-
-{% block meta %}
-  <title>Accept</title>
-{% endblock %}
+{% load static %}
 
 {% block style %}
   <style>
     body{
-      background-color: var(--primary-color);
-    }
-    .top-heading{
-      color: white;
+      background: var(--primary-color);
     }
   </style>
 {% endblock style %}
-
+  
 {% block content %}
-<div class="row top-heading">
-  <div class="col-12">
-      <div class="heading-container">
-        <div class="back-icon">
-          <i class="bi bi-chevron-left"></i>
-        </div>
-        <div class="title-text">
-            <h1>settings</h1>
-        </div>
+<div class="top-navbar">
+    <h1 class="settings-text">Settings</h1>
+</div>
+<div class="top-rounded-white-box" id="settings">
+  <div class="profile-section" id="profile-section" >
+      <img src="https://via.placeholder.com/50" alt="Profile Picture">
+      <div>
+          <h2>Nazrul Islam</h2>
+          <p>Never give up 💪</p>
+      </div>
+  </div>
+  <div class="main-content">
+      <div class="list-group">
+          <a href="#" class="list-group-item list-group-item-action">
+              <i class="fas fa-user"></i>
+              <div class="item-content">
+                  <div>Account</div>
+                  <div class="subheading">Privacy, security, change number</div>
+              </div>
+          </a>
+          <a href="#" class="list-group-item list-group-item-action">
+              <i class="fas fa-comments"></i>
+              <div class="item-content">
+                  <div>Chat</div>
+                  <div class="subheading">Chat history, theme, wallpapers</div>
+              </div>
+          </a>
+          <a href="#" class="list-group-item list-group-item-action">
+              <i class="fas fa-bell"></i>
+              <div class="item-content">
+                  <div>Notifications</div>
+                  <div class="subheading">Messages, group and others</div>
+              </div>
+          </a>
+          <a href="#" class="list-group-item list-group-item-action">
+              <i class="fas fa-question-circle"></i>
+              <div class="item-content">
+                  <div>Help</div>
+                  <div class="subheading">Help center, contact us, privacy policy</div>
+              </div>
+          </a>
+          <a href="#" class="list-group-item list-group-item-action">
+              <i class="fas fa-database"></i>
+              <div class="item-content">
+                  <div>Storage and data</div>
+                  <div class="subheading">Network usage, storage usage</div>
+              </div>
+          </a>
+          <a href="#" class="list-group-item list-group-item-action">
+              <i class="fas fa-user-plus"></i>
+              <div class="item-content">
+                  <div>Invite a friend</div>
+              </div>
+          </a>
       </div>
   </div>
 </div>
-  <div class="row d-flex justify-content-center" id="contents">
-    <div class="col-12 col-md-10 col-lg-8 top-rounded-white-box contents">
-      <div class="list-group">
-        <div class="list-group-item">
-          <div class="item-content">
-            <img src="https://via.placeholder.com/50" alt="Profile Picture" class="profile-pic"/>
-            <div class="name-status">
-              <div class="name">Jhon Abraham</div>
-              <div class="">Never Give up</div>
-            </div>
-          </div>
-          <div class="action-icons">
-            <button class="qr-code"><i class="fas fa-qrcode fa-2x"></i></button>
-          </div>
-          
-        </div>
-        <br>
-        <div class="list-group-item">
-          <div class="item-content">
-            <img src="https://via.placeholder.com/50" alt="Profile Picture" class="profile-pic"/>
-            <div class="name-status">
-              <div class="name">Jhon Abraham</div>
-              <div class="date-time">Today, 07:30 AM</div>
-            </div>
-          </div>
-          <div class="action-icons">
-            <button class="phone-btn"><i class="bi bi-telephone"></i></button>
-            <button class="video-btn"><i class="bi bi-camera-video"></i></button>
-          </div>
-        </div>
-        <div class="list-group-item">
-          <div class="item-content">
-            <img src="https://via.placeholder.com/50" alt="Profile Picture" class="profile-pic"/>
-            <div class="name-status">
-              <div class="name">Jhon Abraham</div>
-              <div class="date-time">Today, 07:30 AM</div>
-            </div>
-          </div>
-          <div class="action-icons">
-            <button class="phone-btn"><i class="bi bi-telephone"></i></button>
-            <button class="video-btn"><i class="bi bi-camera-video"></i></button>
-          </div>
-        </div>
-        <div class="alphabet-header">A</div>
-        <div class="list-group-item">
-          <div class="item-content">
-            <img src="https://via.placeholder.com/50" alt="Profile Picture" class="profile-pic"/>
-            <div class="name-status">
-              <div class="name">Jhon Abraham</div>
-              <div class="date-time">Today, 07:30 AM</div>
-            </div>
-          </div>
-          <div class="action-icons">
-            <button class="phone-btn"><i class="bi bi-telephone"></i></button>
-            <button class="video-btn"><i class="bi bi-camera-video"></i></button>
-          </div>
-        </div>
-        <div class="list-group-item">
-          <div class="item-content">
-            <img src="https://via.placeholder.com/50" alt="Profile Picture" class="profile-pic"/>
-            <div class="name-status">
-              <div class="name">Jhon Abraham</div>
-              <div class="date-time">Today, 07:30 AM</div>
-            </div>
-          </div>
-          <div class="action-icons">
-            <button class="phone-btn"><i class="bi bi-telephone"></i></button>
-            <button class="video-btn"><i class="bi bi-camera-video"></i></button>
-          </div>
-        </div>
-        <div class="alphabet-header">A</div>
-        <div class="list-group-item">
-          <div class="item-content">
-            <img src="https://via.placeholder.com/50" alt="Profile Picture" class="profile-pic"/>
-            <div class="name-status">
-              <div class="name">Jhon Abraham</div>
-              <div class="date-time">Today, 07:30 AM</div>
-            </div>
-          </div>
-          <div class="action-icons">
-            <button class="phone-btn"><i class="bi bi-telephone"></i></button>
-            <button class="video-btn"><i class="bi bi-camera-video"></i></button>
-          </div>
-        </div>
-        <div class="list-group-item">
-          <div class="item-content">
-            <img src="https://via.placeholder.com/50" alt="Profile Picture" class="profile-pic"/>
-            <div class="name-status">
-              <div class="name">Jhon Abraham</div>
-              <div class="date-time">Today, 07:30 AM</div>
-            </div>
-          </div>
-          <div class="action-icons">
-            <button class="phone-btn"><i class="bi bi-telephone"></i></button>
-            <button class="video-btn"><i class="bi bi-camera-video"></i></button>
-          </div>
-        </div>
-        <div class="alphabet-header">A</div>
-        <div class="list-group-item">
-          <div class="item-content">
-            <img src="https://via.placeholder.com/50" alt="Profile Picture" class="profile-pic"/>
-            <div class="name-status">
-              <div class="name">Jhon Abraham</div>
-              <div class="date-time">Today, 07:30 AM</div>
-            </div>
-          </div>
-          <div class="action-icons">
-            <button class="phone-btn"><i class="bi bi-telephone"></i></button>
-            <button class="video-btn"><i class="bi bi-camera-video"></i></button>
-          </div>
-        </div>
-        <div class="list-group-item">
-          <div class="item-content">
-            <img src="https://via.placeholder.com/50" alt="Profile Picture" class="profile-pic"/>
-            <div class="name-status">
-              <div class="name">Jhon Abraham</div>
-              <div class="date-time">Today, 07:30 AM</div>
-            </div>
-          </div>
-          <div class="action-icons">
-            <button class="phone-btn"><i class="bi bi-telephone"></i></button>
-            <button class="video-btn"><i class="bi bi-camera-video"></i></button>
-          </div>
-        </div>
-        <div class="alphabet-header">A</div>
-        <div class="list-group-item">
-          <div class="item-content">
-            <img src="https://via.placeholder.com/50" alt="Profile Picture" class="profile-pic"/>
-            <div class="name-status">
-              <div class="name">Jhon Abraham</div>
-              <div class="date-time">Today, 07:30 AM</div>
-            </div>
-          </div>
-          <div class="action-icons">
-            <button class="phone-btn"><i class="bi bi-telephone"></i></button>
-            <button class="video-btn"><i class="bi bi-camera-video"></i></button>
-          </div>
-        </div>
-        <div class="list-group-item">
-          <div class="item-content">
-            <img src="https://via.placeholder.com/50" alt="Profile Picture" class="profile-pic"/>
-            <div class="name-status">
-              <div class="name">Jhon Abraham</div>
-              <div class="date-time">Today, 07:30 AM</div>
-            </div>
-          </div>
-          <div class="action-icons">
-            <button class="phone-btn"><i class="bi bi-telephone"></i></button>
-            <button class="video-btn"><i class="bi bi-camera-video"></i></button>
-          </div>
-        </div>
-        <!-- Add more list-group-item divs as needed -->
-      </div>
-    </div>
-  </div>
-{% endblock %}
-
-{% block scripts %}
 {% endblock %}
