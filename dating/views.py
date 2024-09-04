@@ -133,7 +133,7 @@ class ProfileviewView(TemplateView):
     template_name = 'Dating/profileviews.html'
 
 class UpgradeView(TemplateView):
-    template_name = 'User_profile/upgradepage.html'
+    template_name = 'User_profile/upgrade_to_view_profile.html'
 
 class SpinView(TemplateView):
     template_name = 'Dating/spin.html'
