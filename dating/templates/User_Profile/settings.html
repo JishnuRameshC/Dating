@@ -1,37 +1,45 @@
-{% extends 'shared/base.html' %}
-{% block content %}
-<div class="sett-top-navbar">
-    <h1 class="sett-settings-text">Settings</h1>
-  </div>
-  
-  <div class="sett-profile-section">
-    <div class="sett-profile-info">
-        <img src="https://via.placeholder.com/50" alt="Profile Picture">
-        <div>
+{% extends 'shared/base.html' %} {% block content %}
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="sett-top-navbar">
+        <div class="search-icon-container">
+          <i class="fas fa-search"></i>
+          <!-- The search icon -->
+        </div>
+        <h1 class="sett-settings-text">Settings</h1>
+      </div>
+      <div class="sett-profile-section">
+        <div class="sett-profile-info">
+          <img src="https://via.placeholder.com/50" alt="Profile Picture" />
+          <div>
             <h2>Nazrul Islam</h2>
             <p>Never give up 💪</p>
+          </div>
         </div>
-    </div>
-    <i class="fas fa-qrcode fa-2x"></i> <!-- Scanner symbol aligned to the right -->
-  </div>
-  
-  <div class="sett-main-content">
-    <div class="list-group">
-      <a href="#" class="list-group-item list-group-item-action">
-        <i class="fas fa-user"></i>
-        <div class="sett-item-content">
-          <div>Account</div>
-          <div class="sett-subheading">Privacy, security, change number</div>
-        </div>
-      </a>
-      <a href="#" class="list-group-item list-group-item-action">
-        <i class="fas fa-comments"></i>
+        <i class="fas fa-qrcode fa-2x"></i>
+        <!-- Scanner symbol aligned to the right -->
+      </div>
+
+      <div class="sett-main-content">
+        <div class="list-group">
+          <a href="#" class="list-group-item list-group-item-action">
+            <i class="fas fa-user"></i>
+            <div class="sett-item-content">
+              <div>Account</div>
+              <div class="sett-subheading">
+                Privacy, security, change number
+              </div>
+            </div>
+          </a>
+          <a href="#" class="list-group-item list-group-item-action">
+            <i class="fas fa-comments"></i>
             <div class="sett-item-content">
               <div>Chat</div>
               <div class="sett-subheading">Chat history, theme, wallpapers</div>
             </div>
           </a>
-        <a href="#" class="list-group-item list-group-item-action">
+          <a href="#" class="list-group-item list-group-item-action">
             <i class="fas fa-bell"></i>
             <div class="sett-item-content">
               <div>Notifications</div>
@@ -42,23 +50,27 @@
             <i class="fas fa-question-circle"></i>
             <div class="sett-item-content">
               <div>Help</div>
-              <div class="sett-subheading">Help center, contact us, privacy policy</div>
+              <div class="sett-subheading">
+                Help center, contact us, privacy policy
+              </div>
             </div>
-        </a>
-        <a href="#" class="list-group-item list-group-item-action">
+          </a>
+          <a href="#" class="list-group-item list-group-item-action">
             <i class="fas fa-database"></i>
             <div class="sett-item-content">
-                <div>Storage and data</div>
-                <div class="sett-subheading">Network usage, storage usage</div>
-              </div>
-            </a>
-            <a href="#" class="list-group-item list-group-item-action">
-              <i class="fas fa-user-plus"></i>
-              <div class="sett-item-content">
-                <div>Invite a friend</div>
+              <div>Storage and data</div>
+              <div class="sett-subheading">Network usage, storage usage</div>
+            </div>
+          </a>
+          <a href="#" class="list-group-item list-group-item-action">
+            <i class="fas fa-user-plus"></i>
+            <div class="sett-item-content">
+              <div>Invite a friend</div>
             </div>
           </a>
         </div>
+      </div>
+    </div>
+  </div>
+  {% endblock content %}
 </div>
-{% endblock content %}
-

@@ -1,49 +1,14 @@
 {% extends 'shared/base.html' %}
 
 {% block content %}
-  
-
 <div class="container-fluid">
-    <div class="row">
-        <!-- Add left sidebar content here -->
-        <nav class="col-md-2 left-sidebar d-none d-md-block">
-            <!-- Footer Menu for PC View -->
-            <div class="pr-st-bottom-bar">
-              <a href="#" title="Home">
-                <div class="pr-st-icon-container">
-                  <i class="fas fa-home"></i>
-                  <h5>Home</h5>
-                </div>
-              </a>
-              <a href="#" title="Chat">
-                <div class="pr-st-icon-container">
-                  <i class="fas fa-comments"></i>
-                  <h5>Chat</h5>
-                </div>
-              </a>
-              <a href="#" title="Search">
-                <div class="pr-st-icon-container">
-                  <i class="fas fa-search"></i>
-                  <h5>Search</h5>
-                </div>
-              </a>
-              <a href="#" title="Favorites">
-                <div class="pr-st-icon-container">
-                  <i class="fas fa-star"></i>
-                  <h5>Favorites</h5>
-                </div>
-              </a>
-              <a href="#" title="Profile">
-                <div class="pr-st-icon-container">
-                  <i class="fas fa-user"></i>
-                  <h5>Profile</h5>
-                </div>
-              </a>
-            </div>
-          </nav>
-
-        <div class="col-md-6">
+    <div class="row justify-content-center"> 
+        <div class="col-md-8">
             <div class="pr-st-top-navbar">
+              <div class="search-icon-container">
+                <i class="fas fa-search"></i>
+                <!-- The search icon -->
+              </div>
                 <h1 class="pr-st-settings-text">Privacy & Settings</h1>
               </div>
               <div class="pr-st-profile-section">
@@ -101,44 +66,7 @@
                 </div>
               </div>
         </div>
-
-        <div class="col-md-3 right-sidebar d-none d-md-block">
-          <!-- Add right sidebar content here -->
-        </div>
     </div>
   </div>
-
-  <!-- Mobile Footer Menu -->
-  <div class="pr-st-bottom-bar d-md-none">
-    <a href="#" title="Home">
-      <div class="pr-st-icon-container">
-        <i class="fas fa-home"></i>
-        <h5>Home</h5>
-      </div>
-    </a>
-    <a href="#" title="Chat">
-      <div class="pr-st-icon-container">
-        <i class="fas fa-comments"></i>
-        <h5>Chat</h5>
-      </div>
-    </a>
-    <a href="#" title="Search">
-      <div class="pr-st-icon-container">
-        <i class="fas fa-search"></i>
-        <h5>Search</h5>
-      </div>
-    </a>
-    <a href="#" title="Favorites">
-      <div class="pr-st-icon-container">
-        <i class="fas fa-star"></i>
-        <h5>Favorites</h5>
-      </div>
-    </a>
-    <a href="#" title="Profile">
-      <div class="pr-st-icon-container">
-        <i class="fas fa-user"></i>
-        <h5>Profile</h5>
-      </div>
-    </a>
-  </div>
-  {% endblock content %}
+</div>
+{% endblock content %}
