@@ -1,34 +1,32 @@
+{% load static %}
 <nav class="col-md-1 left-sidebar d-none d-md-block">
     <!--  side Menu for PC View -->
     <div class="bottom-bar">
         <a href="{% url 'dating:home' %}" title="Home">
           <div class="icon-container">
-            <i class="fas fa-home"></i>
-            <h5>Home</h5>
-          </div>
-        </a>
-        <a href="{% url 'dating:home' %}" title="Chat">
-          <div class="icon-container">
-            <i class="fas fa-comments"></i>
-            <h5>Chat</h5>
+            <img src="{% static 'svgicons/home.svg' %}">
           </div>
         </a>
         <a href="{% url 'dating:home' %}" title="Search">
           <div class="icon-container">
-            <i class="fas fa-search"></i>
+            <img src="{% static 'svgicons/Discover.svg' %}">
             <h5>Search</h5>
           </div>
         </a>
-        <a href="{% url 'dating:shortlist' %}" title="Favorites">
+        <a href="{% url 'dating:shortlist' %}" title="Spin">
           <div class="icon-container">
-            <i class="fas fa-star"></i>
+            <img src="{% static 'svgicons/middle_icon.svg' %}" width="200px">
             <h5>Favorites</h5>
           </div>
         </a>
         <a href="{% url 'dating:profile' %}" title="Profile">
           <div class="icon-container">
-            <i class="fas fa-user"></i>
-            <h5>Profile</h5>
+            <img src="{% static 'svgicons/Matches.svg' %}">
+          </div>
+        </a>
+        <a href="{% url 'dating:profile' %}" title="Messages">
+          <div class="icon-container">
+            <img src="{% static 'svgicons/nav_messge.svg' %}">
           </div>
         </a>
       </div>
