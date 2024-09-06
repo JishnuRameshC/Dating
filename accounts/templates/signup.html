@@ -3,13 +3,14 @@
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
-<div class="container-fluid signup-container-fluid">
-    <div class="container my-4 signup-container">
+<div class="container-fluid signup-container-fluid d-flex justify-content-center align-items-center vh-100">
+    <div class="container my-4 signup-container p-4 bg-white shadow-lg rounded-3" style="max-width: 450px;">
         <form id="signupForm" method="POST">
             {% csrf_token %}
-            <h3 class="text-center mb-2">Sign up</h3>
+            <h3 class="text-center mb-3">Sign Up</h3>
             
-            <div class="mb-1">
+            <!-- Name Field -->
+            <div class="mb-3">
                 <label for="name" class="form-label">Name</label>
                 <input type="text" class="form-control signup-form-control" id="username" name="username" placeholder="Enter your name" value="{{ form.username.value }}">
                 {% if form.username.errors %}
@@ -21,7 +22,8 @@
                 {% endif %}
             </div>
             
-            <div class="mb-1">
+            <!-- Email Field -->
+            <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
                 <input type="email" class="form-control signup-form-control" id="email" name="email" placeholder="Enter your email" value="{{ form.email.value }}">
                 {% if form.email.errors %}
@@ -33,7 +35,8 @@
                 {% endif %}
             </div>
             
-            <div class="mb-1">
+            <!-- Mobile Field -->
+            <div class="mb-3">
                 <label for="mobile" class="form-label">Mobile</label>
                 <input type="text" class="form-control signup-form-control" id="mobile" name="mobile" placeholder="Enter your mobile number" value="{{ form.mobile.value }}">
                 {% if form.mobile.errors %}
@@ -45,7 +48,8 @@
                 {% endif %}
             </div>
             
-            <div class="mb-1">
+            <!-- Password Field -->
+            <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
                 <input type="password" class="form-control signup-form-control" id="password1" name="password1" placeholder="Enter your password">
                 {% if form.password1.errors %}
@@ -57,7 +61,8 @@
                 {% endif %}
             </div>
             
-            <div class="mb-1">
+            <!-- Confirm Password Field -->
+            <div class="mb-3">
                 <label for="confirm-password" class="form-label">Confirm Password</label>
                 <input type="password" class="form-control signup-form-control" id="password2" name="password2" placeholder="Confirm your password">
                 {% if form.password2.errors %}
@@ -69,10 +74,12 @@
                 {% endif %}
             </div>
             
+            <!-- Submit Button -->
             <div class="d-grid gap-2">
-                <button type="submit" id="registerButton" class="btn btn-custom btn-primary-custom mb-2 mt-1">Register</button>
+                <button type="submit" id="registerButton" class="btn btn-custom btn-primary-custom">Register</button>
             </div>
-            
+
+            <!-- Non-field Errors -->
             {% if form.non_field_errors %}
                 <div class="alert alert-danger mt-3">
                     {% for error in form.non_field_errors %}
