@@ -24,7 +24,7 @@
                 <div class="col-md-3 col-sm-6 d-flex justify-content-center">
                     <div class="match-card">
                         <img src="{{ profile.personaldetails.profile_pic.url }}" alt="{{ profile.username }}">
-                        <p class="match-percentage">100% Match</p>
+                        <p class="match-percentage">{{ score }}% Match</p>
                         <p class="name">{{ profile.username }}, {{ profile.personaldetails.get_age }}</p>
                         <p>{{ profile.personaldetails.user.address.city }}</p>
                         <p>{{ profile.distance }} km away</p>
