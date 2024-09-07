@@ -68,6 +68,7 @@ urlpatterns = [
     path('profile_view/', ProfileviewView.as_view(), name='profile_view'),  
     path('upgrade/', UpgradeView.as_view(), name='upgrade'),   
     path('spin/', SpinView.as_view(), name='spin'),
+    path('get_random_profile/', RandomProfileView.as_view(), name='get_random_profile'),
 ]
 
 

@@ -3,7 +3,8 @@ from django.views.generic import View, TemplateView,ListView
 from accounts.models import CustomUser, Address,PersonalDetails,JobProfile
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404
-
+from django.http import JsonResponse
+import random
 
 
 class SelectgenderView(TemplateView):
@@ -257,13 +258,35 @@ class QualificationView(TemplateView):
         context = super().get_context_data(**kwargs)
         logged_in_user = self.request.user
 
-        # Get the logged-in user's qualification
-        logged_in_user_details = logged_in_user.personaldetails
+        # Get the logged-in user's qualifications
+        try:
+            logged_in_user_details = logged_in_user.personaldetails
+        except PersonalDetails.DoesNotExist:
+            # Handle the case where the logged-in user doesn't have personal details
+            context['similar_profiles'] = []
+            context['matches'] = []
+            return context
 
         # Filter users with the same qualification as the logged-in user
         similar_profiles = CustomUser.objects.filter(personaldetails__qualifications=logged_in_user_details.qualifications).exclude(id=logged_in_user.id)
 
+        # Prepare the list of matches with scores
+        matches = []
+        for profile in similar_profiles:
+            # Get PersonalDetails for each profile
+            try:
+                user_personal_details = profile.personaldetails
+                # Calculate match score
+                match_score = logged_in_user_details.calculate_match_score(user_personal_details)
+                matches.append((profile, match_score))
+            except PersonalDetails.DoesNotExist:
+                continue
+
+        # Sort matches by score in descending order
+        matches.sort(key=lambda x: x[1], reverse=True)
+
         context['similar_profiles'] = similar_profiles
+        context['matches'] = matches
         return context
     
 
@@ -376,3 +399,19 @@ class SpinView(TemplateView):
     template_name = 'Dating/spin.html'
 
 
+class RandomProfileView(View):
+    def get(self, request, *args, **kwargs):
+        profiles = PersonalDetails.objects.all()
+        if profiles.exists():
+            random_profile = random.choice(profiles)
+            profile_data = {
+                'name': f'{random_profile.user.username} - {random_profile.get_age()}',
+                'distance': '1 km near you',
+            }
+
+            if random_profile.profile_pic:
+                profile_data['image_url'] = random_profile.profile_pic.url
+
+            return JsonResponse(profile_data)
+        else:
+            return JsonResponse({'error': 'No profiles available'}, status=404)
