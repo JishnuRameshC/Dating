@@ -22,7 +22,7 @@
     <main class="container mt-4">
         <section class="matches">
             <div class="row justify-content-center">
-                {% for user, score in matches %}
+                {% for user, score, distance in matches %}
                     <div class="col-md-3 col-sm-6 d-flex justify-content-center">
                         <div class="match-card">
                             <!-- Display profile picture if available -->
@@ -33,9 +33,13 @@
                             {% endif %}
                             <p class="match-percentage">{{ score }}% Match</p>
                             <p class="name">{{ user.username }}, {{ user.personaldetails.get_age }}</p>
-                            <p>{{ user.personaldetails.city }}</p>
-                            <p>{{ user.personaldetails.distance }} km away</p>
-                            <div class="online-status"></div>
+                            
+                            <!-- Display distance if available -->
+                            {% if distance %}
+                                <p>{{ distance|floatformat:2 }} km away</p>
+                            {% else %}
+                                <p>1 km</p>
+                            {% endif %}
                         </div>
                     </div>
                 {% empty %}

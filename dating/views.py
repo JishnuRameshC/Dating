@@ -488,17 +488,47 @@ class MatchView(LoginRequiredMixin, ListView):
         return matches
 
     def find_matching_profiles(self, user_details):
+        # Initialize geolocator
+        geolocator = Nominatim(user_agent="your_app_name")
+
+        # Get the logged-in user's default address and coordinates
+        user_address = Address.objects.filter(user=user_details.user, is_default=True).first()
+        user_coords = self.get_coordinates(user_address, geolocator) if user_address else None
+
         matches = []
         
         for other_user_details in PersonalDetails.objects.exclude(user=user_details.user):
+            # Get the other user's default address and coordinates
+            other_user_address = Address.objects.filter(user=other_user_details.user, is_default=True).first()
+            other_user_coords = self.get_coordinates(other_user_address, geolocator) if other_user_address else None
+
+            # Calculate match score
             match_score = user_details.calculate_match_score(other_user_details)
-            if match_score > 50:  # Set a threshold for matching
-                matches.append((other_user_details.user, match_score))
-        
+
+            # Calculate distance
+            if user_coords and other_user_coords:
+                distance = geodesic(user_coords, other_user_coords).km
+            else:
+                distance = None  # If coordinates are unavailable
+
+            # Only add matches with a score above 50
+            if match_score > 50:
+                matches.append((other_user_details.user, match_score, distance))
+
         # Sort by highest match score
         matches.sort(key=lambda x: x[1], reverse=True)
-        
+
         return matches
+
+    def get_coordinates(self, address, geolocator):
+        if address and address.address_line_3:
+            try:
+                location = geolocator.geocode(address.address_line_3)
+                if location:
+                    return (location.latitude, location.longitude)
+            except GeocoderTimedOut:
+                print(f"GeocoderTimedOut for address: {address.address_line_3}")
+        return None
 
 class ProfileviewView(TemplateView):
     template_name = 'Dating/profileviews.html'
