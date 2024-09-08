@@ -21,7 +21,7 @@
     <main class="container mt-4">
         <section class="matches">
             <div class="row justify-content-center">
-                {% for user, score in matches %}
+                {% for user, score, distance in matches %}
                     <div class="col-md-3 col-sm-6 d-flex justify-content-center">
                         <div class="match-card">
                             <!-- Display profile picture if available -->
@@ -33,8 +33,8 @@
                             <p class="match-percentage">{{ score }}% Match</p>
                             <p class="name">{{ user.username }}, {{ user.personaldetails.get_age }}</p>
                             <p>{{ user.personaldetails.city }}</p>
-                            <p>{{ user.personaldetails.distance }} km away</p>
-                            
+                            <p>{% if distance %}{{ distance|floatformat:2 }} km away{% else %}Same location{% endif %}</p>
+                            <p> {{ user.jobprofile.designation }}</p>
                             <div class="online-status"></div>
                         </div>
                     </div>

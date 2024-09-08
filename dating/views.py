@@ -5,6 +5,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
 import random
+from geopy.distance import geodesic
+from geopy.geocoders import Nominatim
+from geopy.exc import GeocoderTimedOut
 
 
 class SelectgenderView(TemplateView):
@@ -258,27 +261,49 @@ class QualificationView(TemplateView):
         context = super().get_context_data(**kwargs)
         logged_in_user = self.request.user
 
-        # Get the logged-in user's qualifications
+        # Initialize geolocator
+        geolocator = Nominatim(user_agent="your_app_name")
+
+        # Get the logged-in user's qualifications and address
         try:
             logged_in_user_details = logged_in_user.personaldetails
+            logged_in_user_address = logged_in_user.address_set.filter(is_default=True).first()
+
+            # Get coordinates of the logged-in user's address
+            logged_in_user_coords = self.get_coordinates(logged_in_user_address, geolocator)
         except PersonalDetails.DoesNotExist:
-            # Handle the case where the logged-in user doesn't have personal details
+            # Handle case where the logged-in user doesn't have personal details
             context['similar_profiles'] = []
             context['matches'] = []
             return context
 
         # Filter users with the same qualification as the logged-in user
-        similar_profiles = CustomUser.objects.filter(personaldetails__qualifications=logged_in_user_details.qualifications).exclude(id=logged_in_user.id)
+        similar_profiles = CustomUser.objects.filter(
+            personaldetails__qualifications=logged_in_user_details.qualifications
+        ).exclude(id=logged_in_user.id)
 
-        # Prepare the list of matches with scores
+        # Prepare the list of matches with scores and distances
         matches = []
         for profile in similar_profiles:
-            # Get PersonalDetails for each profile
             try:
                 user_personal_details = profile.personaldetails
+                profile_address = profile.address_set.filter(is_default=True).first()
+
+                # Get coordinates of each profile's address
+                profile_coords = self.get_coordinates(profile_address, geolocator)
+
                 # Calculate match score
                 match_score = logged_in_user_details.calculate_match_score(user_personal_details)
-                matches.append((profile, match_score))
+
+                # Calculate distance
+                if logged_in_user_coords and profile_coords:
+                    distance = geodesic(logged_in_user_coords, profile_coords).km
+                else:
+                    distance = None
+
+                
+
+                matches.append((profile, match_score, distance))
             except PersonalDetails.DoesNotExist:
                 continue
 
@@ -288,6 +313,19 @@ class QualificationView(TemplateView):
         context['similar_profiles'] = similar_profiles
         context['matches'] = matches
         return context
+
+    def get_coordinates(self, address, geolocator):
+    
+        if address and address.address_line_3:
+            try:
+                location = geolocator.geocode(address.address_line_3)
+                if location:
+                    print(f"Coordinates for {address.address_line_3}: {location.latitude}, {location.longitude}")
+                    return (location.latitude, location.longitude)
+            except GeocoderTimedOut:
+                print(f"GeocoderTimedOut for address: {address.address_line_3}")
+        print(f"Coordinates not found for address: {address.address_line_3}")
+        return None
     
 
 class LocationView(TemplateView):
@@ -297,14 +335,24 @@ class LocationView(TemplateView):
         context = super().get_context_data(**kwargs)
         user = self.request.user
 
-        # Get the city of the logged-in user from their address
-        user_city = Address.objects.filter(user=user).values_list('city', flat=True).first()
+        # Initialize geolocator
+        geolocator = Nominatim(user_agent="your_app_name")
+
+        # Get the city and coordinates of the logged-in user's address
+        user_address = Address.objects.filter(user=user, is_default=True).first()
+        if user_address:
+            user_city = user_address.city
+            # Get the coordinates of the logged-in user's address
+            user_coords = self.get_coordinates(user_address, geolocator)
+        else:
+            user_city = None
+            user_coords = None
 
         if user_city:
             # Filter profiles based on the same city
             profiles_in_city = CustomUser.objects.filter(address__city=user_city).exclude(id=user.id)
 
-            # Prepare the list of matches with scores
+            # Prepare the list of matches with scores and distances
             matches = []
             try:
                 user_personal_details = user.personaldetails
@@ -314,16 +362,32 @@ class LocationView(TemplateView):
             for profile in profiles_in_city:
                 try:
                     profile_personal_details = profile.personaldetails
+                    profile_address = profile.address_set.filter(is_default=True).first()
+
+                    # Get coordinates of the profile's address
+                    profile_coords = self.get_coordinates(profile_address, geolocator)
+
+                    # Calculate match score
                     if user_personal_details:
-                        # Calculate match score
                         match_score = user_personal_details.calculate_match_score(profile_personal_details)
-                        matches.append((profile, match_score))
+                    else:
+                        match_score = None
+
+                    # Calculate distance
+                    if user_coords and profile_coords:
+                        distance = geodesic(user_coords, profile_coords).km
+                        if distance == 0:
+                            distance = None  # Set to None if the distance is 0 km (same location)
+                    else:
+                        distance = None
+
+                    matches.append((profile, match_score, distance))
                 except PersonalDetails.DoesNotExist:
                     continue
 
             # Sort matches by score in descending order
             matches.sort(key=lambda x: x[1], reverse=True)
-            
+
             context['profiles'] = matches
         else:
             # If the user doesn't have a city in their address, return an empty queryset
@@ -331,6 +395,17 @@ class LocationView(TemplateView):
 
         return context
 
+    def get_coordinates(self, address, geolocator):
+        if address and address.address_line_3:
+            try:
+                location = geolocator.geocode(address.address_line_3)
+                if location:
+                    print(f"Coordinates for {address.address_line_3}: {location.latitude}, {location.longitude}")
+                    return (location.latitude, location.longitude)
+            except GeocoderTimedOut:
+                print(f"GeocoderTimedOut for address: {address.address_line_3}")
+        print(f"Coordinates not found for address: {address.address_line_3}")
+        return None
 
 class DesignationView(TemplateView):
     template_name = 'Dating/designation.html'
@@ -338,29 +413,65 @@ class DesignationView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         user_profile = get_object_or_404(JobProfile, user=self.request.user)
-        
-        # Filter out the current user by excluding the logged-in user's ID
+
+        # Initialize geolocator
+        geolocator = Nominatim(user_agent="your_app_name")
+
+        # Get the logged-in user's default address and coordinates
+        user_address = Address.objects.filter(user=self.request.user, is_default=True).first()
+        if user_address:
+            user_coords = self.get_coordinates(user_address, geolocator)
+        else:
+            user_coords = None
+
+        # Filter profiles with the same designation, excluding the logged-in user
         same_designation_profiles = JobProfile.objects.filter(designation=user_profile.designation).exclude(user=self.request.user)
-        
-        # Prepare the list of matches with scores
+
+        # Prepare the list of matches with scores and distances
         matches = []
         for profile in same_designation_profiles:
-            # Get PersonalDetails for each profile
             try:
+                # Get the personal details of the profile user
                 user_personal_details = profile.user.personaldetails
                 current_user_personal_details = self.request.user.personaldetails
+
+                # Get the profile's default address and coordinates
+                profile_address = Address.objects.filter(user=profile.user, is_default=True).first()
+                profile_coords = self.get_coordinates(profile_address, geolocator)
+
                 # Calculate match score
                 match_score = current_user_personal_details.calculate_match_score(user_personal_details)
-                matches.append((profile.user, match_score))
+
+                # Calculate distance
+                if user_coords and profile_coords:
+                    distance = geodesic(user_coords, profile_coords).km
+                    if distance == 0:
+                        distance = None  # Set to None if the distance is 0 km (same location)
+                else:
+                    distance = None
+
+                # Append the match details
+                matches.append((profile.user, match_score, distance))
+
             except PersonalDetails.DoesNotExist:
                 continue
 
         # Sort matches by score in descending order
         matches.sort(key=lambda x: x[1], reverse=True)
-        
+
         context['profiles'] = same_designation_profiles
         context['matches'] = matches
         return context
+
+    def get_coordinates(self, address, geolocator):
+        if address and address.address_line_3:
+            try:
+                location = geolocator.geocode(address.address_line_3)
+                if location:
+                    return (location.latitude, location.longitude)
+            except GeocoderTimedOut:
+                print(f"GeocoderTimedOut for address: {address.address_line_3}")
+        return None
 
 class MatchView(LoginRequiredMixin, ListView):
     template_name = 'contents/matches.html'

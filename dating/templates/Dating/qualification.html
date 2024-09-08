@@ -20,20 +20,26 @@
     <main class="container mt-4">
         <section class="matches">
             <div class="row justify-content-center">
-                {% for profile, score in matches %}
-                <div class="col-md-3 col-sm-6 d-flex justify-content-center">
-                    <div class="match-card">
-                        <img src="{{ profile.personaldetails.profile_pic.url }}" alt="{{ profile.username }}">
-                        <p class="match-percentage">{{ score }}% Match</p>
-                        <p class="name">{{ profile.username }}, {{ profile.personaldetails.get_age }}</p>
-                        <p>{{ profile.personaldetails.user.address.city }}</p>
-                        <p>{{ profile.distance }} km away</p>
-                        <div class="online-status"></div>
-                    </div>
-                </div>
-                {% empty %}
-                <p>No profiles found with similar qualifications.</p>
-                {% endfor %}
+                {% for profile, score, distance in matches %}
+    <div class="col-md-3 col-sm-6 d-flex justify-content-center">
+        <div class="match-card">
+            <img src="{{ profile.personaldetails.profile_pic.url }}" alt="{{ profile.username }}">
+            <p class="match-percentage">{{ score }}% Match</p>
+            <p class="name">{{ profile.username }}, {{ profile.personaldetails.get_age }}</p>
+            <p>{{ profile.personaldetails.user.address.city }}</p>
+            <p>
+                {% if distance %}
+                    {{ distance|floatformat:1 }} km away
+                {% else %}
+                    <p>1 km away</p>
+                {% endif %}
+            </p>
+            <div class="online-status"></div>
+        </div>
+    </div>
+{% empty %}
+    <p>No profiles found with similar qualifications.</p>
+{% endfor %}
             </div>
         </section>
     </main>
