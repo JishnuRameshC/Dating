@@ -1,9 +1,11 @@
-from django.shortcuts import render
-from django.views.generic import View, TemplateView
+from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
+from django.views.generic import View, TemplateView,ListView
+from accounts.models import CustomUser, Address,PersonalDetails,JobProfile
+from .models import Interestin, ProfileView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import get_object_or_404
 
-
-class SelectgenderView(TemplateView):
-    template_name='Dating/selectgender.html'
 
 
 def TestView(request):
@@ -103,6 +105,24 @@ def viewed_myprofile(request):
     return render(request, 'contents/viewed_myprofile.html')
   
 #   G3
+
+class SelectgenderView(LoginRequiredMixin,TemplateView):
+    template_name = 'Dating/selectgender.html'
+    success_url = reverse_lazy('dating:home')
+
+    def post(self, request, *args, **kwargs):
+        interestin_value = request.POST.get('interested_in')
+        if interestin_value:
+            Interestin.objects.update_or_create(
+                user=self.request.user,
+                defaults={'interestin': interestin_value}
+            )
+        return redirect(self.success_url)
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)
+    
+
 class Error403View(TemplateView):
     template_name='error_page/error403.html'
     
@@ -113,6 +133,7 @@ class Error404View(TemplateView):
 
 class HomeView(TemplateView):
     template_name = 'Dating/home.html'
+    
 
 class DiscoverView(TemplateView):
     template_name = 'Dating/discover.html'
@@ -120,20 +141,39 @@ class DiscoverView(TemplateView):
 class QualificationView(TemplateView):
     template_name = 'Dating/qualification.html'
 
+
 class LocationView(TemplateView):
     template_name = 'Dating/location.html'
+
 
 class DesignationView(TemplateView):
     template_name = 'Dating/designation.html'
 
-class MatchView(TemplateView):
-    template_name = 'Dating/matches.html'
 
-class ProfileviewView(TemplateView):
-    template_name = 'Dating/profileviews.html'
+class MatchView(TemplateView):
+    template_name = 'contents/matches.html'
+   
+
 
 class UpgradeView(TemplateView):
-    template_name = 'User_profile/upgrade_to_view_profile.html'
+    template_name = 'Dating/upgradepage.html'
 
 class SpinView(TemplateView):
     template_name = 'Dating/spin.html'
+
+
+class ProfileviewView(LoginRequiredMixin,ListView):
+    model = ProfileView
+    template_name = 'Dating/profileviews.html'  
+    context_object_name = 'profile_views'
+
+    def get_queryset(self):
+        
+        return ProfileView.objects.filter(viewer=self.request.user).order_by('-viewed_at')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        context['profile_view_count'] = self.get_queryset().count()
+
+        return context

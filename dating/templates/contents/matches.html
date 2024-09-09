@@ -1,0 +1,52 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+
+{% block content %}
+    <header class="header-icon-filter">
+        <!-- Left Arrow Button -->
+        <button class="icon-button">
+            <i class="bi bi-arrow-left icon"></i>
+        </button>
+        
+        <h3>Matches</h3>
+        
+        <!-- Filter Button -->
+        <button class="icon-button">
+            <i class="bi bi-funnel icon"></i>
+        </button>
+    </header>
+
+    <div class="profile-view-numbers">Your Matches</div>
+
+    <!-- Page content goes here -->
+    <main class="container mt-4">
+        <section class="matches">
+            <div class="row justify-content-center">
+                {% for user, score in matches %}
+                    <div class="col-md-3 col-sm-6 d-flex justify-content-center">
+                        <div class="match-card">
+                            <!-- Display profile picture if available -->
+                            {% if user.personaldetails.profile_pic %}
+                                <img src="{{ user.personaldetails.profile_pic.url }}" alt="{{ user.username }}">
+                            {% else %}
+                                <img src="{% static 'images/default_profile.jpg' %}" alt="{{ user.username }}">
+                            {% endif %}
+                            <p class="match-percentage">{{ score }}% Match</p>
+                            <p class="name">{{ user.username }}, {{ user.personaldetails.get_age }}</p>
+                            <p>{{ user.personaldetails.city }}</p>
+                            <p>{{ user.personaldetails.distance }} km away</p>
+                            <div class="online-status"></div>
+                        </div>
+                    </div>
+                {% empty %}
+                    <div class="col-12 d-flex justify-content-center">
+                        <p>No matching profiles found.</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+{% endblock %}

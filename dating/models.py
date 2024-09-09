@@ -1,7 +1,7 @@
 from django.db import models
 # from django.contrib.auth.models import User
 from accounts.models import CustomUser
-# Create your models here.
+
 
 class Story(models.Model):
     id = models.BigAutoField(primary_key=True)
@@ -71,3 +71,16 @@ class ProfileView(models.Model):
     def str(self):
         return f'{self.viewer} viewed {self.viewed_user} profile at {self.viewed_at}'
     
+
+
+INTEREST_CHOICES = [
+        ('M', 'Male'),
+        ('F', 'Female'),
+        ('B', 'Both'),
+    ]
+class Interestin(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    interestin = models.CharField(max_length=10,choices=INTEREST_CHOICES,default='')
+
+    def __str__(self):
+        return f"{self.user.username} is interested in {self.interestin}"

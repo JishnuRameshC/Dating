@@ -10,7 +10,7 @@ app_name = 'dating'
 
 urlpatterns = [
 #     G1 accounts
-     path('', views.TestView, name='test'),
+     path('test', views.TestView, name='test'),
     #accounts
     
     
@@ -49,7 +49,7 @@ urlpatterns = [
     path('accept', views.accept, name='accept'),
     
 #     G3
-    path("selectgender/", SelectgenderView.as_view(), name="selectgender"),
+    path("", SelectgenderView.as_view(),name="selectgender"),
     path("error403/", Error403View.as_view(), name="error403"),
     path("error404/", Error404View.as_view(), name="error404"),
     path('home/', HomeView.as_view(), name='home'),
