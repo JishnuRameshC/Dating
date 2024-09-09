@@ -168,8 +168,7 @@ class ProfileviewView(LoginRequiredMixin,ListView):
     context_object_name = 'profile_views'
 
     def get_queryset(self):
-        
-        return ProfileView.objects.filter(viewer=self.request.user).order_by('-viewed_at')
+        return ProfileView.objects.filter(viewer=self.request.user).exclude(viewed_user=self.request.user).order_by('-viewed_at')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
