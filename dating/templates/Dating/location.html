@@ -20,7 +20,7 @@
     <main class="container mt-4">
         <section class="matches">
             <div class="row justify-content-center">
-                {% for user, score, distance in profiles %}
+                {% for user, score, distance,is_online in profiles %}
                     <div class="col-md-3 col-sm-6 d-flex justify-content-center">
                         <div class="match-card">
                             <!-- Display profile picture if available -->
@@ -34,7 +34,7 @@
                             <p>{{ user.personaldetails.city }}</p>
                             <p>{% if distance %}{{ distance|floatformat:2 }} km away{% else %}1 km{% endif %}</p>
                             <p>{{ user.personaldetails.qualifications }}</p>
-                            <div class="online-status"></div>
+                            {% if is_online %}<div class="online-status"></div>{% endif %}
                         </div>
                     </div>
                 {% empty %}

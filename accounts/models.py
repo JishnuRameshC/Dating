@@ -4,11 +4,16 @@ from django.db import models
 from geopy.geocoders import Nominatim
 from geopy.exc import GeocoderTimedOut
 from geopy.distance import geodesic
+from django.utils import timezone
+from datetime import timedelta
+
+
 
 class CustomUser(AbstractUser):
     
     email = models.EmailField(unique=True)
     mobile = models.CharField(max_length=15, unique=True, blank=True, null=True)
+    last_activity = models.DateTimeField(null=True, blank=True)  # Track last activity
     
     # Overriding fields for custom behavior
     USERNAME_FIELD = 'email'
@@ -25,6 +30,16 @@ class CustomUser(AbstractUser):
         blank=True,
     )
     
+
+    def update_last_activity(self):
+        self.last_activity = timezone.now()
+        self.save()
+
+    def is_online(self):
+        if self.last_activity:
+            return timezone.now() - self.last_activity <= timedelta(minutes=2)
+        return False
+
     
     def __str__(self):
         return self.username

@@ -8,6 +8,8 @@ import random
 from geopy.distance import geodesic
 from geopy.geocoders import Nominatim
 from geopy.exc import GeocoderTimedOut
+from datetime import timedelta
+from django.utils import timezone
 
 
 class SelectgenderView(TemplateView):
@@ -187,6 +189,11 @@ class HomeView(LoginRequiredMixin, TemplateView):
             if filter_designation and filter_designation != user_designation:
                 users = users.filter(jobprofile__designation=filter_designation)
 
+            # Add online status for each user
+            for user in users:
+                # If last activity is within the last 5 minutes, consider user as online
+                user.is_online = user.last_activity and timezone.now() - user.last_activity <= timedelta(minutes=5)
+
             context['users'] = users
             context['user_city'] = user_city
             context['user_qualification'] = user_qualification
@@ -282,7 +289,7 @@ class QualificationView(TemplateView):
             personaldetails__qualifications=logged_in_user_details.qualifications
         ).exclude(id=logged_in_user.id)
 
-        # Prepare the list of matches with scores and distances
+        # Prepare the list of matches with scores, distances, and online status
         matches = []
         for profile in similar_profiles:
             try:
@@ -301,9 +308,10 @@ class QualificationView(TemplateView):
                 else:
                     distance = None
 
-                
+                # Determine if the user is online
+                is_online = profile.is_online()
 
-                matches.append((profile, match_score, distance))
+                matches.append((profile, match_score, distance, is_online))
             except PersonalDetails.DoesNotExist:
                 continue
 
@@ -315,7 +323,6 @@ class QualificationView(TemplateView):
         return context
 
     def get_coordinates(self, address, geolocator):
-    
         if address and address.address_line_3:
             try:
                 location = geolocator.geocode(address.address_line_3)
@@ -342,7 +349,6 @@ class LocationView(TemplateView):
         user_address = Address.objects.filter(user=user, is_default=True).first()
         if user_address:
             user_city = user_address.city
-            # Get the coordinates of the logged-in user's address
             user_coords = self.get_coordinates(user_address, geolocator)
         else:
             user_city = None
@@ -352,7 +358,7 @@ class LocationView(TemplateView):
             # Filter profiles based on the same city
             profiles_in_city = CustomUser.objects.filter(address__city=user_city).exclude(id=user.id)
 
-            # Prepare the list of matches with scores and distances
+            # Prepare the list of matches with scores, distances, and online status
             matches = []
             try:
                 user_personal_details = user.personaldetails
@@ -363,8 +369,6 @@ class LocationView(TemplateView):
                 try:
                     profile_personal_details = profile.personaldetails
                     profile_address = profile.address_set.filter(is_default=True).first()
-
-                    # Get coordinates of the profile's address
                     profile_coords = self.get_coordinates(profile_address, geolocator)
 
                     # Calculate match score
@@ -376,21 +380,20 @@ class LocationView(TemplateView):
                     # Calculate distance
                     if user_coords and profile_coords:
                         distance = geodesic(user_coords, profile_coords).km
-                        if distance == 0:
-                            distance = None  # Set to None if the distance is 0 km (same location)
                     else:
                         distance = None
 
-                    matches.append((profile, match_score, distance))
+                    # Determine if the user is online
+                    is_online = profile.is_online()
+
+                    matches.append((profile, match_score, distance, is_online))
                 except PersonalDetails.DoesNotExist:
                     continue
 
             # Sort matches by score in descending order
             matches.sort(key=lambda x: x[1], reverse=True)
-
             context['profiles'] = matches
         else:
-            # If the user doesn't have a city in their address, return an empty queryset
             context['profiles'] = []
 
         return context
@@ -400,12 +403,11 @@ class LocationView(TemplateView):
             try:
                 location = geolocator.geocode(address.address_line_3)
                 if location:
-                    print(f"Coordinates for {address.address_line_3}: {location.latitude}, {location.longitude}")
                     return (location.latitude, location.longitude)
             except GeocoderTimedOut:
                 print(f"GeocoderTimedOut for address: {address.address_line_3}")
-        print(f"Coordinates not found for address: {address.address_line_3}")
         return None
+
 
 class DesignationView(TemplateView):
     template_name = 'Dating/designation.html'
@@ -427,31 +429,27 @@ class DesignationView(TemplateView):
         # Filter profiles with the same designation, excluding the logged-in user
         same_designation_profiles = JobProfile.objects.filter(designation=user_profile.designation).exclude(user=self.request.user)
 
-        # Prepare the list of matches with scores and distances
+        # Prepare the list of matches with scores, distances, and online status
         matches = []
         for profile in same_designation_profiles:
             try:
-                # Get the personal details of the profile user
                 user_personal_details = profile.user.personaldetails
                 current_user_personal_details = self.request.user.personaldetails
 
-                # Get the profile's default address and coordinates
                 profile_address = Address.objects.filter(user=profile.user, is_default=True).first()
                 profile_coords = self.get_coordinates(profile_address, geolocator)
 
-                # Calculate match score
                 match_score = current_user_personal_details.calculate_match_score(user_personal_details)
 
-                # Calculate distance
                 if user_coords and profile_coords:
                     distance = geodesic(user_coords, profile_coords).km
-                    if distance == 0:
-                        distance = None  # Set to None if the distance is 0 km (same location)
                 else:
                     distance = None
 
-                # Append the match details
-                matches.append((profile.user, match_score, distance))
+                # Determine if the user is online
+                is_online = profile.user.is_online()
+
+                matches.append((profile.user, match_score, distance, is_online))
 
             except PersonalDetails.DoesNotExist:
                 continue
@@ -496,7 +494,7 @@ class MatchView(LoginRequiredMixin, ListView):
         user_coords = self.get_coordinates(user_address, geolocator) if user_address else None
 
         matches = []
-        
+
         for other_user_details in PersonalDetails.objects.exclude(user=user_details.user):
             # Get the other user's default address and coordinates
             other_user_address = Address.objects.filter(user=other_user_details.user, is_default=True).first()
@@ -511,9 +509,12 @@ class MatchView(LoginRequiredMixin, ListView):
             else:
                 distance = None  # If coordinates are unavailable
 
+            # Check if the user is online
+            is_online = other_user_details.user.is_online()
+
             # Only add matches with a score above 50
             if match_score > 50:
-                matches.append((other_user_details.user, match_score, distance))
+                matches.append((other_user_details.user, match_score, distance, is_online))
 
         # Sort by highest match score
         matches.sort(key=lambda x: x[1], reverse=True)

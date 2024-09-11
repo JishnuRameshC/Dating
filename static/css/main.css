@@ -916,17 +916,21 @@ header {
 }
 
 .prof-card {
-    position: relative;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    background-color: #ffffff;
-    width: 100%;
-    aspect-ratio: 1;
-    height: 0;
-    padding-bottom: 100%;
-    position: relative;
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  background-color: #ffffff;
+  width: 100%;
+  aspect-ratio: 1;
+  height: 0;
+  padding-bottom: 100%;
+  display: block; /* Ensures it is a block element by default */
+}
+
+.prof-card.d-none {
+  display: none;
 }
 
 .prof-card img {

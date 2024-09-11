@@ -76,7 +76,13 @@
                         No Address Available
                     {% endfor %}
                 </div>
-                <div class="online-badge">Online</div>
+                <div class="online-badge">
+                    {% if user.is_online %}
+                    <span class="badge bg-success">Online</span>
+                    {% else %}
+                    <span class="badge bg-secondary">Offline</span>
+                    {% endif %}
+                </div>
                 <div class="action-buttons">
                     <button><i class="fas fa-heart"></i></button>
                     <button><i class="fas fa-comment"></i></button>
