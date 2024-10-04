@@ -171,11 +171,13 @@ class HomeView(LoginRequiredMixin, TemplateView):
                 user_qualification = user_details.qualifications
                 user_designation = self.request.user.jobprofile.designation
                 user_interest = user_details.interests  # Logged-in user's interest (M/F/B)
+                user_short_reel = user_details.short_reel
             except (PersonalDetails.DoesNotExist, JobProfile.DoesNotExist):
                 user_city = None
                 user_qualification = None
                 user_designation = None
                 user_interest = None
+                user_short_reel = None
 
             # Retrieve all users excluding superusers
             users = CustomUser.objects.exclude(is_superuser=True).exclude(pk=self.request.user.pk)  # Exclude the logged-in user
@@ -210,6 +212,7 @@ class HomeView(LoginRequiredMixin, TemplateView):
             context['user_city'] = user_city
             context['user_qualification'] = user_qualification
             context['user_designation'] = user_designation
+            context['user_short_reel'] = user_short_reel
 
         return context
     

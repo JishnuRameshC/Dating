@@ -13,8 +13,10 @@
             <div class="col-12">
                 <div class="d-flex overflow-auto">
                     <div class="story-sec me-3">
-                        <div class="story-image" data-bs-toggle="modal" data-bs-target="#storyModal" onclick="showStory('a1.jpg')">
-                            <img src="{% static 'images/a2.jpg' %}" alt="My Story" class="img-fluid">
+                        <div class="story-image" data-bs-toggle="modal" data-bs-target="#storyModal">
+                            {% if request.user.is_authenticated %}
+                            <img src="{{ request.user.profile_pic.url }}" alt="My Story" class="img-fluid">
+                            {% endif %}
                             <button class="add-story-btn">
                                 <i class="fas fa-plus"></i>
                             </button>
