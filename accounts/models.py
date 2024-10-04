@@ -231,3 +231,5 @@ class JobProfile(models.Model):
     def __str__(self):
         return f" {self.user.username}_{self.get_job_status_display()}"
     
+
+

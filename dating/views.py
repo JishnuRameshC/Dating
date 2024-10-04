@@ -154,6 +154,7 @@ class Error404View(TemplateView):
 
 
 
+
 class HomeView(LoginRequiredMixin, TemplateView):
     model = CustomUser
     template_name = 'Dating/home.html'
@@ -162,22 +163,33 @@ class HomeView(LoginRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        # Get current user's city, qualification, and designation if authenticated
         if self.request.user.is_authenticated:
             try:
-                address = self.request.user.address_set.first()
-                user_city = address.city if address else None
-                user_qualification = self.request.user.personaldetails.qualifications
-                user_designation = self.request.user.jobprofile.designation  # Accessing designation from JobProfile
+                # Get current user's personal details
+                user_details = self.request.user.personaldetails
+                user_city = self.request.user.address_set.first().city if self.request.user.address_set.exists() else None
+                user_qualification = user_details.qualifications
+                user_designation = self.request.user.jobprofile.designation
+                user_interest = user_details.interests  # Logged-in user's interest (M/F/B)
             except (PersonalDetails.DoesNotExist, JobProfile.DoesNotExist):
                 user_city = None
                 user_qualification = None
                 user_designation = None
+                user_interest = None
 
             # Retrieve all users excluding superusers
-            users = CustomUser.objects.exclude(is_superuser=True)
+            users = CustomUser.objects.exclude(is_superuser=True).exclude(pk=self.request.user.pk)  # Exclude the logged-in user
 
-            # Filter users based on selected filters
+            # Filter users based on the logged-in user's interest
+            if user_interest == 'M':
+                users = users.filter(personaldetails__gender='M')
+            elif user_interest == 'F':
+                users = users.filter(personaldetails__gender='F')
+            elif user_interest == 'B':
+                # If interested in both, don't filter by gender
+                pass
+
+            # Apply additional filters (if provided)
             filter_city = self.request.GET.get('filter_city', None)
             filter_qualification = self.request.GET.get('filter_qualification', None)
             filter_designation = self.request.GET.get('filter_designation', None)
@@ -191,9 +203,9 @@ class HomeView(LoginRequiredMixin, TemplateView):
 
             # Add online status for each user
             for user in users:
-                # If last activity is within the last 5 minutes, consider user as online
                 user.is_online = user.last_activity and timezone.now() - user.last_activity <= timedelta(minutes=5)
 
+            # Pass relevant data to the context
             context['users'] = users
             context['user_city'] = user_city
             context['user_qualification'] = user_qualification
@@ -271,10 +283,11 @@ class QualificationView(TemplateView):
         # Initialize geolocator
         geolocator = Nominatim(user_agent="your_app_name")
 
-        # Get the logged-in user's qualifications and address
+        # Get the logged-in user's qualifications, address, and interests
         try:
             logged_in_user_details = logged_in_user.personaldetails
             logged_in_user_address = logged_in_user.address_set.filter(is_default=True).first()
+            user_interest = logged_in_user_details.interests
 
             # Get coordinates of the logged-in user's address
             logged_in_user_coords = self.get_coordinates(logged_in_user_address, geolocator)
@@ -284,10 +297,21 @@ class QualificationView(TemplateView):
             context['matches'] = []
             return context
 
-        # Filter users with the same qualification as the logged-in user
-        similar_profiles = CustomUser.objects.filter(
-            personaldetails__qualifications=logged_in_user_details.qualifications
-        ).exclude(id=logged_in_user.id)
+        # Filter profiles based on the logged-in user's interests
+        if user_interest == 'M':
+            similar_profiles = CustomUser.objects.filter(
+                personaldetails__qualifications=logged_in_user_details.qualifications,
+                personaldetails__gender='M'
+            ).exclude(id=logged_in_user.id)
+        elif user_interest == 'F':
+            similar_profiles = CustomUser.objects.filter(
+                personaldetails__qualifications=logged_in_user_details.qualifications,
+                personaldetails__gender='F'
+            ).exclude(id=logged_in_user.id)
+        else:  # 'B' for both
+            similar_profiles = CustomUser.objects.filter(
+                personaldetails__qualifications=logged_in_user_details.qualifications
+            ).exclude(id=logged_in_user.id)
 
         # Prepare the list of matches with scores, distances, and online status
         matches = []
@@ -323,17 +347,14 @@ class QualificationView(TemplateView):
         return context
 
     def get_coordinates(self, address, geolocator):
-        if address and address.address_line_3:
+        if address:
             try:
-                location = geolocator.geocode(address.address_line_3)
+                location = geolocator.geocode(f"{address.city}, {address.state}, {address.country}")
                 if location:
-                    print(f"Coordinates for {address.address_line_3}: {location.latitude}, {location.longitude}")
                     return (location.latitude, location.longitude)
-            except GeocoderTimedOut:
-                print(f"GeocoderTimedOut for address: {address.address_line_3}")
-        print(f"Coordinates not found for address: {address.address_line_3}")
+            except:
+                return None
         return None
-    
 
 class LocationView(TemplateView):
     template_name = 'Dating/location.html'
@@ -345,7 +366,7 @@ class LocationView(TemplateView):
         # Initialize geolocator
         geolocator = Nominatim(user_agent="your_app_name")
 
-        # Get the city and coordinates of the logged-in user's address
+        # Get the logged-in user's address and city
         user_address = Address.objects.filter(user=user, is_default=True).first()
         if user_address:
             user_city = user_address.city
@@ -355,16 +376,28 @@ class LocationView(TemplateView):
             user_coords = None
 
         if user_city:
-            # Filter profiles based on the same city
-            profiles_in_city = CustomUser.objects.filter(address__city=user_city).exclude(id=user.id)
+            try:
+                # Get logged-in user's personal details and interest
+                user_personal_details = user.personaldetails
+                user_interest = user_personal_details.interests  # 'M', 'F', or 'B'
+            except PersonalDetails.DoesNotExist:
+                user_personal_details = None
+                user_interest = None
+
+            # Filter profiles based on the same city and logged-in user's interest
+            if user_interest == 'M':
+                profiles_in_city = CustomUser.objects.filter(
+                    address__city=user_city, personaldetails__gender='M'
+                ).exclude(id=user.id)
+            elif user_interest == 'F':
+                profiles_in_city = CustomUser.objects.filter(
+                    address__city=user_city, personaldetails__gender='F'
+                ).exclude(id=user.id)
+            else:  # 'B' for both
+                profiles_in_city = CustomUser.objects.filter(address__city=user_city).exclude(id=user.id)
 
             # Prepare the list of matches with scores, distances, and online status
             matches = []
-            try:
-                user_personal_details = user.personaldetails
-            except PersonalDetails.DoesNotExist:
-                user_personal_details = None
-
             for profile in profiles_in_city:
                 try:
                     profile_personal_details = profile.personaldetails
@@ -426,21 +459,45 @@ class DesignationView(TemplateView):
         else:
             user_coords = None
 
-        # Filter profiles with the same designation, excluding the logged-in user
-        same_designation_profiles = JobProfile.objects.filter(designation=user_profile.designation).exclude(user=self.request.user)
+        try:
+            # Get the logged-in user's personal details and interest
+            current_user_personal_details = self.request.user.personaldetails
+            user_interest = current_user_personal_details.interests  # 'M', 'F', or 'B'
+        except PersonalDetails.DoesNotExist:
+            current_user_personal_details = None
+            user_interest = None
+
+        # Filter profiles with the same designation and according to logged-in user's interest
+        if user_interest == 'M':
+            same_designation_profiles = JobProfile.objects.filter(
+                designation=user_profile.designation,
+                user__personaldetails__gender='M'
+            ).exclude(user=self.request.user)
+        elif user_interest == 'F':
+            same_designation_profiles = JobProfile.objects.filter(
+                designation=user_profile.designation,
+                user__personaldetails__gender='F'
+            ).exclude(user=self.request.user)
+        else:  # 'B' for both
+            same_designation_profiles = JobProfile.objects.filter(
+                designation=user_profile.designation
+            ).exclude(user=self.request.user)
 
         # Prepare the list of matches with scores, distances, and online status
         matches = []
         for profile in same_designation_profiles:
             try:
                 user_personal_details = profile.user.personaldetails
-                current_user_personal_details = self.request.user.personaldetails
-
                 profile_address = Address.objects.filter(user=profile.user, is_default=True).first()
                 profile_coords = self.get_coordinates(profile_address, geolocator)
 
-                match_score = current_user_personal_details.calculate_match_score(user_personal_details)
+                # Calculate match score
+                if current_user_personal_details:
+                    match_score = current_user_personal_details.calculate_match_score(user_personal_details)
+                else:
+                    match_score = None
 
+                # Calculate distance
                 if user_coords and profile_coords:
                     distance = geodesic(user_coords, profile_coords).km
                 else:
@@ -476,12 +533,14 @@ class MatchView(LoginRequiredMixin, ListView):
     context_object_name = 'matches'
 
     def get_queryset(self):
+        # Get the logged-in user's personal details
         try:
             user_details = self.request.user.personaldetails
         except PersonalDetails.DoesNotExist:
             # Handle the case where PersonalDetails for the logged-in user doesn't exist
             return []
 
+        # Find matching profiles based on the logged-in user's details
         matches = self.find_matching_profiles(user_details)
         return matches
 
@@ -495,28 +554,29 @@ class MatchView(LoginRequiredMixin, ListView):
 
         matches = []
 
+        # Iterate through other users' personal details and calculate matches
         for other_user_details in PersonalDetails.objects.exclude(user=user_details.user):
             # Get the other user's default address and coordinates
             other_user_address = Address.objects.filter(user=other_user_details.user, is_default=True).first()
             other_user_coords = self.get_coordinates(other_user_address, geolocator) if other_user_address else None
 
-            # Calculate match score
+            # Calculate match score between logged-in user and other user
             match_score = user_details.calculate_match_score(other_user_details)
 
-            # Calculate distance
+            # Calculate distance between logged-in user and other user, if coordinates are available
             if user_coords and other_user_coords:
                 distance = geodesic(user_coords, other_user_coords).km
             else:
                 distance = None  # If coordinates are unavailable
 
-            # Check if the user is online
+            # Check if the other user is online
             is_online = other_user_details.user.is_online()
 
             # Only add matches with a score above 50
             if match_score > 50:
                 matches.append((other_user_details.user, match_score, distance, is_online))
 
-        # Sort by highest match score
+        # Sort the matches by match score in descending order
         matches.sort(key=lambda x: x[1], reverse=True)
 
         return matches
@@ -524,6 +584,7 @@ class MatchView(LoginRequiredMixin, ListView):
     def get_coordinates(self, address, geolocator):
         if address and address.address_line_3:
             try:
+                # Get the latitude and longitude from the geolocator
                 location = geolocator.geocode(address.address_line_3)
                 if location:
                     return (location.latitude, location.longitude)
@@ -543,12 +604,30 @@ class SpinView(TemplateView):
 
 class RandomProfileView(View):
     def get(self, request, *args, **kwargs):
-        profiles = PersonalDetails.objects.all()
+        # Get the logged-in user's details
+        user_details = PersonalDetails.objects.get(user=request.user)
+        
+        # Filter profiles based on the logged-in user's interest
+        if user_details.interests == 'M':
+            # User is interested in males, filter profiles for male users
+            profiles = PersonalDetails.objects.exclude(user=request.user).filter(gender='M')
+        elif user_details.interests == 'F':
+            # User is interested in females, filter profiles for female users
+            profiles = PersonalDetails.objects.exclude(user=request.user).filter(gender='F')
+        else:
+            # User is interested in both genders, no additional gender filter
+            profiles = PersonalDetails.objects.exclude(user=request.user)
+
         if profiles.exists():
+            # Select a random profile based on filtered criteria
             random_profile = random.choice(profiles)
+            
+            # Calculate the distance between the logged-in user and the random profile
+            distance = user_details.calculate_distance(random_profile)
+
             profile_data = {
                 'name': f'{random_profile.user.username} - {random_profile.get_age()}',
-                'distance': '1 km near you',
+                'distance': f'{distance:.2f} km near you' if distance is not None else 'Distance not available',
             }
 
             if random_profile.profile_pic:
