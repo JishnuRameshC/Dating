@@ -1,5 +1,7 @@
 from django.shortcuts import render
-from django.views.generic import View, TemplateView
+from django.views.generic import View,TemplateView
+
+
 
 
 class SelectgenderView(TemplateView):
@@ -171,3 +173,86 @@ class SpinView(TemplateView):
     template_name = 'Dating/spin.html'
 
 
+from django.shortcuts import render, get_object_or_404, redirect
+from django.http import HttpResponse
+from django.views.generic import ListView, DetailView, CreateView
+from django.urls import reverse_lazy
+from .models import Story, Comment, FriendRequest, Shortlist, ProfileView
+from accounts.models import CustomUser
+
+# View for the Accept page
+def accept_view(request):
+    return render(request, 'your_template_name.html')  # Replace with actual template name
+
+# Story List View
+class StoryListView(ListView):
+    model = Story
+    template_name = 'story_list.html'
+    context_object_name = 'stories'
+
+# Story Detail View (with comments)
+class StoryDetailView(DetailView):
+    model = Story
+    template_name = 'story_detail.html'
+    context_object_name = 'story'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['comments'] = Comment.objects.filter(story=self.get_object())
+        return context
+
+# Story Create View
+class StoryCreateView(CreateView):
+    model = Story
+    fields = ['caption']
+    template_name = 'story_form.html'
+    success_url = reverse_lazy('story_list')
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+# Add a comment to a story
+def add_comment(request, story_id):
+    story = get_object_or_404(Story, id=story_id)
+    if request.method == 'POST':
+        text = request.POST.get('text')
+        if text:
+            Comment.objects.create(story=story, user=request.user, text=text)
+            return redirect('story_detail', pk=story.id)
+    return redirect('story_detail', pk=story.id)
+
+# Send Friend Request
+def send_friend_request(request, user_id):
+    receiver = get_object_or_404(CustomUser, id=user_id)
+    FriendRequest.objects.create(sender=request.user, receiver=receiver, status='sent')
+    return redirect('user_profile', pk=user_id)
+
+# Accept Friend Request
+def accept_friend_request(request, request_id):
+    friend_request = get_object_or_404(FriendRequest, id=request_id)
+    if request.user == friend_request.receiver:
+        friend_request.status = 'accepted'
+        friend_request.save()
+    return redirect('friend_requests')
+
+# Shortlist a User
+def shortlist_user(request, user_id):
+    shortlisted_user = get_object_or_404(CustomUser, id=user_id)
+    Shortlist.objects.create(user=request.user, shortlisted_user=shortlisted_user)
+    return redirect('shortlist')
+
+# View Profile View List
+class ProfileViewListView(ListView):
+    model = ProfileView
+    template_name = 'profile_view_list.html'
+    context_object_name = 'profile_views'
+
+    def get_queryset(self):
+        return ProfileView.objects.filter(viewed_user=self.request.user)
+
+# Create a new Profile View
+def create_profile_view(request, user_id):
+    viewed_user = get_object_or_404(CustomUser, id=user_id)
+    ProfileView.objects.create(viewer=request.user, viewed_user=viewed_user)
+    return redirect('profile', pk=user_id)

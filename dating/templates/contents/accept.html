@@ -6,176 +6,81 @@
 
 {% block style %}
   <style>
-    body{
+    body {
       background-color: var(--primary-color);
     }
-    .top-heading{
+
+    .top-heading {
       color: white;
     }
 
-    h1{
-      color:white;
-      text align:center;
+    h1 {
+      color: white;
+      text-align: center;
       display: flex;
-  justify-content: center;
-  align-items: center;
-}
+      justify-content: center;
+      align-items: center;
+    }
+
+    .profile-pic {
+      border-radius: 50%;
+    }
+
+    .item-content {
+      display: flex;
+      align-items: center;
+    }
+
+    .name-status {
+      margin-left: 10px;
+    }
+
+    .action-icons {
+      margin-left: auto;
+      display: flex;
+      gap: 10px;
+    }
+
+    .phone-btn, .video-btn {
+      background: none;
+      border: none;
+      color: var(--primary-color);
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    .phone-btn:hover, .video-btn:hover {
+      color: var(--secondary-color);
+    }
   </style>
-{% endblock style %}
+{% endblock %}
 
 {% block content %}
 <h1 class="settings-text top-navbar">Accept</h1>
-  <div class="row d-flex justify-content-center" id="contents">
-    <div class="col-12 col-md-10 col-lg-8 top-rounded-white-box contents">
-      <div class="list-group">
-        <div class="list-group-item">
-          <div class="item-content">
-            <img src="https://via.placeholder.com/50" alt="Profile Picture" class="profile-pic"/>
-            <div class="name-status">
-              <div class="name">Team align</div>
-              <div class="date-time">Today, 09:30 AM</div>
-            </div>
-          </div>
-          <div class="action-icons">
-            <button class="phone-btn"><i class="bi bi-telephone"></i></button>
-            <button class="video-btn"><i class="bi bi-camera-video"></i></button>
+<div class="row d-flex justify-content-center" id="contents">
+  <div class="col-12 col-md-10 col-lg-8 top-rounded-white-box contents">
+    <div class="list-group">
+      <!-- Loop over users from context -->
+      {% for user in users %}
+      <div class="list-group-item">
+        <div class="item-content">
+          <img src="{{ user.profile_pic }}" alt="Profile Picture" class="profile-pic"/>
+          <div class="name-status">
+            <div class="name">{{ user.name }}</div>
+            <div class="date-time">{{ user.date_time }}</div>
           </div>
         </div>
-        <div class="list-group-item">
-          <div class="item-content">
-            <img src="https://via.placeholder.com/50" alt="Profile Picture" class="profile-pic"/>
-            <div class="name-status">
-              <div class="name">sabila sayma</div>
-              <div class="date-time">yesterday, 07:35 AM</div>
-            </div>
-          </div>
-          <div class="action-icons">
-            <button class="phone-btn"><i class="bi bi-telephone"></i></button>
-            <button class="video-btn"><i class="bi bi-camera-video"></i></button>
-          </div>
+        <div class="action-icons">
+          <button class="phone-btn"><i class="bi bi-telephone"></i></button>
+          <button class="video-btn"><i class="bi bi-camera-video"></i></button>
         </div>
-        <div class="list-group-item">
-          <div class="item-content">
-            <img src="https://via.placeholder.com/50" alt="Profile Picture" class="profile-pic"/>
-            <div class="name-status">
-              <div class="name">alex linderson</div>
-              <div class="date-time">Monday, 09:30 AM</div>
-            </div>
-          </div>
-          <div class="action-icons">
-            <button class="phone-btn"><i class="bi bi-telephone"></i></button>
-            <button class="video-btn"><i class="bi bi-camera-video"></i></button>
-          </div>
-        </div>
-        <div class="list-group-item">
-          <div class="item-content">
-            <img src="https://via.placeholder.com/50" alt="Profile Picture" class="profile-pic"/>
-            <div class="name-status">
-              <div class="name">john Abraham</div>
-              <div class="date-time">03/07/22, 07:30 AM</div>
-            </div>
-          </div>
-          <div class="action-icons">
-            <button class="phone-btn"><i class="bi bi-telephone"></i></button>
-            <button class="video-btn"><i class="bi bi-camera-video"></i></button>
-          </div>
-        </div>
-        <div class="list-group-item">
-          <div class="item-content">
-            <img src="https://via.placeholder.com/50" alt="Profile Picture" class="profile-pic"/>
-            <div class="name-status">
-              <div class="name">Jhon Abraham</div>
-              <div class="date-time">Today, 07:30 AM</div>
-            </div>
-          </div>
-          <div class="action-icons">
-            <button class="phone-btn"><i class="bi bi-telephone"></i></button>
-            <button class="video-btn"><i class="bi bi-camera-video"></i></button>
-          </div>
-        </div>
-        <div class="list-group-item">
-          <div class="item-content">
-            <img src="https://via.placeholder.com/50" alt="Profile Picture" class="profile-pic"/>
-            <div class="name-status">
-              <div class="name">john borino</div>
-              <div class="date-time">Monday, 09:30 AM</div>
-            </div>
-          </div>
-          <div class="action-icons">
-            <button class="phone-btn"><i class="bi bi-telephone"></i></button>
-            <button class="video-btn"><i class="bi bi-camera-video"></i></button>
-          </div>
-        </div>
-        <div class="list-group-item">
-          <div class="item-content">
-            <img src="https://via.placeholder.com/50" alt="Profile Picture" class="profile-pic"/>
-            <div class="name-status">
-              <div class="name">Jhon Abraham</div>
-              <div class="date-time">Today, 07:30 AM</div>
-            </div>
-          </div>
-          <div class="action-icons">
-            <button class="phone-btn"><i class="bi bi-telephone"></i></button>
-            <button class="video-btn"><i class="bi bi-camera-video"></i></button>
-          </div>
-        </div>
-        <div class="list-group-item">
-          <div class="item-content">
-            <img src="https://via.placeholder.com/50" alt="Profile Picture" class="profile-pic"/>
-            <div class="name-status">
-              <div class="name">Jhon Abraham</div>
-              <div class="date-time">Today, 07:30 AM</div>
-            </div>
-          </div>
-          <div class="action-icons">
-            <button class="phone-btn"><i class="bi bi-telephone"></i></button>
-            <button class="video-btn"><i class="bi bi-camera-video"></i></button>
-          </div>
-        </div>
-        <div class="list-group-item">
-          <div class="item-content">
-            <img src="https://via.placeholder.com/50" alt="Profile Picture" class="profile-pic"/>
-            <div class="name-status">
-              <div class="name">Jhon Abraham</div>
-              <div class="date-time">Today, 07:30 AM</div>
-            </div>
-          </div>
-          <div class="action-icons">
-            <button class="phone-btn"><i class="bi bi-telephone"></i></button>
-            <button class="video-btn"><i class="bi bi-camera-video"></i></button>
-          </div>
-        </div>
-        <div class="list-group-item">
-          <div class="item-content">
-            <img src="https://via.placeholder.com/50" alt="Profile Picture" class="profile-pic"/>
-            <div class="name-status">
-              <div class="name">Jhon Abraham</div>
-              <div class="date-time">Today, 07:30 AM</div>
-            </div>
-          </div>
-          <div class="action-icons">
-            <button class="phone-btn"><i class="bi bi-telephone"></i></button>
-            <button class="video-btn"><i class="bi bi-camera-video"></i></button>
-          </div>
-        </div>
-        <div class="list-group-item">
-          <div class="item-content">
-            <img src="https://via.placeholder.com/50" alt="Profile Picture" class="profile-pic"/>
-            <div class="name-status">
-              <div class="name">Team align</div>
-              <div class="date-time">Today, 07:30 AM</div>
-            </div>
-          </div>
-          <div class="action-icons">
-            <button class="phone-btn"><i class="bi bi-telephone"></i></button>
-            <button class="video-btn"><i class="bi bi-camera-video"></i></button>
-          </div>
-        </div>
-        <!-- Add more list-group-item divs as needed -->
       </div>
+      {% endfor %}
     </div>
   </div>
+</div>
 {% endblock %}
 
 {% block scripts %}
+<!-- Add any additional scripts here -->
 {% endblock %}
