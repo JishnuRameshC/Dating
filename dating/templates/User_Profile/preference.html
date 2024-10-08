@@ -1,22 +1,23 @@
-
 {% extends "shared/base.html" %}
 {% block content %}
 <div class="container-fluid">
     <div class="row justify-content-center">
-        <div class="col-md-8 ">
+        <div class="col-md-8">
             <div class="top-navbar-ps">
-                <div class="search-icon-container">
-                    <i class="fas fa-search"></i>
-                    <!-- The search icon -->
-                  </div>
-                <h1 class="settings-text-ps">Privacy & Settings</h1>
+                <h1 class="settings-text-ps">Partner Preference</h1>
             </div>
             <div class="main-content-ps">
-                <h2 class="section-title text-center">Partner Preference</h2>
-                <form>
+                <h2 class="section-title text-center">Partner Preferences</h2>
+
+                <!-- Filter Form -->
+                <form method="post" action="{% url 'dating:filter_preferences' %}">
+                    {% csrf_token %}
+                    <!-- Age Slider -->
                     <div class="form-group-ps">
                         <label for="age">Age</label>
                         <div id="age-slider"></div>
+                        <input type="hidden" id="age_min" name="age_min" value="18">
+                        <input type="hidden" id="age_max" name="age_max" value="35">
                         <div class="slider-label-ps">
                             <span>18</span>
                             <span id="ageValue">18-35</span>
@@ -24,93 +25,44 @@
                         </div>
                     </div>
 
+                    <!-- Gender Selection -->
                     <div class="form-group-ps">
                         <label for="gender">Gender</label>
-                        <select id="gender" class="form-control">
+                        <select id="gender" name="gender" class="form-control">
                             <option value="any">Any</option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                            <option value="non-binary">Non-binary</option>
+                            <option value="M">Male</option>
+                            <option value="F">Female</option>
+                            <option value="O">Others</option>
                         </select>
                     </div>
 
+                    <!-- Location Input -->
                     <div class="form-group-ps">
                         <label for="locations">Locations</label>
-                        <input type="text" id="locationInput" placeholder="Enter a location" class="form-control">
-                        <button type="button" class="btn btn-primary btn-sm mt-2" onclick="addTag('location')">Add Location</button>
-                        <div id="locationTags" class="tags-ps mt-2">
-                            <span class="tag-ps">Kochi</span>
-                            <span class="tag-ps">Kollam</span>
-                            <span class="tag-ps">Aluva</span>
-                        </div>
+                        <input type="text" name="location" id="locationInput" placeholder="Enter a location" class="form-control">
                     </div>
 
+                    <!-- Hobbies Input -->
                     <div class="form-group-ps">
-                        <label for="interests">Interest & Hobbies</label>
-                        <input type="text" id="hobbyInput" placeholder="Enter a hobby or interest" class="form-control">
-                        <button type="button" class="btn btn-primary btn-sm mt-2" onclick="addTag('hobby')">Add Hobby</button>
-                        <div id="hobbyTags" class="tags-ps mt-2">
-                            <span class="tag-ps">yoga</span>
-                            <span class="tag-ps">jazz</span>
-                            <span class="tag-ps">reading</span>
-                        </div>
+                        <label for="hobbies">Hobbies</label>
+                        <input type="text" name="hobbies" id="hobbyInput" placeholder="Enter a hobby or interest" class="form-control">
                     </div>
 
+                    <!-- Occupation -->
                     <div class="form-group-ps">
-                        <label for="relationship-goals">Relationship Goals</label>
-                        <select id="relationship-goals" class="form-control">
+                        <label for="occupation">Occupation</label>
+                        <select name="occupation" class="form-control">
                             <option value="any">Any</option>
-                            <option value="casual">Casual Dating</option>
-                            <option value="long-term">Long-term Relationship</option>
-                            <option value="marriage">Marriage</option>
-                            <option value="friendship">Friendship</option>
+                            <option value="student">Student</option>
+                            <option value="professional">Professional</option>
+                            <!-- Add other options here -->
                         </select>
                     </div>
 
-                    <div class="form-group-ps">
-                        <label for="education-level">Education Level</label>
-                        <select id="education-level" class="form-control">
-                            <option value="any">Any</option>
-                            <option value="high-school">High School</option>
-                            <option value="bachelors">Bachelor's Degree</option>
-                            <option value="masters">Master's Degree</option>
-                            <option value="phd">PhD</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group-ps">
-                        <label for="height">Height (cm)</label>
-                        <input type="range" id="height" min="100" max="220" value="170" class="form-control-range">
-                        <div class="slider-label-ps">
-                            <span>100</span>
-                            <span id="heightValue">170 cm</span>
-                            <span>220</span>
-                        </div>
-                    </div>
-
-                    <div class="form-group-ps">
-                        <label for="weight">Weight (kg)</label>
-                        <input type="range" id="weight" min="40" max="150" value="70" class="form-control-range">
-                        <div class="slider-label-ps">
-                            <span>40</span>
-                            <span id="weightValue">70 kg</span>
-                            <span>150</span>
-                        </div>
-                    </div>
-
-                    <div class="form-group-ps">
-                        <label for="lifestyle-choices">Lifestyle Choices</label>
-                        <select id="lifestyle-choices" class="form-control">
-                            <option value="any">Any</option>
-                            <option value="active">Active</option>
-                            <option value="homebody">Homebody</option>
-                            <option value="party">Party-goer</option>
-                            <option value="traveler">Traveler</option>
-                        </select>
-                    </div>
+                    <!-- Religion -->
                     <div class="form-group-ps">
                         <label for="religion">Religion</label>
-                        <select id="religion" class="form-control">
+                        <select name="religion" class="form-control">
                             <option value="any">Any</option>
                             <option value="christianity">Christianity</option>
                             <option value="islam">Islam</option>
@@ -118,31 +70,23 @@
                             <option value="buddhism">Buddhism</option>
                             <option value="judaism">Judaism</option>
                             <option value="atheism">Atheism</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                    <div class="form-group-ps">
-                        <label for="occupation">Occupation</label>
-                        <select id="occupation" class="form-control">
-                            <option value="any">Value</option>
-                            <option value="student">Student</option>
-                            <option value="professional">Professional</option>
-                            <option value="entrepreneur">Entrepreneur</option>
-                            <option value="artist">Artist</option>
-                            <option value="teacher">Teacher</option>
-                            <option value="healthcare">Healthcare Worker</option>
-                            <option value="other">Other</option>
                         </select>
                     </div>
 
+                    <!-- Submit button -->
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-sm mt-2">Apply Filters</button>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
 {% endblock %}
+
 {% block script %}
 <script>
+    // Age Slider Configuration
     var ageSlider = document.getElementById('age-slider');
     noUiSlider.create(ageSlider, {
         start: [18, 35],
@@ -162,27 +106,8 @@
     });
     ageSlider.noUiSlider.on('update', function (values, handle) {
         document.getElementById('ageValue').textContent = values.join(' - ');
-    });
-
-    function addTag(type) {
-        const input = document.getElementById(type + 'Input');
-        const tagsContainer = document.getElementById(type + 'Tags');
-        if (input.value.trim() !== '') {
-            const tag = document.createElement('span');
-            tag.className = 'tag-ps';
-            tag.textContent = input.value.trim();
-            tag.onclick = function () { this.remove(); };
-            tagsContainer.appendChild(tag);
-            input.value = '';
-        }
-    }
-
-    document.getElementById('height').addEventListener('input', function () {
-        document.getElementById('heightValue').textContent = this.value + ' cm';
-    });
-
-    document.getElementById('weight').addEventListener('input', function () {
-        document.getElementById('weightValue').textContent = this.value + ' kg';
+        document.getElementById('age_min').value = values[0];
+        document.getElementById('age_max').value = values[1];
     });
 </script>
-{% endblock script %}
+{% endblock %}

@@ -79,22 +79,35 @@
 <div class="custom-container">
     <div class="form-container">
         <h3 class="text-center mb-3">Relationship Goals</h3>
-        <form>
-            
+        <form method="POST">
+            {% csrf_token %}
             <label class="form-label">Relationship Types</label>
             <div class="relationship-types">
                 <label class="relationship-type">
-                    <input type="checkbox" name="relationship" value="long-term"> Long-term Relationship
+                    <input type="checkbox" name="relationship_goals" value="long_term"> Long-term Relationship
                 </label>
                 <label class="relationship-type">
-                    <input type="checkbox" name="relationship" value="short-term"> Short-term Relationship
+                    <input type="checkbox" name="relationship_goals" value="short_term"> Short-term Relationship
                 </label>
             </div>
             
             <button type="submit">Submit</button>
         </form>
-        <a href="{% url 'accounts:interest' %}">interest -> </a>
 
     </div>
 </div>
+<script>
+    // JavaScript to ensure only one checkbox is selected at a time
+    const checkboxes = document.querySelectorAll('.relationship-types input[type="checkbox"]');
+
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            if (this.checked) {
+                checkboxes.forEach(box => {
+                    if (box !== this) box.checked = false;
+                });
+            }
+        });
+    });
+</script>
     {% endblock content %}

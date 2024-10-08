@@ -1,79 +1,71 @@
 {% extends "shared/base.html" %}
+{% load widget_tweaks %}
 {% block content %}
 <div class="container-fluid">
     <div class="row justify-content-center">
-        <div class="col-md-6 ">
-          <!-- main-content-fil -->
+        <div class="col-md-6 col-sm-10">
+            <!-- top-navbar-fil -->
             <div class="top-navbar-fil">
                 <h1 class="settings-text-fil">Filter</h1>
             </div>
+
+            <!-- main-content-fil -->
             <div class="main-content-fil">
                 <h3>Sort By</h3>
-                <div class="list-group-fil">
-                    <div class="list-group-item-fil">
-                        <span>Newest Members</span>
-                        <i class="bi bi-check"></i>
+                <form method="post" action="{% url 'dating:filter_preferences' %}">
+                    {% csrf_token %}
+                    
+                    <!-- Sort By Dropdown -->
+                    <div class="form-group">
+                        {{ form.sort_by|add_class:"form-control" }}
                     </div>
-                    <div class="list-group-item-fil">
-                        <span>Last Active</span>
-                        <i class="bi bi-check"></i>
-                    </div>
-                    <div class="list-group-item-fil">
-                        <span>Distance</span>
-                        <i class="bi bi-check"></i>
-                    </div>
-                    <div class="list-group-item-fil">
-                        <span>Popularity</span>
-                        <i class="bi bi-check"></i>
-                    </div>
-                    <div class="list-group-item-fil">
-                        <span>Age</span>
-                        <i class="bi bi-check"></i>
-                    </div>
-                </div>
 
-                <h3 class="mt-4">Filter By</h3>
-                <div class="list-group-fil">
-                    <div class="list-group-item-fil">
-                        <span>Gender</span>
-                        <i class="bi bi-check"></i>
-                    </div>
-                    <div class="list-group-item-fil">
-                        <span>Location</span>
-                        <i class="bi bi-check"></i>
-                    </div>
-                    <div class="list-group-item-fil">
-                        <span>Interests/Hobbies</span>
-                        <i class="bi bi-check"></i>
-                    </div>
-                    <div class="list-group-item-fil">
-                        <span>Languages Spoken</span>
-                        <i class="bi bi-check"></i>
-                    </div>
-                    <div class="list-group-item-fil">
-                        <span>Relationship Goals</span>
-                        <i class="bi bi-check"></i>
-                    </div>
-                </div>
+                    <h3 class="mt-4">Filter By</h3>
 
-                <div class="d-flex justify-content-between mt-4">
-                    <button class="btn btn-custom-fil cancel-btn-fil">Cancel</button>
-                    <button class="btn btn-custom-fil apply-btn-fil">Apply</button>
-                </div>
+                    <!-- Gender Filter -->
+                    <div class="form-group">
+                        <label for="gender">Gender</label>
+                        {{ form.gender|add_class:"form-control" }}
+                    </div>
+
+                    <!-- Location Filter with Icon -->
+                    <div class="form-group">
+                        <label for="location">Location</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                            </div>
+                            {{ form.location|add_class:"form-control" }}
+                        </div>
+                        <small class="form-text">Enter multiple locations separated by commas (e.g., New York, Los Angeles)</small>
+                    </div>
+
+                    <!-- Hobbies Filter -->
+                    <div class="form-group">
+                        <label for="hobbies">Interests/Hobbies</label>
+                        {{ form.hobbies|add_class:"form-control" }}
+                    </div>
+
+                    <!-- Languages Spoken Filter -->
+                    <div class="form-group">
+                        <label for="languages_spoken">Languages Spoken</label>
+                        {{ form.languages_spoken|add_class:"form-control" }}
+                    </div>
+
+                    <!-- Relationship Goals Filter -->
+                    <div class="form-group">
+                        <label for="relationship_goals">Relationship Goals</label>
+                        {{ form.relationship_goals|add_class:"form-control" }}
+                    </div>
+
+                    <!-- Buttons -->
+                    <div class="d-flex justify-content-between mt-4">
+                        <button type="submit" class="btn btn-custom-fil apply-btn-fil">Apply</button>
+                        <a href="#" class="btn btn-custom-fil cancel-btn-fil">Cancel</a>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </div>
 {% endblock %}
-{% block script  %}
-<script>
-  $(document).ready(function() {
-        $('.list-group-item-fil').on('click', function() {
-            $(this).toggleClass('active');
-            $(this).find('i').toggle();
-        });
-        
-        $('.list-group-item-fil i').hide(); // Initially hide all checkmarks
-      });
-    </script>  
-{% endblock  %}

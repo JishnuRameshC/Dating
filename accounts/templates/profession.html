@@ -75,23 +75,24 @@
 
     <div class="form-container">
         <h3 class="text-center mb-3">Job Details</h3>
-        <form>
+        <form method="POST">
+            {% csrf_token %}
             <label for="profession" class="form-label">Profession Title</label>
-            <input type="text" id="profession" name="profession" required>
+            <input type="text" id="profession" name="job_title" required>
             
             <label class="form-label">Skill Level</label>
             <div class="skill-level" >
-                <input type="radio" id="beginner" name="skill" value="beginner" required>
+                <input type="radio" id="beginner" name="expertise_level" value="beginner" required>
                 <label for="beginner">Beginner</label>
                 
-                <input type="radio" id="intermediate" name="skill" value="intermediate">
+                <input type="radio" id="intermediate" name="expertise_level" value="intermediate">
                 <label for="intermediate">Intermediate</label>
                 
-                <input type="radio" id="expert" name="skill" value="expert">
+                <input type="radio" id="expert" name="expertise_level" value="expert">
                 <label for="expert">Expert</label>
             </div>
             
-            <a href=""><button type="submit" class="btn btn-custom btn-primary-custom mb-2 mt-1 w-100 bg-black text-light">Next</button></a>
+            <button type="submit" class="btn btn-custom btn-primary-custom mb-2 mt-1 w-100 bg-black text-light">Next</button>
         
         </form>
         

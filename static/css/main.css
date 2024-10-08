@@ -342,6 +342,12 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    width: 100%;
+    max-width: 300px;
+    top: 30px;
+    margin: 10px;
+    
+    
 }
 #discovery .profile-card-for-image img {
     position: absolute;
@@ -736,124 +742,131 @@ margin-right: 5px; /* Reduced margin for less gap */
 /* id="dating-secton-5pages" */
 /* style for qualification, location, designation, matches, upgrade page (#Dating)*/
 
+/* updated for show filtered users in matches */
+
 #dating-secton-5pages .header-icon-filter {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-    background-color: #ffffff;
-    margin-bottom: 70px;
-    height: 70px;
-}
-#dating-secton-5pages .header-icon-filter .icon-button {
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-}
-#dating-secton-5pages .header-icon-filter .icon {
-    font-size: 20px;
-    cursor: pointer;
-}
-#dating-secton-5pages .header-icon-filter .title {
-    font-size: 1.25rem;
-    font-weight: 500;
-}
-#dating-secton-5pages .match-card {
-    width: 350px; /* Set a fixed width */
-    height: 350px; /* Set a fixed height */
-    background-color: transparent;
-    border-radius: 10px;
-    overflow: hidden;
-    position: relative;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    margin: 20px auto; /* Center align the card */
-}
-#dating-secton-5pages .match-card img {
-    width: 100%;
-    height: 250px; /* Set a fixed height for the image */
-    object-fit: cover; /* Ensure the image covers the area */
-}
-#dating-secton-5pages .match-card p {
-    margin: 5px 0;
-    font-size: 14px;
-    color: #000;
-}
-#dating-secton-5pages .match-card .name {
-    font-weight: bold;
-    font-size: 16px;
-    color: #333;
-}
-#dating-secton-5pages .match-percentage {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background-color: #ff69b4;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 15px;
-    font-size: 12px;
-}
-#dating-secton-5pages .online-status {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    background-color: #28a745;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #ffffff;
+  margin-bottom: 70px;
+  height: 70px;
 }
 
+#dating-secton-5pages .header-icon-filter .icon-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+#dating-secton-5pages .header-icon-filter .icon {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+#dating-secton-5pages .header-icon-filter .title {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+#dating-secton-5pages .match-card {
+  width: 350px; /* Set a fixed width */
+  height: 350px; /* Set a fixed height */
+  background-color: transparent;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin: 20px auto; /* Center align the card */
+}
+
+#dating-secton-5pages .match-card img {
+  width: 100%;
+  height: 250px; /* Set a fixed height for the image */
+  object-fit: cover; /* Ensure the image covers the area */
+}
+
+#dating-secton-5pages .match-card p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #000;
+}
+
+#dating-secton-5pages .match-card .name {
+  font-weight: bold;
+  font-size: 16px;
+  color: #333;
+}
+
+#dating-secton-5pages .match-percentage {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #ff69b4;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 12px;
+}
+
+#dating-secton-5pages .online-status {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: #28a745;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
 
 #dating-secton-5pages .profile-view-numbers {
-    color: #dc8ac9; /* Pink color */
-    font-size: 1.5rem;
-    text-align: left;
-    padding-left: 6.5rem;
-    margin-top: -20px;
+  color: #dc8ac9; /* Pink color */
+  font-size: 1.5rem;
+  text-align: left;
+  padding-left: 6.5rem;
+  margin-top: -20px;
 }
-
 
 /* Modal Blur Background */
 #dating-secton-5pages .modal-backdrop {
-    backdrop-filter: blur(30px); /* Increased blur intensity */
-    background-color: rgba(0, 0, 0, 0.7); /* Darker overlay */
+  backdrop-filter: blur(30px); /* Increased blur intensity */
+  background-color: rgba(0, 0, 0, 0.7); /* Darker overlay */
 }
 
 /* Modal Content Fixed at Bottom */
 #dating-secton-5pages .upgrade-modal-content {
-    background-color: white;
-    border-radius: 20px;
-    text-align: center;
-    padding: 50px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    position: fixed;
-    bottom: 85px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 70vw;
-    max-width: 350px;
-    height: 200px;
+  background-color: white;
+  border-radius: 20px;
+  text-align: center;
+  padding: 50px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  bottom: 85px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70vw;
+  max-width: 350px;
+  height: 200px;
 }
 
 #dating-secton-5pages .upgrade-modal-content h4 {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
 
 #dating-secton-5pages .upgrade-modal-content button {
-    background-color: #8e44ad;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 16px;
+  background-color: #8e44ad;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
 }
-
-
 
 /* style for qualification, location, designation, matches, upgrade page ends */
 
@@ -1454,14 +1467,14 @@ margin-right: 5px; /* Reduced margin for less gap */
 
 body {
   font-family: Arial, sans-serif;
-  padding-bottom: 60px;
+  /* padding-bottom: 60px; */
   background-color: #5a2d82;
 }
 
 .top-navbar-fil {
   background-color: #5a2d82;
   color: white;
-  padding: 40px 0;
+  padding: 20px 0;
   text-align: center;
   position: relative;
   z-index: 0;
@@ -1471,27 +1484,54 @@ body {
   font-size: 24px;
   margin: 0;
   font-weight: bold;
-  margin-top: -20px;
  
 }
 
 .main-content-fil {
   background-color: white;
   border-radius: 20px;
-  padding: 20px;
+  padding: 30px 20px;
+  margin-top: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   
+}
+.form-group {
+  margin-bottom: 20px;
 }
 
 .list-group-item-fil {
-  border-left: none;
-  border-right: none;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px;
+  padding: 10px 0;
   cursor: pointer;
 }
 
+.form-control {
+  border-radius: 5px;
+  height: 40px;
+  padding-left: 45px; /* Extra padding for the location icon */
+  font-size: 16px;
+}
+
+.input-group-prepend {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.input-group-prepend i {
+  font-size: 20px;
+  color: #5a2d82;
+}
+
+small.form-text {
+  display: block;
+  margin-top: 5px;
+  font-size: 12px;
+  color: #6c757d;
+}
 .list-group-item-fil.active {
   background-color: #e9ecef;
 }
@@ -1501,16 +1541,26 @@ body {
   border-radius: 20px;
   font-size: 16px;
   padding: 10px 0;
+  text-align: center;
 }
 
 .cancel-btn-fil {
   background-color: #ff5f5f;
   color: white;
+  transition: background-color 0.3s ease;
+}
+.cancel-btn-fil:hover {
+  background-color: #ff4a4a;
 }
 
 .apply-btn-fil {
   background-color: #5a2d82;
   color: white;
+  transition: background-color 0.3s;
+}
+
+.apply-btn-fil:hover {
+  background-color: #4b2370;
 }
 
 

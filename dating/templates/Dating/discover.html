@@ -1,15 +1,9 @@
 {% extends 'shared/base.html' %}
 {% load static %}
 
-
 {% block navbar %}
-
-{% include 'shared/navbar.html' %}
-{% comment %} {% include 'shared/navbar_copy_matermony.html' %} {% endcomment %}
+    {% include 'shared/navbar.html' %}
 {% endblock navbar %}
-
-
-
 {% block content %}
 <header class="header-icon">
     <!-- Left Arrow Button -->
@@ -20,93 +14,100 @@
     <span class="title">Discover</span>
     
     <!-- Filter Button -->
-    <button class="icon-button">
+    <a href="{% url 'dating:filter_preferences' %}" class="icon-button">
         <i class="bi bi-funnel icon"></i>
-    </button>
+    </a>
 </header>
 
-
 <div class="container mb-5" id="discovery">
-    <div class="swiper-container">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide">
+    <div class="row justify-content-center">
+        <!-- Check if there are any users -->
+        {% if users %}
+            {% for user in users %}
+            <div class="col-md-4 col-sm-6 col-lg-3 d-flex justify-content-center mb-4">
                 <div class="profile-card-for-image">
-                    <img src="{% static 'images/a1.jpg' %}" alt="Profile 1">
+                    <!-- Profile Picture -->
+                    {% if user.personaldetails.profile_pic %}
+                        <img src="{{ user.personaldetails.profile_pic.url }}" alt="{{ user.username }}" class="img-fluid">
+                    {% else %}
+                        <img src="{% static 'images/default-profile.png' %}" alt="default-profile" class="img-fluid">
+                    {% endif %}
+
+                    <!-- New Badge -->
                     <span class="new-badge">NEW</span>
-                    <span class="distance-information">16 km away</span>
+                    
+                    <!-- Distance (if implemented) -->
+                    {% if user.distance %}
+                        <span class="distance-information">{{ user.distance }} km away</span>
+                    {% endif %}
+                    
+                    <!-- Profile Information -->
                     <div class="profile-information">
-                        <h3>Halima, 19</h3>
-                        <p class="location-information">BERLIN</p>
+                        <h3>{{ user.username }}, {{ user.personaldetails.get_age }}</h3>
+                        <p class="location-information">{{ user.address_set.first.city }}</p>
                     </div>
                 </div>
             </div>
-            <div class="swiper-slide">
-                <div class="profile-card-for-image">
-                    <img src="https://via.placeholder.com/200x300?text=Profile+2" alt="Profile 2">
-                    <span class="new-badge">NEW</span>
-                    <span class="distance-information">20 km away</span>
-                    <div class="profile-information">
-                        <h3>Vanessa, 25</h3>
-                        <p class="location-information">MUNICH</p>
-                    </div>
-                </div>
+            {% endfor %}
+        {% else %}
+            <!-- No matches found message -->
+            <div class="col-12 text-center mt-5">
+                <p>No users found for the selected filters.</p>
             </div>
-            <div class="swiper-slide">
-                <div class="profile-card-for-image">
-                    <img src="https://via.placeholder.com/200x300?text=Profile+3" alt="Profile 3">
-                    <span class="new-badge">NEW</span>
-                    <span class="distance-information">5 km away</span>
-                    <div class="profile-information">
-                        <h3>James, 22</h3>
-                        <p class="location-information">HANNOVER</p>
-                    </div>
-                </div>
-            </div>
-            <div class="swiper-slide">
-                <div class="profile-card-for-image">
-                    <img src="https://via.placeholder.com/200x300?text=Profile+4" alt="Profile 4">
-                    <span class="new-badge">NEW</span>
-                    <span class="distance-information">30 km away</span>
-                    <div class="profile-information">
-                        <h3>Anna, 29</h3>
-                        <p class="location-information">DRESDEN</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        {% endif %}
     </div>
 
-   
-    <!-- Interest Section -->
-    <div class="interest-section">
-        <h4>Interest</h4>
-        <span class="view-all">View all</span>
+    <!-- Pagination (Optional) -->
+    <div class="pagination-container">
+        {% if is_paginated %}
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center">
+                    {% if page_obj.has_previous %}
+                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+                    {% endif %}
+                    {% for num in page_obj.paginator.page_range %}
+                        <li class="page-item {% if page_obj.number == num %}active{% endif %}">
+                            <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                        </li>
+                    {% endfor %}
+                    {% if page_obj.has_next %}
+                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        {% endif %}
     </div>
-    <div class="interest-list">
-        <span class="badge">Football</span>
-        <span class="badge">Nature</span>
-        <span class="badge">Language</span>
-        <span class="badge">Photography</span>
-        <span class="badge active">Music</span>
-        <span class="badge">Writing</span>
-        <div class="extra-interests">
-            <span class="badge">Travel</span>
-            <span class="badge">Cooking</span>
-            <span class="badge">Reading</span>
-            <span class="badge">Art</span>
-            <!-- Add more hidden interests as needed -->
-        </div>
-    </div>
-
-    <!-- Around Me Section -->
-    <div class="around-me">
-        <h4>Around me</h4>
-        <p>People with <span id="selected-interest">"Music"</span> interest around you</p>
-    </div>
-
-    <!-- Map Section -->
-    <div id="map"></div>
 </div>
+
+<!-- Interest Section -->
+<div class="interest-section">
+    <h4>Interest</h4>
+    <span class="view-all">View all</span>
+</div>
+<div class="interest-list">
+    <span class="badge">Football</span>
+    <span class="badge">Nature</span>
+    <span class="badge">Language</span>
+    <span class="badge">Photography</span>
+    <span class="badge active">Music</span>
+    <span class="badge">Writing</span>
+    <div class="extra-interests">
+        <span class="badge">Travel</span>
+        <span class="badge">Cooking</span>
+        <span class="badge">Reading</span>
+        <span class="badge">Art</span>
+        <!-- Add more hidden interests as needed -->
+    </div>
+</div>
+
+<!-- Around Me Section -->
+<div class="around-me">
+    <h4>Around me</h4>
+    <p>People with <span id="selected-interest">"Music"</span> interest around you</p>
+</div>
+
+<!-- Map Section -->
+<div id="map"></div>
 
 <!-- Swiper.js JS -->
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
@@ -218,6 +219,5 @@ function updateMap(locations) {
 // Initially load map with default interest
 updateMap(locations['Music']);
 </script>
-
 
 {% endblock %}
