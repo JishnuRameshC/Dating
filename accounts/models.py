@@ -1,6 +1,7 @@
 from datetime import date
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+
 from geopy.geocoders import Nominatim
 from geopy.exc import GeocoderTimedOut
 from geopy.distance import geodesic
@@ -8,12 +9,13 @@ from django.utils import timezone
 from datetime import timedelta
 
 
-
 class CustomUser(AbstractUser):
     
     email = models.EmailField(unique=True)
     mobile = models.CharField(max_length=15, unique=True, blank=True, null=True)
+
     last_activity = models.DateTimeField(null=True, blank=True)  # Track last activity
+
     
     # Overriding fields for custom behavior
     USERNAME_FIELD = 'email'
@@ -30,6 +32,7 @@ class CustomUser(AbstractUser):
         blank=True,
     )
     
+
 
     def update_last_activity(self):
         self.last_activity = timezone.now()
@@ -101,12 +104,7 @@ class PersonalDetails(models.Model):
             age = today.year - self.dob.year - ((today.month, today.day) < (self.dob.month, self.dob.day))
             return age
         return None
-    
-    def __str__(self) -> str:
-        return self.user.username
-    
-
-
+      
     def calculate_match_score(self, other_user_details):
         score = 0
         
@@ -159,13 +157,16 @@ class PersonalDetails(models.Model):
             if my_coords and other_coords:
                 return geodesic(my_coords, other_coords).km
         return None 
+    
+    def __str__(self) -> str:
+        return self.user.username
+    
+
 
 class AdditionalImage(models.Model):
     user=models.ForeignKey(CustomUser,on_delete=models.CASCADE ,default=None)
     image = models.ImageField(upload_to='additional_images/')
 
-    def __str__(self):
-        return f"Image {self.id}"
 
 
 class Address(models.Model):
@@ -231,5 +232,3 @@ class JobProfile(models.Model):
     def __str__(self):
         return f" {self.user.username}_{self.get_job_status_display()}"
     
-
-
