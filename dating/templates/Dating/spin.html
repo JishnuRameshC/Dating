@@ -1,37 +1,20 @@
 {% extends 'shared/base.html' %}
 {% load static %}
 
-{% block navbar %}
 
-{% include 'shared/navbar.html' %}
-{% comment %} {% include 'shared/navbar_copy_matermony.html' %} {% endcomment %}
-{% endblock navbar %}
-
-{% block style %}
-<style>
-    body{
-      background-color: var(--primary-color);
-    }
-    .top-heading{
-      color: white;
-    }
-</style>
-{% endblock style %}
-    
 
 
 {% block content %}
-<div class="row d-flex justify-content-center" id="spin">
     <div class="cust-body">
         <div class="spin-container">
-            <div id="profile-info" class="prof-inform">
-                <p id="profile-distance"></p>
-                <img id="profile-pic" class="prof-pictures">
-                <h2 id="profile-name"></h2>
+            <div class="prof-inform">
+                <p>1 km near you</p>
+                <img src="{% static 'images/a1.jpg' %}" alt="Profile Picture" class="prof-pictures">
+                <h2>Sandra - 24</h2>
                 <button class="like-button">Like</button>
             </div>
             <div class="circle-container">
-                <!-- SVG Animation --> 
+                <!-- SVG Animation -->
                 <svg id="circle-svg" viewBox="0 0 100 100">
                     <defs>
                         <radialGradient id="grad1" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
@@ -46,48 +29,25 @@
                 </svg>
             </div>
             <div class="spin-button-container">
-                <button class="spin-button" onclick="spinProfile()">
+                <button class="spin-button" onclick="toggleSpin()">
                     Spin here
                 </button>
             </div>
         </div>
     </div>
-</div>
     <script>
         let isSpinning = false;
         const svgElement = document.querySelector('#circle-svg');
 
-        function spinProfile() {
-            if (!isSpinning) {
-                isSpinning = true;
+        function toggleSpin() {
+            isSpinning = !isSpinning;
+            if (isSpinning) {
                 svgElement.classList.add('spin-animation');
-
-                // Wait for 6 seconds before showing a random profile
-                setTimeout(() => {
-                    fetchRandomProfile();
-                }, 800);
+            } else {
+                svgElement.classList.remove('spin-animation');
             }
         }
-
-        function fetchRandomProfile() {
-            fetch("{% url 'Dating:get_random_profile' %}")
-                .then(response => response.json())
-                .then(data => {
-                    if (!data.error) {
-                        document.getElementById('profile-name').textContent = data.name;
-                        document.getElementById('profile-distance').textContent = data.distance;
-                        document.getElementById('profile-pic').src = data.image_url;
-                    } else {
-                        console.error('Error fetching profile:', data.error);
-                    }
-                    isSpinning = false;
-                    svgElement.classList.remove('spin-animation');
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    isSpinning = false;
-                    svgElement.classList.remove('spin-animation');
-                });
-        }
     </script>
+
+
 {% endblock %}

@@ -11,13 +11,15 @@
             <i class="bi bi-arrow-left icon"></i>
         </button>
         
-        <span class="title">Location</span>
+        <span class="title">Matches</span>
         
         <!-- Filter Button -->
         <button class="icon-button">
             <i class="bi bi-funnel icon"></i>
         </button>
     </header>
+
+    <div class="profile-views">Your Matches</div>
 
     <!-- Page content goes here -->
     <main class="container mt-4">
@@ -65,11 +67,32 @@
                 </div>
             </div>
         </section>
+        
+        <!-- Upgrade Modal Trigger -->
+        <button type="button" class="btn btn-primary d-none" id="upgradeModalTrigger" data-bs-toggle="modal" data-bs-target="#upgradeModal"></button>
     </main>
 
+    <!-- Upgrade Modal -->
+    <div class="modal show" id="upgradeModal" tabindex="-1" aria-labelledby="upgradeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content upgrade-modal-content">
+                <h4>Upgrade to view more</h4>
+                <button>Upgrade</button>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Automatically trigger the modal on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            var modalElement = new bootstrap.Modal(document.getElementById('upgradeModal'), {
+                backdrop: 'static', // Disable closing by clicking outside
+                keyboard: false // Disable closing by pressing escape
+            });
+            modalElement.show(); // Show the modal manually
+        });
+    </script>
 
 
 {% endblock %}
-
-

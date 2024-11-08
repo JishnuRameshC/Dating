@@ -1,18 +1,23 @@
 from django.urls import path
-from . import views
 from .views import *
-from . import views
 from django.conf import settings
 from django.conf.urls.static import static
-app_name = 'dating'
+app_name = 'Dating'
 
    
 
 
 urlpatterns = [
 #     G1 accounts
-     path('test', views.TestView, name='test'),
+     path('', views.TestView, name='test'),
     #accounts
+    path('first',views.FirstView.as_view(),name='first'),
+    path('login/',views.LoginView.as_view(),name='login'),
+    path('signup',views.SignupView.as_view(),name='signup'),
+    path('personal_details',views.PersonalDetailsView.as_view(),name='personal_details'),
+    path('job_status',views.JobStatusView.as_view(),name="job_status"),
+    path('job_details',views.JobDetailsView.as_view(),name="job_Details"),
+    path('profession',views.ProfessionView.as_view(),name='profession'),
     
     
     #groups
@@ -30,11 +35,11 @@ urlpatterns = [
     path('privacy_settings', views.privacy_settings, name='privacy_settings'),
     path('preferences', views.preferences, name='preferences'),
     path('filter', views.filter, name='filter'),
-    path('user/', views.user_profile, name='user'),
+    path('user', views.user_profile, name='user_profile'),
 
     path('test', views.TestView, name='test'),
     path('story/', views.StoryPageView.as_view(), name='story'),
-    path('profile/', views.UserProfileView.as_view(), name='profile'),
+    # path('profile/', views.ProfileView.as_view(), name='profile'),
     path('change_password/', views.ChangePasswordView.as_view(), name='change_password'),
     path('upgrade/',views.UpgradeStoryView.as_view(),name="upgrade"),
     path('edite_profile/',views.EditMyProfile.as_view(),name="edite_profile"),
@@ -50,7 +55,7 @@ urlpatterns = [
     path('accept', views.accept, name='accept'),
     
 #     G3
-    path("", SelectgenderView.as_view(),name="selectgender"),
+    path("selectgender/", SelectgenderView.as_view(), name="selectgender"),
     path("error403/", Error403View.as_view(), name="error403"),
     path("error404/", Error404View.as_view(), name="error404"),
     path('home/', HomeView.as_view(), name='home'),
@@ -60,9 +65,8 @@ urlpatterns = [
     path('designation/', DesignationView.as_view(), name='designation'),  
     path('match/', MatchView.as_view(), name='match'),  
     path('profile_view/', ProfileviewView.as_view(), name='profile_view'),  
-    path('upgrade_profile/', UpgradeView.as_view(), name='upgrade'),   
+    path('upgrade/', UpgradeView.as_view(), name='upgrade'),   
     path('spin/', SpinView.as_view(), name='spin'),
-    path('get_random_profile/', RandomProfileView.as_view(), name='get_random_profile'),
 ]
 
 

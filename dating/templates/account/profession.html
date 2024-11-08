@@ -13,12 +13,11 @@
             margin: 0;
         }
         .form-container {
-            width:400px;
             background-color: white;
             padding: 2rem;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            
+            width: 300px;
         }
         h1 {
             color: #070307;
@@ -75,27 +74,26 @@
 
     <div class="form-container">
         <h3 class="text-center mb-3">Job Details</h3>
-        <form method="POST">
-            {% csrf_token %}
+        <form>
             <label for="profession" class="form-label">Profession Title</label>
-            <input type="text" id="profession" name="job_title" required>
+            <input type="text" id="profession" name="profession" required>
             
             <label class="form-label">Skill Level</label>
             <div class="skill-level" >
-                <input type="radio" id="beginner" name="expertise_level" value="beginner" required>
+                <input type="radio" id="beginner" name="skill" value="beginner" required>
                 <label for="beginner">Beginner</label>
                 
-                <input type="radio" id="intermediate" name="expertise_level" value="intermediate">
+                <input type="radio" id="intermediate" name="skill" value="intermediate">
                 <label for="intermediate">Intermediate</label>
                 
-                <input type="radio" id="expert" name="expertise_level" value="expert">
+                <input type="radio" id="expert" name="skill" value="expert">
                 <label for="expert">Expert</label>
             </div>
             
-            <button type="submit" class="btn btn-custom btn-primary-custom mb-2 mt-1 w-100 bg-black text-light">Next</button>
+            <a href="{% url 'relationship_goal' %}"><button type="submit" class="btn btn-custom btn-primary-custom mb-2 mt-1 w-100 bg-black text-light">Next</button></a>
         
         </form>
-        
+        <a href="{% url 'relationship_goal' %}">>></a>
 
     </div>
 </div>
