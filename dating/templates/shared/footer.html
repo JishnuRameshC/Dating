@@ -5,7 +5,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    
+    <style>
+        .bottom-bar {
+        background-color: white;
+        border-top: 1px solid #ddd;
+        box-shadow: 0 0px 10px 0px rgba(0, 0, 0, 0.1);
+        padding: 10px 0;
+        z-index: 1000;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        position: fixed;
+        width: 100%;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 20px 20px 0 0;
+      }
+      .icon-container {
+        text-align: center;
+      }
+      .icon-container i {
+        color: #5a2d82;
+        font-size: 24px;
+      }
+      .icon-container h5 {
+        margin-top: 5px;
+        font-size: 12px;
+        color: #5a2d82;
+        text-decoration: none;
+      }
+
+      /* Mobile View: Bottom Navbar */
+      @media (max-width: 767px) {
+        .bottom-bar {
+          flex-direction: row;
+        }
+        .main-content {
+          padding-bottom: 60px; /* Add padding to accommodate the bottom navbar */
+        }
+      }
+    </style>
 </head>
 <body>
     <div class="container-fluid">

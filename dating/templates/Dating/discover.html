@@ -2,12 +2,6 @@
 {% load static %}
 
 
-{% block navbar %}
-
-{% include 'shared/navbar.html' %}
-{% comment %} {% include 'shared/navbar_copy_matermony.html' %} {% endcomment %}
-{% endblock navbar %}
-
 
 
 {% block content %}
@@ -17,7 +11,7 @@
         <i class="bi bi-arrow-left icon"></i>
     </button>
     
-    <h3>Discover</h3>
+    <span class="title">Discover</span>
     
     <!-- Filter Button -->
     <button class="icon-button">
@@ -26,7 +20,7 @@
 </header>
 
 
-<div class="container mb-5" id="discovery">
+<div class="container mb-5">
     <div class="swiper-container">
         <div class="swiper-wrapper">
             <div class="swiper-slide">

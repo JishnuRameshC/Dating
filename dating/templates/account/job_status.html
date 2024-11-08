@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
     <style>
+       
+        
+
         /* Body and container settings */
         .job_status_container-fluid {
             background-color: #f8d5e0;
@@ -10,6 +13,7 @@
             height: 100vh;
             padding: 20px; /* Added padding for better mobile view */
             font-family: 'Poppins', sans-serif; /* Apply Poppins font globally */
+
         }
 
         .job_status_form-container {
@@ -67,20 +71,19 @@
     </style>
 
     <div class="container-fluid job_status_container-fluid">
-        <form class="form-container job_status_form-container" method="POST">
-            {% csrf_token %}
+        <div class="form-container job_status_form-container">
             <h2 class="job_status_form-header">Job Status</h2>
             <div class="checkbox-group job_status_checkbox-group">
-                <label><input type="checkbox" name="job_status" value="employer"> Employer</label>
-                <label><input type="checkbox" name="job_status" value="employee"> Employee</label>
-                <label><input type="checkbox" name="job_status" value="job_seeker"> Job Seeker</label>
+                <label><input type="checkbox" name="status" value="employer"> Employer</label>
+                <label><input type="checkbox" name="status" value="employee"> Employee</label>
+                <label><input type="checkbox" name="status" value="job-seeker"> Job Seeker</label>
             </div>
-            <button type="submit" class="next-button job_status_next-button">Next</button>
-        </form>
+            <button class="next-button job_status_next-button">Next</button>
+        </div>
     </div>
     <script>
         // JavaScript to ensure only one checkbox is selected at a time
-        const checkboxes = document.querySelectorAll('.job_status_checkbox-group input[type="checkbox"]');
+        const checkboxes = document.querySelectorAll('.checkbox-group input[type="checkbox"]');
 
         checkboxes.forEach(checkbox => {
             checkbox.addEventListener('change', function() {
@@ -92,6 +95,4 @@
             });
         });
     </script>
-
-{% endblock content %}
-
+ {% endblock content %}
