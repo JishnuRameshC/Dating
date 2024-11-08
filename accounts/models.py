@@ -14,7 +14,9 @@ class CustomUser(AbstractUser):
     email = models.EmailField(unique=True)
     mobile = models.CharField(max_length=15, unique=True, blank=True, null=True)
 
+
     last_activity = models.DateTimeField(null=True, blank=True)  # Track last activity
+
 
     
     # Overriding fields for custom behavior
@@ -31,7 +33,7 @@ class CustomUser(AbstractUser):
         related_name='customuser_permissions_set',  # Unique related_name for CustomUser
         blank=True,
     )
-    
+
 
 
     def update_last_activity(self):
@@ -43,7 +45,6 @@ class CustomUser(AbstractUser):
             return timezone.now() - self.last_activity <= timedelta(minutes=2)
         return False
 
-    
     def __str__(self):
         return self.username
     
@@ -162,7 +163,6 @@ class PersonalDetails(models.Model):
         return self.user.username
     
 
-
 class AdditionalImage(models.Model):
     user=models.ForeignKey(CustomUser,on_delete=models.CASCADE ,default=None)
     image = models.ImageField(upload_to='additional_images/')
@@ -196,6 +196,7 @@ class Address(models.Model):
             '''
             
 
+
     def get_coordinates_from_address_line_3(self):
         
         geolocator = Nominatim(user_agent="accounts")
@@ -207,7 +208,6 @@ class Address(models.Model):
             except GeocoderTimedOut:
                 return None
         return None
-
 
 class JobProfile(models.Model):
     STATUS_CHOICES = [
@@ -231,4 +231,4 @@ class JobProfile(models.Model):
 
     def __str__(self):
         return f" {self.user.username}_{self.get_job_status_display()}"
-    
+

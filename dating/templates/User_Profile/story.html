@@ -9,15 +9,15 @@
 {% endblock style %}
 
 {% block content %}
-<div class="row d-flex justify-content-center ">
+<div class="row d-flex justify-content-center" id="story">
     <div class="col-12 col-md-10 col-lg-8 ">
         <div class="story-container">
             <div class="story-header">
                 <i class="fas fa-arrow-left back-button"></i>
-                <img src="https://cubanvr.com/wp-content/uploads/2023/07/ai-image-generators.webp" alt="Profile Picture">
+                <img src="{{ story.user.profile.image.url }}" alt="Profile Picture">
                 <div class="header-content">
                     <div>
-                        <h5 class="m-0">Stone Stellar</h5>
+                        <h5 class="m-0">{{ story.user.username }}</h5>
                         <p class="m-0">Online</p>
                     </div>
                     <div class="online-status"></div>
@@ -27,10 +27,10 @@
                 <span id="progress"></span>
             </div>
             <div class="story-image-container" id="storyImageContainer">
-                <img src="https://img.freepik.com/premium-photo/nature-wallpaper-beautiful-nature-wallpaper-4k-nature-wallpapers-hd-nature-wallpaper-green-nature_722194-205.jpg?w=2000" alt="Story Image" class="story-image" id="storyImage">
-                <div class="text-overlay" id="textOverlay">Your Text Here</div>
+                <img src="{{ story.image }}" alt="Story Image" class="story-image" id="storyImage">
+                <div class="text-overlay" id="textOverlay">{{ story.caption }}</div>
                 <div class="story-controls">
-                    <p id="storyTime">00:00</p>
+                    <p id="storyTime"></p>
                     <i class="fas fa-volume-up" id="volumeControl"></i>
                 </div>
             </div>

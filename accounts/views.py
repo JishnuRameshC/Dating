@@ -21,27 +21,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 class FirstView(TemplateView):
     template_name='first.html'
     
-# G1 accounts
-
-
-# class LoginView(TemplateView):
-#     template_name='login.html'
-    
-# class PersonalDetailsView(TemplateView):
-#     template_name='personal_details.html'
-
-# class JobStatusView(TemplateView):
-#     template_name='job_status.html'
-    
-# class JobDetailsView(TemplateView):
-#     template_name='job_details.html'
-
-
-# class ProfessionView(TemplateView):
-#     template_name='profession.html'
-
-
-
 
 
 class InterestView(TemplateView):
@@ -108,7 +87,7 @@ class LoginView(View):
 
         # Login user
         login(request, user)
-        return redirect('Dating:home')
+        return redirect('dating:home')
     
 def signout(request):
     logout(request)
@@ -193,7 +172,9 @@ class EmployerDetailsView(UpdateView,LoginRequiredMixin):
     def get_success_url(self):
         # Pass the user_id into the URL
 
+
         return reverse_lazy('accounts:relationship_goal', kwargs={'user_id': self.request.user.id})
+
 
     
 class EmployeeDetailsView(UpdateView,LoginRequiredMixin):
