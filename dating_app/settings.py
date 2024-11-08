@@ -53,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'dating.middleware.UpdateLastActivityMiddleware',
 ]
 
 ROOT_URLCONF = 'dating_app.urls'
@@ -149,3 +150,4 @@ EMAIL_HOST_USER = 'shabeebmohammedpes@gmail.com'
 EMAIL_HOST_PASSWORD = 'etjv byky zrkb ctct'
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False 
+

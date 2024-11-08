@@ -1,24 +1,23 @@
 {% extends 'shared/base.html' %}
 {% load static %}
 
-{% block style %}
-  <style>
-    body{
-      background: var(--primary-color);
-    }
-  </style>
-{% endblock style %}
-  
+
 {% block content %}
-<div class="top-navbar">
-    <h1 class="settings-text">Settings</h1>
-</div>
-<div class="top-rounded-white-box" id="settings">
-  <div class="profile-section" id="profile-section" >
-      <img src="https://via.placeholder.com/50" alt="Profile Picture">
-      <div>
-          <h2>Nazrul Islam</h2>
-          <p>Never give up 💪</p>
+
+  <h1>Settings</h1>
+  <div class="row">   
+      <h1 class="settings-text top-heading">Settings</h1>
+      <div class="profile-section mb-1">
+        <div class="profile-info">
+          <img src="https://via.placeholder.com/50" alt="Profile Picture" />
+          <div>
+            <h2>Nazrul Islam</h2>
+            <p>Never give up 💪</p>
+          </div>
+        </div>
+        <i class="fas fa-qrcode fa-2x"></i>
+        <!-- Scanner symbol aligned to the right -->
+
       </div>
   </div>
   <div class="main-content">
@@ -66,5 +65,5 @@
           </a>
       </div>
   </div>
-</div>
+
 {% endblock %}

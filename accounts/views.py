@@ -171,7 +171,11 @@ class EmployerDetailsView(UpdateView,LoginRequiredMixin):
         return JobProfile.objects.get(user=self.request.user)
     def get_success_url(self):
         # Pass the user_id into the URL
-        return reverse_lazy('accounts:relationship_goal', kwargs={'pk': self.request.user.id})
+
+
+        return reverse_lazy('accounts:relationship_goal', kwargs={'user_id': self.request.user.id})
+
+
     
 class EmployeeDetailsView(UpdateView,LoginRequiredMixin):
     model = JobProfile

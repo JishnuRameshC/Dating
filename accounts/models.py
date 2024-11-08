@@ -2,10 +2,22 @@ from datetime import date
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
+from geopy.geocoders import Nominatim
+from geopy.exc import GeocoderTimedOut
+from geopy.distance import geodesic
+from django.utils import timezone
+from datetime import timedelta
+
+
 class CustomUser(AbstractUser):
     
     email = models.EmailField(unique=True)
     mobile = models.CharField(max_length=15, unique=True, blank=True, null=True)
+
+
+    last_activity = models.DateTimeField(null=True, blank=True)  # Track last activity
+
+
     
     # Overriding fields for custom behavior
     USERNAME_FIELD = 'email'
@@ -21,8 +33,18 @@ class CustomUser(AbstractUser):
         related_name='customuser_permissions_set',  # Unique related_name for CustomUser
         blank=True,
     )
-    
-    
+
+
+
+    def update_last_activity(self):
+        self.last_activity = timezone.now()
+        self.save()
+
+    def is_online(self):
+        if self.last_activity:
+            return timezone.now() - self.last_activity <= timedelta(minutes=2)
+        return False
+
     def __str__(self):
         return self.username
     
@@ -83,12 +105,7 @@ class PersonalDetails(models.Model):
             age = today.year - self.dob.year - ((today.month, today.day) < (self.dob.month, self.dob.day))
             return age
         return None
-    
-    def __str__(self) -> str:
-        return self.user.username
-    
-
-
+      
     def calculate_match_score(self, other_user_details):
         score = 0
         
@@ -129,14 +146,27 @@ class PersonalDetails(models.Model):
 
         return score
 
-        return score
+    def calculate_distance(self, other_user_details):
+        my_address = self.user.address_set.filter(is_default=True).first()
+        other_address = other_user_details.user.address_set.filter(is_default=True).first()
+
+        # Ensure both addresses are valid
+        if my_address and other_address:
+            my_coords = my_address.get_coordinates_from_address_line_3()
+            other_coords = other_address.get_coordinates_from_address_line_3()
+
+            if my_coords and other_coords:
+                return geodesic(my_coords, other_coords).km
+        return None 
+    
+    def __str__(self) -> str:
+        return self.user.username
+    
 
 class AdditionalImage(models.Model):
     user=models.ForeignKey(CustomUser,on_delete=models.CASCADE ,default=None)
     image = models.ImageField(upload_to='additional_images/')
 
-    def __str__(self):
-        return f"Image {self.id}"
 
 
 class Address(models.Model):
@@ -165,6 +195,20 @@ class Address(models.Model):
             {self.country}
             '''
             
+
+
+    def get_coordinates_from_address_line_3(self):
+        
+        geolocator = Nominatim(user_agent="accounts")
+        if self.address_line_3:
+            try:
+                location = geolocator.geocode(self.address_line_3)
+                if location:
+                    return (location.latitude, location.longitude)
+            except GeocoderTimedOut:
+                return None
+        return None
+
 class JobProfile(models.Model):
     STATUS_CHOICES = [
         ('employer', 'Employer'),
@@ -187,4 +231,4 @@ class JobProfile(models.Model):
 
     def __str__(self):
         return f" {self.user.username}_{self.get_job_status_display()}"
-    
+

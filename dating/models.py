@@ -1,7 +1,11 @@
 from django.db import models
-# from django.contrib.auth.models import User
+
+from django.contrib.auth.models import User
 from accounts.models import CustomUser
 
+
+
+# Create your models here.
 
 class Story(models.Model):
     id = models.BigAutoField(primary_key=True)
@@ -10,7 +14,8 @@ class Story(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
 
-    def __str__(self):
+
+    def _str_(self):
         return f"Story by {self.user.username} at {self.created_at}"
 
 class Comment(models.Model):
@@ -19,26 +24,47 @@ class Comment(models.Model):
     text = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     
-    def __str__(self):
+# <<<<<<< jeslin
+#     def __str__(self):
+#         return f"Comment by {self.user.username} on {self.story} at {self.created_at}"
+
+
+# class MatchRequest(models.Model):
+#     STATUS_CHOICES = [
+#         ('sent', 'Sent'),
+#         ('received', 'Received'),
+#         ('accepted', 'Accepted'),
+#         ('rejected', 'Rejected'),
+#     ]
+#     id = models.BigAutoField(primary_key=True)
+#     sender = models.ForeignKey(CustomUser, related_name='sent_requests', on_delete=models.CASCADE)
+#     receiver = models.ForeignKey(CustomUser, related_name='received_requests', on_delete=models.CASCADE)
+#     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='sent')
+#     created_at = models.DateTimeField(auto_now_add=True)
+#     updated_at = models.DateTimeField(auto_now=True)
+
+#     def str(self):
+#         return f'{self.sender} -> {self.receiver} ({self.status})'
+# =======
+    def _str_(self):
         return f"Comment by {self.user.username} on {self.story} at {self.created_at}"
 
 
-class MatchRequest(models.Model):
+class FriendRequest(models.Model):
     STATUS_CHOICES = [
-        ('sent', 'Sent'),
-        ('received', 'Received'),
-        ('accepted', 'Accepted'),
-        ('rejected', 'Rejected'),
+        ('sent', 'Sent'),         # When a request is sent but not yet accepted or rejected
+        ('accepted', 'Accepted'), # When the receiver accepts the request
+        ('rejected', 'Rejected'), # When the receiver rejects the request
+        ('contacted', 'Contacted')# When users establish contact after accepting
     ]
-    id = models.BigAutoField(primary_key=True)
     sender = models.ForeignKey(CustomUser, related_name='sent_requests', on_delete=models.CASCADE)
     receiver = models.ForeignKey(CustomUser, related_name='received_requests', on_delete=models.CASCADE)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='sent')
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
 
-    def str(self):
-        return f'{self.sender} -> {self.receiver} ({self.status})'
+    def _str_(self):
+        return f"{self.sender} -> {self.receiver} [{self.get_status_display()}]"
+# >>>>>>> user_account_dating
 
 
 
@@ -50,6 +76,7 @@ class Shortlist(models.Model):
 
     def str(self):
         return f'{self.user} shortlisted {self.shortlisted_user}'
+
     
 
 class Contacted(models.Model):
@@ -60,6 +87,7 @@ class Contacted(models.Model):
 
     def str(self):
         return f'{self.user} contacted {self.contacted_user}'
+
 
 
 class ProfileView(models.Model):
@@ -84,3 +112,4 @@ class Interestin(models.Model):
 
     def __str__(self):
         return f"{self.user.username} is interested in {self.interestin}"
+
