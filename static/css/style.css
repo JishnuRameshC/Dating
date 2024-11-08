@@ -2,32 +2,41 @@
 /* first page */
 :root {
     --primary-bg-color: #f8d5e0;
-    --primary-color:purple;
+    --primary-color: purple;
     --font-family: 'Poppins', sans-serif;
-    --secondary-bg-color:hotpink;
-   
 }
+
+body {
+    font-family: var(--font-family);
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
 .first-custom-container {
     background-color: var(--primary-bg-color);
-    font-family: var(--font-family);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-    height:100vh;
-    
+    min-height: 100vh;
 }
+
 .first-container {
     background: white;
-    padding:30px;
+    padding: 30px;
     border-radius: 15px;
-    box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
     max-width: 350px;
-    text-align: center;
+    width: 100%;
 }
+
+/* For smaller screens, ensure the container fills most of the viewport */
 @media (max-width: 576px) {
     .first-container {
-        height: 75vh;
+        max-width: 100%;
+        height: auto;
+        padding: 20px;
+    }
+    
+    .first-container h2 {
+        font-size: 1.4rem;
     }
 }
 
@@ -73,6 +82,7 @@
     justify-content: center;
     align-items: center;
     margin: 0;
+    
 }
 .signup-container {
     background: white;
@@ -92,9 +102,11 @@
 }
 .btn-primary-custom {
     background-color: black;
+    width: 100%;
 }
 .btn-secondary-custom {
     background-color: var(--primary-color);
+    width: 100%;
 }
 .link-custom {
     color: var(--primary-color);
@@ -106,7 +118,7 @@
 /* personal details */
 .p_details-container-fluid {
         
-    height: 100%%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;

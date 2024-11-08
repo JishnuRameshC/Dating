@@ -48,12 +48,12 @@
   </head>
 
   <body>
-    <div class="container">
+    <div class="container-fluid">
     <header>
       <!-- Navbar --><!-- Place navbar here -->
     {% block navbar %}
     {% endblock navbar %}
-<!--       {% include 'shared/navbar.html' %} -->
+
     </header>
 
     <main class="container-fluid">
@@ -61,34 +61,15 @@
         <!-- Footer Menu for PC View -->
         {% include 'shared/side_menu_bar.html' %}
         
-        <div class="col-md-8 col-lg-10 col-xl-10 main-content">
+        
           {% block content %}
           {% endblock content %}
-        </div>
+        
       </div>
     </main>
+    <footer>{% include 'shared/bottom_bar.html' %}</footer>
+      
 
-    <footer>{% include 'shared/footer.html' %}</footer>
-      
-      
-<!-- <body class=""> -->
-
-      <!-- Place navbar here -->
-    
-<!--     {% block navbar %} -->
-      
-<!--     {% endblock navbar %} -->
-      
-<!--     <main> -->
-          <!-- Footer Menu for PC View -->
-<!--           {% include 'shared/side_menu_bar.html' %} -->
-<!--           {% block content %} -->
-<!--           {% endblock content %} -->
-        
-<!--     </main> -->
-<!--     <footer> -->
-<!--       {% include 'shared/bottom_bar.html' %} -->
-<!--     </footer> --> -->
 
     <!-- jQuery (if needed) -->
     <script
@@ -116,6 +97,7 @@
       crossorigin="anonymous"
     ></script>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     {% block script %}{% endblock %}
 </div>
 

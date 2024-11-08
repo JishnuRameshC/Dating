@@ -17,7 +17,7 @@
             padding: 2rem;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            width: 300px;
+            width: 400px;
             text-align: center;
         }
         h1 {
@@ -50,8 +50,10 @@
     <div class="container">
         <h3 class="text-center mb-5">Intrested</h3>
         <div class="button-container">
-            <button class="interest-button mb-3" onclick="selectInterest('Dating')">Dating</button>
-            <button class="interest-button" onclick="selectInterest('Matrimony')">Matrimony</button>
+
+           <a href="{% url "Dating:home" %}"> <button class="interest-button mb-3 w-100" onclick="selectInterest('Dating')">Dating</button></a>
+
+           <a href="">  <button class="interest-button w-100" onclick="selectInterest('Matrimony')">Matrimony</button></a>
         </div>
     </div>
 

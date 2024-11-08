@@ -916,17 +916,21 @@ header {
 }
 
 .prof-card {
-    position: relative;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    background-color: #ffffff;
-    width: 100%;
-    aspect-ratio: 1;
-    height: 0;
-    padding-bottom: 100%;
-    position: relative;
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  background-color: #ffffff;
+  width: 100%;
+  aspect-ratio: 1;
+  height: 0;
+  padding-bottom: 100%;
+  display: block; /* Ensures it is a block element by default */
+}
+
+.prof-card.d-none {
+  display: none;
 }
 
 .prof-card img {
@@ -968,6 +972,8 @@ header {
 .prof-location {
     font-size: 14px;
 }
+
+
 
 .online-badge {
     position: absolute;
@@ -1228,8 +1234,8 @@ margin-right: 5px; /* Reduced margin for less gap */
 .prof-pictures {
     width: 100px;
     height: 100px;
-    border-radius: 50%;
-    border: 2px solid white;
+    border-radius: 100%;
+    border: 1px transparent;
 }
 .prof-inform {
     position: absolute;
@@ -1313,17 +1319,7 @@ svg {
 /* settings rheshikes ends */
 
 /* tinu */
-:root {
-    --primary-bg-color: #5a2d82;
-    --primary-font: Arial, sans-serif;
-    --primary-padding: 60px;
-    --primary-display: flex;
-    --primary-justify-content: center;
-    --primary-align-items: center;
-    --primary-min-height: 100vh;
-    --primary-margin: 0;
-    --primary-color: #ffffff;
-}
+
 
 body {
     font-family: var(--primary-font);
@@ -2605,4 +2601,3 @@ header {
   pointer-events: auto;
 }
 /* end upgrade story  */
-
