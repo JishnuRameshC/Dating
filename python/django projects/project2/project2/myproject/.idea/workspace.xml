@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="64531543-0ba5-4835-88b6-de6e92415a71" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/accounts/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/accounts/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/accounts/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/accounts/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/accounts/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/accounts/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/accounts/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/accounts/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/accounts/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/Dating/contacted.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/Dating/designation.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/Dating/discover.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/Dating/home.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/Dating/location.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/Dating/qualification.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/Dating/selectgender.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/Dating/spin.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/User_Profile/change_password.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/User_Profile/edite_my_profile.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/User_Profile/filter.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/User_Profile/preference.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/User_Profile/privacy_settings.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/User_Profile/profileviews.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/User_Profile/settings.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/User_Profile/story.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/User_Profile/upgrade_view_story.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/User_Profile/upgradepage.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/User_Profile/user_profile.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/account/first.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/account/interested.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/account/job_details.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/account/job_status.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/account/login.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/account/personal_details.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/account/profession.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/account/relationship_goal.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/account/signup.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/base.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/components/footer_nav.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/components/nav_bar.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/contents/accept.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/contents/matches.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/contents/message.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/contents/received.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/contents/reject.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/contents/sent.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/contents/shortlist.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/contents/shortlist_by.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/contents/viewed_myprofile.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/error_page/error403.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/error_page/error404.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/groups/create_group.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/groups/groups.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/payment/add_payment.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/payment/payment_methods.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/payment/subscription_plans.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/shared/account_base.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/shared/base.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/shared/bottom_bar.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/shared/demo.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/shared/footer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/shared/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/shared/nav_bar.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/shared/navbar.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/templates/shared/side_menu_bar.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating_app/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating_app/asgi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating_app/settings.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating_app/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/dating_app/wsgi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/jobPortal/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/jobPortal/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/jobPortal/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/jobPortal/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/jobPortal/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/jobPortal/templates/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/jobPortal/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/jobPortal/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/jobPortal/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/manage.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/matrimony/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/matrimony/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/matrimony/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/matrimony/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/matrimony/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/matrimony/templates/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/matrimony/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/matrimony/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/matrimony/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/requirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/static/css/main.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/static/css/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/static/images/1.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/static/images/2.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/static/images/3.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/static/images/default-profile-pic.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/static/images/f1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/static/images/f2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/static/images/gicon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/static/images/image.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/static/images/image1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/static/images/profile_pic.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/static/images/svgicons/american-express.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/static/images/svgicons/dollar.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/static/images/svgicons/mastercard.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/static/images/svgicons/paypal.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/static/images/svgicons/rupay.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/static/images/svgicons/visa.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/static/svgicons/american-express.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/static/svgicons/dollar.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/static/svgicons/mastercard.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/static/svgicons/paypal.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/static/svgicons/rupay.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../New folder/Dating-G2_back-end/static/svgicons/visa.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/accounts/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/accounts/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/accounts/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/accounts/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/accounts/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/accounts/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/accounts/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/accounts/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/accounts/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/dating/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/dating/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/dating/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/dating/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/dating/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/dating/templates/accept.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/dating/templates/contacted.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/dating/templates/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/dating/templates/message.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/dating/templates/received.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/dating/templates/reject.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/dating/templates/sent.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/dating/templates/shared/account_base.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/dating/templates/shared/base.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/dating/templates/shared/bottom_bar.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/dating/templates/shared/demo.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/dating/templates/shared/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/dating/templates/shared/nav_bar.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/dating/templates/shared/side_menu_bar.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/dating/templates/shortlist.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/dating/templates/shortlist_by.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/dating/templates/viewed_myprofile.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/dating/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/dating/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/dating/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/dating_app/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/dating_app/asgi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/dating_app/settings.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/dating_app/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/dating_app/wsgi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/jobPortal/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/jobPortal/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/jobPortal/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/jobPortal/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/jobPortal/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/jobPortal/templates/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/jobPortal/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/jobPortal/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/jobPortal/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/manage.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/matrimony/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/matrimony/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/matrimony/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/matrimony/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/matrimony/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/matrimony/templates/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/matrimony/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/matrimony/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/matrimony/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/requirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/static/css/main.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/static/images/f1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/static/images/f2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/static/images/gicon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/static/images/image.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/static/images/image1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/static/svgicons/american-express.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/static/svgicons/dollar.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/static/svgicons/mastercard.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/static/svgicons/paypal.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/static/svgicons/rupay.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../dating-app-development/static/svgicons/visa.svg" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../../.." />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2czuCKHLP5qgLHQILXW77WADgET" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "anjana",
+    "last_opened_file_path": "C:/Users/kanna/OneDrive/Desktop/project7/project7/myproject"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="64531543-0ba5-4835-88b6-de6e92415a71" name="Changes" comment="" />
+      <created>1709126601020</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1709126601020</updated>
+    </task>
+    <servers />
+  </component>
+</project>
